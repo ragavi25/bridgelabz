@@ -1,5 +1,5 @@
 ﻿//--------------------------------------------------------------------------------------------------------------------
-// <copyright file=AdminRepository.cs" company="Bridgelabz">
+// <copyright file=Bankingcashcounter.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name=" R Ragavi>

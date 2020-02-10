@@ -9,3 +9,8 @@ C:\Users\BridgeLabz\Desktop\ragavi\Datastructure\obj\Debug\netcoreapp3.0\Datastr
 C:\Users\BridgeLabz\Desktop\ragavi\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.AssemblyInfo.cs
 C:\Users\BridgeLabz\Desktop\ragavi\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.dll
 C:\Users\BridgeLabz\Desktop\ragavi\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.pdb
+C:\Users\BridgeLabz\Desktop\ragavi\DataStructures\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.csprojAssemblyReference.cache
+C:\Users\BridgeLabz\Desktop\ragavi\DataStructures\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.AssemblyInfoInputs.cache
+C:\Users\BridgeLabz\Desktop\ragavi\DataStructures\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.AssemblyInfo.cs
+C:\Users\BridgeLabz\Desktop\ragavi\DataStructures\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.dll
+C:\Users\BridgeLabz\Desktop\ragavi\DataStructures\Datastructure\obj\Debug\netcoreapp3.0\Datastructure.pdb

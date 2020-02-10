@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\Datastructure\\Datastructure.csproj",
+      "projectUniqueName": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\DataStructures\\Datastructure\\Datastructure.csproj",
       "projectName": "Datastructure",
-      "projectPath": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\Datastructure\\Datastructure.csproj",
+      "projectPath": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\DataStructures\\Datastructure\\Datastructure.csproj",
       "packagesPath": "C:\\Users\\BridgeLabz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\Datastructure\\obj\\",
+      "outputPath": "C:\\Users\\BridgeLabz\\Desktop\\ragavi\\DataStructures\\Datastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
