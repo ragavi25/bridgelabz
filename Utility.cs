@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesiginPatterns
+namespace DesiginPattern
 {
     class Utility
     {
-        public static string UserString()
-        {
-            string userstring = Console.ReadLine();
-            return userstring;
-        }
         public static int UserInt()
         {
-            int userinteger = Convert.ToInt32(Console.ReadLine());
-            return userinteger;
+            int userInt = Convert.ToInt32(Console.ReadLine());
+            return userInt;
+        }
+        public static string UserString()
+        {
+            string userstr = Console.ReadLine();
+            return userstr;
         }
     }
 }

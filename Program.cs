@@ -1,29 +1,31 @@
-﻿
-using System;
+﻿using System;
 
-namespace DesiginPatterns
+namespace DesiginPattern
 {
-    /// <summary>
-    /// 
-    /// </summary>
     class Program
     {
-      public  static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Console.WriteLine("Enter your Design Ptterns:\t 1.Creation patten");
-            int ch = Convert.ToInt32(Console.ReadLine());
+            HI:
+            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization3.Threadsafe Initialization");
+            int ch = Utility.UserInt();
             switch(ch)
             {
                 case 1:
-                    Singleton1 a = Singleton1.GetInstance;
-                    a.PrintDetailsStudent();
-                    
+                    EagerSingleton eager = EagerSingleton.GetInstance;
+                    eager.PrintDetailsStudent();
                     break;
+                case 2:
+                    LazySingleton lazy = LazySingleton.GetInstance;
+                    lazy.PrintDetailsStudent();
+                    break;
+                case 3:
+                    ThreadSafeSingleton threadSafe = ThreadSafeSingleton.GetInstance;
+                    threadSafe.PrintDetailsStudent();
+                    break;
+                   
             }
-
-            
-            
-
+            goto HI;
         }
     }
 }
