@@ -11,15 +11,15 @@ namespace DesiginPattern.Singleton
     /// <summary>
     /// Class for the Lazy Initialization of Design Pattern of Singleton
     /// </summary>
-    public sealed class LazySingleton
+    public  class LazySingleton
     {
         /// <summary>
-        /// 
+        ///  Intialization private count integer value.
         /// </summary>
         private static int count = 0;
         private static Lazy<LazySingleton> Instance = new Lazy<LazySingleton>();
         /// <summary>
-        /// 
+        /// Lazy intialization pattern using lazy keywords
         /// </summary>
         private LazySingleton()
         {
@@ -27,7 +27,8 @@ namespace DesiginPattern.Singleton
             Console.WriteLine("Count value:" + count.ToString());
         }
         public static LazySingleton GetInstance
-        {//
+        {
+            ////Get the student details
             get
                 {
                 return new LazySingleton();
@@ -49,6 +50,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsTeacher()
         {
+            ////Get the Teacher Detatils
             Console.WriteLine("enter teacher name");
             string name = Utility.UserString();
             Console.WriteLine("Enter the subject:");
