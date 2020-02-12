@@ -8,12 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesiginPattern
+namespace DesiginPattern.Singleton
 {
     /// <summary>
     /// Class for the Eager Initialization of Design Pattern of Singleton.
     /// </summary>
-    public sealed class EagerSingleton
+    public class EagerSingleton
     {
         /// <summary>
         /// 

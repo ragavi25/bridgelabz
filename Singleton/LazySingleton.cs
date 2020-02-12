@@ -6,7 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 
-namespace DesiginPattern
+namespace DesiginPattern.Singleton
 {
     /// <summary>
     /// Class for the Lazy Initialization of Design Pattern of Singleton

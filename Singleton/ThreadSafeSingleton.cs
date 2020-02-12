@@ -1,22 +1,29 @@
-﻿using System;
+﻿/ --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ThreadsafeSingleton.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// --------------------------------------------------------------------------------------------------------------------
 
-namespace DesiginPattern
+using System;
+
+namespace DesiginPattern.Singleton
 {
-    public sealed  class ThreadSafeSingleton
+    public class ThreadSafeSingleton
     {
         private static int counter = 0;
         private static ThreadSafeSingleton instance = null;
         /// <summary>
         /// Thread Safe Singleton using lock. control the thread race condition in a multithreaded environment
         /// </summary>
-      private static readonly object Instancelock = new object();
+        private static readonly object Instancelock = new object();
         /// <summary>
-        /// 
+        /// private constractor ensure that object is not instantied other than with in class itself.
         /// </summary>
         public static ThreadSafeSingleton GetInstance
         {
             get
-            {
+            {////this look using Threadsafe.
                 lock (Instancelock)
                 {
                     if (instance == null)
@@ -28,12 +35,13 @@ namespace DesiginPattern
 
         private ThreadSafeSingleton()
         {
+            //// Return a count value.
             counter++;
             Console.WriteLine("Counter Value " + counter.ToString());
         }
         public void PrintDetailsStudent()
-        { 
-            ////
+        {
+            ////Geting Student detatils.
             Console.WriteLine("Enter student Details:");
             Console.WriteLine("Enter student id:");
             int id = Utility.UserInt();
@@ -48,7 +56,7 @@ namespace DesiginPattern
         }
         public void PrintDetailsTeacher()
         {
-            ////
+            ////Geting Teacher detatils
             Console.WriteLine("enter teacher name");
             string name = Utility.UserString();
             Console.WriteLine("Enter the subject:");
@@ -58,6 +66,6 @@ namespace DesiginPattern
 
 
 
-  }
+    }
 }
 
