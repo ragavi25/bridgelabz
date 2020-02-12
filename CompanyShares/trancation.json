@@ -1,0 +1,27 @@
+{
+  "trancation": "trancation",
+  "Trancation": [
+    {
+      "trancation_id": "01",
+      "buyar": "abc",
+      "seller": "TCS",
+      "trancation_amount": 1000,
+      "datetime": "06/02/2020 02:36:00"
+    },
+    {
+      "trancation_id": "02",
+      "buyar": "def",
+      "seller": "wipro",
+      "trancation_amount": 2000,
+      "datetime": "08/02/2020 02:36:00"
+    },
+    {
+      "trancation_id": "03",
+      "buyar": "ghi",
+      "seller": "accenture",
+      "trancation_amount": 3000,
+      "datetime": "18/02/2020 02:36:00"
+    }
+
+  ] 
+}

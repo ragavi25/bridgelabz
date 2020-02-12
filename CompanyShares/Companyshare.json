@@ -1,0 +1,27 @@
+{
+  "company_shares": [
+    {
+      "company_symbol": "^",
+      "company_name": "TCS",
+      "company_shares": 300,
+      "company_share_price": 2000,
+      "company_total_value": 5000000
+
+    },
+    {
+      "company_symbol": "w",
+      "company_name": "WIPRO",
+      "company_shares": 200,
+      "company_share_price": 1000,
+      "company_total_value": 300000
+    },
+    {
+      "company_symbol": "@",
+      "company_name": "Accenture",
+      "company_shares": 250,
+      "company_share_price": 3000,
+      "company_total_value": 4000000
+    }
+  ]
+
+}

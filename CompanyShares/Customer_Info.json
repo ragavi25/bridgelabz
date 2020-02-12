@@ -1,0 +1,20 @@
+{
+  "Cutomer_info": [
+    {
+      "customer_name": "Ragavi",
+      "customer_share": 50,
+      "customer_balance": 10000
+    },
+    {
+      "customer_name": "Rajati",
+      "customer_share": 100,
+      "customer_balance": 100000
+    },
+    {
+      "customer_name": "Somya",
+      "customer_share": 250,
+      "customer_balance": 200000
+    }
+  ]
+
+}

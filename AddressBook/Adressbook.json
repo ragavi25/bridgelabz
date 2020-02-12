@@ -1,0 +1,29 @@
+{
+  "person": [
+
+    {
+      "id": 1,
+      "FirstName": "Ragavi",
+      "LastName": "Rajendran",
+      
+        "state": "TamilNadu",
+        "city": "Theni",
+        "street": "kallar school street",
+        "zipcode": 12345
+      
+    },
+    {
+      "id": 2,
+      "FirstName": "Ramya",
+      "LastName": "vachi",
+     
+        "state": "TN",
+        "city": "Theni",
+        "street": "aaa",
+        "zipcode": 5678
+      
+    }
+
+  ]
+
+}

@@ -1,0 +1,55 @@
+{
+  "id":1,
+  "Name": "mr",
+  "location": {
+    "city": "Theni",
+    "state": "TamilNadu"
+  },
+  "Orders_rice": [
+    {
+      "id": 1,
+      "Rice": [
+        {
+          "product_rice": {
+            "name": "Indica",
+            "price": 60
+          },
+          "weight": "2kg"
+        } 
+      ]
+    }
+  ],
+  "Orders_pulses" :
+  [
+    {
+      "id": 2,
+      "Pulses": [
+        {
+
+          "product_pulses": {
+            "name": "spilt",
+            "price": 50
+          },
+          "weight": "1kg"
+
+        }
+
+      ]
+    }
+  ],
+  "Orders_wheats" :[
+    {
+
+      "id": 3,
+      "Wheats": [
+        {
+
+        "product_wheats" :
+        {
+          "name": "Runner bean",
+          "price": 30
+        },
+        "weight" :"2kg"
+    }
+  ]
+}
