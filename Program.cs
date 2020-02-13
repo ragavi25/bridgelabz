@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DesiginPattern.Factory_Pattern;
+using DesiginPattern.Singleton;
+using System;
 
 namespace DesiginPattern
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             HI:
-            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization3.Threadsafe Initialization");
+            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern");
             int ch = Utility.UserInt();
             switch(ch)
             {
@@ -23,8 +25,13 @@ namespace DesiginPattern
                     ThreadSafeSingleton threadSafe = ThreadSafeSingleton.GetInstance;
                     threadSafe.PrintDetailsStudent();
                     break;
-                   
+                case 4:
+                    TestFactory testFactory = new TestFactory();
+                    TestFactory.TestFactoryObj();
+                    break;
             }
+
+
             goto HI;
         }
     }
