@@ -14,5 +14,10 @@ namespace DesiginPattern.ProtoTypeDesignPattern
             ////To print the employee Details.
             return string.Format ("Name: {0} "+"DeptId : {1}",this.Name,this.DeptId.ToString());
         }
+
+        internal Employee Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
