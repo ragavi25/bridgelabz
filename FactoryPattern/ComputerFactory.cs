@@ -5,7 +5,9 @@
 // <creator name="R Ragavi"/>
 // ----------------------------------------------------------------------------------------
 namespace DesiginPattern.Factory_Pattern
-{
+{/// <summary>
+/// We have super classes and sub-classes ready, we can write our ComputerFactory class
+/// </summary>
     public class ComputerFactory
     {
         public static Computer GetComputer(string type,string ram,string cpu,string hdd)
