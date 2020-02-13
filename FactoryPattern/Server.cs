@@ -7,7 +7,7 @@
 namespace DesiginPattern.Factory_Pattern
 {
     /// <summary>
-    /// 
+    /// Creating a sub-clases of server. 
     /// </summary>
     public class Server : Computer
     {/// <summary>
