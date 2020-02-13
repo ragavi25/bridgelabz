@@ -31,7 +31,7 @@ namespace DesiginPattern.Factory_Pattern
         }
         public override string Cpu()
         {
-            ////
+            ////Override the Cpu instance
             return this.cpu;
         }
 
