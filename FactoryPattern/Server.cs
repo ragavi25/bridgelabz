@@ -19,7 +19,7 @@ namespace DesiginPattern.Factory_Pattern
 
         public Server(string ram, string cpu, string hdd)
         {
-            ////
+           
             this.ram = ram;
             this.cpu = cpu;
             this.hdd = hdd;
