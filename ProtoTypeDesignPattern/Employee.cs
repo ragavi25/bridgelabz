@@ -9,6 +9,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
         public Guid Id { get; set; }
         public string Name { get; set; }
         public int DeptId { get; set; }
+        public Address AddressDetails { get; set; }
         public override string ToString()
         {
             ////To print the employee Details.
@@ -17,7 +18,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
 
         internal Employee Clone()
         {
-            throw new NotImplementedException();
+            return new Employee();
         }
     }
 }
