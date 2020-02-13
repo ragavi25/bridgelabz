@@ -8,6 +8,9 @@ using System;
 
 namespace DesiginPattern.Factory_Pattern
 {
+    /// <summary>
+    /// Purpose:only purpose of tesing all super and supclass.
+    /// </summary>
     public class TestFactory
     {
         public static void TestFactoryObj()
