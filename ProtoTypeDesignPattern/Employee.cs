@@ -33,7 +33,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
         public override string ToString()
         {
             ////To print the employee Details.
-            return string.Format ("Name:"+this.Name +"\n"+ "DeptId:"+this.DeptId.ToString());
+            return string.Format ("Name:"+this.Name +"  "+ "DeptId:"+this.DeptId.ToString());
         }
 
         public new Employee Clone()

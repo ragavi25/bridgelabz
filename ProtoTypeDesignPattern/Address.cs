@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DesiginPattern.ProtoTypeDesignPattern
+﻿namespace DesiginPattern.ProtoTypeDesignPattern
 {
-  public class Address
+    public class Address
     {
-      //  private int Doornum;
-       // private string street;
-        private string city;
-        private string state;
-      //  private int zipcode;
-
-       
-
-        public Address(string state, string city)
+    public Address(string state, string city)
         {
-            this.state = state;
-            this.city = city;
+            this.State = state;
+            this.City = city;
         }
 
         public int DoorNum { get; set; }
@@ -27,7 +15,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
         public int ZipCode { get; set; }
         public override string ToString()
         {
-            return string.Format("State : {0}"+"\n"+"city :{1}",this.State,this.City);
+            return string.Format("State : "+this.State+"  "+"City:"+this.City);
         }
 
         public Address Clone()
