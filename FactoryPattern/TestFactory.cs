@@ -1,6 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=TestFactory.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ----------------------------------------------------------------------------------------
+using System;
 
 namespace DesiginPattern.Factory_Pattern
 {
