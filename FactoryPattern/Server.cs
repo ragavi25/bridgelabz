@@ -36,8 +36,8 @@ namespace DesiginPattern.Factory_Pattern
         }
 
         public override string Hdd()
-        { 
-            ////
+        {
+            ////Override the Hdd instance
             return this.hdd;
         }
 
