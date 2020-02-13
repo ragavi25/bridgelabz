@@ -4,21 +4,42 @@ using System.Text;
 
 namespace DesiginPattern.ProtoTypeDesignPattern
 {
-    public class Employee
+    public class Employee : CloneablePrototype<Employee>
     {
-        public Guid Id { get; set; }
+        private int v1;
+        private string v2;
+        private int v3;
+
+        public Employee(int id, string name, int deptId,string state,string city)
+        {
+            Id = id;
+            Name = name;
+            DeptId = deptId;
+           
+        }
+
+        public Employee(int id, string name, int deptid)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.DeptId=deptid;
+        }
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public int DeptId { get; set; }
-        public Address AddressDetails { get; set; }
+       
+       
         public override string ToString()
         {
             ////To print the employee Details.
-            return string.Format ("Name: {0} "+"DeptId : {1}",this.Name,this.DeptId.ToString());
+            return string.Format ("Name:"+this.Name +"\n"+ "DeptId:"+this.DeptId.ToString());
         }
 
-        internal Employee Clone()
-        {
-            return new Employee();
+        public new Employee Clone()
+       {
+            
+            return new Employee(this.Id,this.Name,this.DeptId);
         }
     }
 }
