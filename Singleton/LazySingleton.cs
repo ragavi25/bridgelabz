@@ -28,7 +28,7 @@ namespace DesiginPattern.Singleton
         }
         public static LazySingleton GetInstance
         {
-            ////Get the student details
+            ////Take the student details
             get
                 {
                 return new LazySingleton();
@@ -50,7 +50,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsTeacher()
         {
-            ////Get the Teacher Detatils
+            ////Take the Teacher Detatils
             Console.WriteLine("enter teacher name");
             string name = Utility.UserString();
             Console.WriteLine("Enter the subject:");
