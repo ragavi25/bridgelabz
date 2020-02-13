@@ -11,14 +11,14 @@ namespace DesiginPattern.Factory_Pattern
     public abstract class Computer
     {
         /// <summary>
-        /// Get the value of RAM Declare.
+        /// Ram declaration of get the value.
         /// </summary>
         /// <returns>curent value of Ram</returns>
         public abstract string Ram();
         /// <summary>
-        /// 
+        /// Cpu declaration of get the value
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Curent value of Cpu</returns>
         public abstract string Cpu();
         /// <summary>
         /// 
