@@ -26,7 +26,7 @@ namespace DesiginPattern.Factory_Pattern
         }
         public override string Ram()
         {
-            ////
+            ////Override the Ram instance
             return this.ram;
         }
         public override string Cpu()
