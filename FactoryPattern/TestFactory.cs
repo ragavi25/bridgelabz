@@ -13,6 +13,9 @@ namespace DesiginPattern.Factory_Pattern
     /// </summary>
     public class TestFactory
     {
+        /// <summary>
+        /// Here is a simple test client program that uses of factory design pattern implementation.
+        /// </summary>
         public static void TestFactoryObj()
         {
             Computer Pc = ComputerFactory.GetComputer("PC", "3GB", "600GB", "3.5GHZ");
