@@ -41,7 +41,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsStudent()
         {
-            ////Geting Student detatils.
+            ////Take the Student detatils.
             Console.WriteLine("Enter student Details:");
             Console.WriteLine("Enter student id:");
             int id = Utility.UserInt();
