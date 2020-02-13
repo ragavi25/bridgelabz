@@ -11,7 +11,7 @@ namespace DesiginPattern.Factory_Pattern
     /// </summary>
     public class Server : Computer
     {/// <summary>
-     /// 
+     /// The sub-classes Server  are extending Computer super class.
      /// </summary>
         private readonly string cpu;
         private readonly string hdd;
