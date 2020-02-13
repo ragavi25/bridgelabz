@@ -39,6 +39,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsStudent()
         {
+            ////Take the student details
             Console.WriteLine("Enter student Details:");
             Console.WriteLine("Enter student id:");
             int id = Utility.UserInt();
@@ -53,6 +54,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsTeacher()
         {
+            ////Take the Teacher details
             Console.WriteLine("enter teacher name");
             string name = Utility.UserString();
             Console.WriteLine("Enter the subject:");
