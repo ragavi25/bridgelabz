@@ -6,14 +6,14 @@
 // ----------------------------------------------------------------------------------------
 namespace DesiginPattern.Factory_Pattern
 {/// <summary>
-/// 
+/// Purpose:Create an Abstract Computer Class.
 /// </summary>
     public abstract class Computer
     {
         /// <summary>
-        /// 
+        /// Get the value of RAM Declare.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>curent value of Ram</returns>
         public abstract string Ram();
         /// <summary>
         /// 
