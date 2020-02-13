@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DesiginPattern.Factory_Pattern
+﻿namespace DesiginPattern.Factory_Pattern
 {
     /// <summary>
     /// 
