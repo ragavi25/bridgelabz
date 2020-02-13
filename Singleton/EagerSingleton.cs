@@ -29,7 +29,7 @@ namespace DesiginPattern.Singleton
         }
         public static EagerSingleton GetInstance
         { 
-            ////
+            ////Get the value of Instance.
            get
             {
                 if (Instance == null)
