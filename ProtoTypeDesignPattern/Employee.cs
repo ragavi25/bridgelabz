@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.ProtoTypeDesignPattern
 {
-    public class Employee : CloneablePrototype<Employee>
+    public class Employee
     {
         private int v1;
         private string v2;

@@ -1,4 +1,7 @@
-﻿namespace DesiginPattern.ProtoTypeDesignPattern
+﻿using Newtonsoft.Json;
+using System;
+
+namespace DesiginPattern.ProtoTypeDesignPattern
 {
     public class Address
     {
@@ -21,6 +24,14 @@
         public Address Clone()
         {
             return new Address( this.State, this.City );   
+        }
+
+        public Address DeepCopy()
+        {
+
+            string result = JsonConvert.SerializeObject(this);
+            ////TO avoid memory referencing
+            return JsonConvert.DeserializeObject<Address>(result);
         }
     }
 }

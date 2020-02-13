@@ -12,6 +12,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
         {
             ShallowCopy();
             ShallowCopyRef();
+            DeepCopy();
             static void ShallowCopy()
             {
                 Employee empRamki = new Employee(1,"Ramki",150);
@@ -36,15 +37,15 @@ namespace DesiginPattern.ProtoTypeDesignPattern
                 Address empRamki1 = new Address("TN", "THENI");
                 Console.Write(empRamki1.ToString());
                 Address empRagu = (Address)empRamki1.Clone();
-                // empRagu.State = "kerla";
-                //empRagu.City= "abc";
+                empRagu.State = "kerla";
+                empRagu.City= "abc";
                 Console.Write(emp.ToString());
                 Console.Write(empRagu.ToString());
                 Console.WriteLine("Modified Ramki Details:");
                 empRamki1.State = "Ka";
                 empRamki1.City = "CVB";
                 emp.DeptId = 161;
-             //  Console.WriteLine(emp.ToString());
+               Console.WriteLine(emp.ToString());
                 Console.WriteLine(empRamki1.ToString());
                 Console.WriteLine(empRagu.ToString());
             }
@@ -58,16 +59,16 @@ namespace DesiginPattern.ProtoTypeDesignPattern
 
                 Address empRamki1 = new Address("TN", "THENI");
                 Console.Write(empRamki1.ToString());
-                Address empRagu = (Address)empRamki1.();
-                // empRagu.State = "kerla";
-                //empRagu.City= "abc";
+                Address empRagu = (Address)empRamki1.DeepCopy();
+                empRagu.State = "kerla";
+                empRagu.City= "abc";
                 Console.Write(emp.ToString());
                 Console.Write(empRagu.ToString());
                 Console.WriteLine("Modified Ramki Details:");
                 empRamki1.State = "Ka";
                 empRamki1.City = "CVB";
                 emp.DeptId = 161;
-                //  Console.WriteLine(emp.ToString());
+                  Console.WriteLine(emp.ToString());
                 Console.WriteLine(empRamki1.ToString());
                 Console.WriteLine(empRagu.ToString());
             }
