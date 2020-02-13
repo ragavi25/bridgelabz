@@ -16,13 +16,13 @@ namespace DesiginPattern.Singleton
     public class EagerSingleton
     {
         /// <summary>
-        /// 
+        /// Intialization private count integer value.
         /// </summary>
         private static int count = 0;
         private static  EagerSingleton Instance = null;
         private EagerSingleton()
         {
-            
+            //// the instance of Singleton Class is created at the time of class loading, this is the easiest method to create a Eagersingleton class.
             count++;
             Console.WriteLine("Counter value:" + count.ToString());
 
