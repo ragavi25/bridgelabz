@@ -10,6 +10,14 @@ namespace DesiginPattern.Factory_Pattern
 /// </summary>
     public class ComputerFactory
     {
+        /// <summary>
+        /// Based on the input parameter, different subclass is created and returned. getComputer is the factory method.
+        /// </summary>
+        /// <param name="type">Get the various type</param>
+        /// <param name="ram">Get the value of ram</param>
+        /// <param name="cpu">Get the value of cpu</param>
+        /// <param name="hdd">Get the valuse of hdd</param>
+        /// <returns>All the value returned </returns>
         public static Computer GetComputer(string type,string ram,string cpu,string hdd)
         {
             ////Pc equals of the all value printed.
@@ -27,6 +35,6 @@ namespace DesiginPattern.Factory_Pattern
             return null;
             }
 
-        
+
     }
 }
