@@ -13,18 +13,21 @@ namespace DesiginPattern.Factory_Pattern
         /// <summary>
         /// Ram declaration of get the value.
         /// </summary>
-        /// <returns>curent value of Ram</returns>
+        /// <returns>current value of Ram</returns>
         public abstract string Ram();
         /// <summary>
         /// Cpu declaration of get the value
         /// </summary>
-        /// <returns>Curent value of Cpu</returns>
+        /// <returns>Current value of Cpu</returns>
         public abstract string Cpu();
         /// <summary>
-        /// 
+        /// Hdd declaration of get the value
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Current value of Hdd</returns>
         public abstract string Hdd();
+        /// <summary>
+        /// Get the current all the value of printed.
+        /// </summary>
         public new string ToString => "RAM= " + this.Ram() + ", CPU=" + this.Cpu() + ", HDD=" + this.Hdd();
     }
 }
