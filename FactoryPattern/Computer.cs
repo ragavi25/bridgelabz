@@ -6,7 +6,7 @@
 // ----------------------------------------------------------------------------------------
 namespace DesiginPattern.Factory_Pattern
 {/// <summary>
-/// Purpose:Create an Abstract Computer Class.
+/// Purpose:Create an Abstract Computer Class.Super class in factory design pattern can be an interface.
 /// </summary>
     public abstract class Computer
     {
@@ -26,7 +26,7 @@ namespace DesiginPattern.Factory_Pattern
         /// <returns>Current value of Hdd</returns>
         public abstract string Hdd();
         /// <summary>
-        /// Get the current all the value of printed.
+        ///  we have abstract super class with overridden toString() method for testing purpose.
         /// </summary>
         public new string ToString => "RAM= " + this.Ram() + ", CPU=" + this.Cpu() + ", HDD=" + this.Hdd();
     }
