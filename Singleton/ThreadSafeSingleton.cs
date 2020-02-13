@@ -56,7 +56,7 @@ namespace DesiginPattern.Singleton
         }
         public void PrintDetailsTeacher()
         {
-            ////Geting Teacher detatils
+            ////Take Teacher detatils
             Console.WriteLine("enter teacher name");
             string name = Utility.UserString();
             Console.WriteLine("Enter the subject:");
