@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
+    /// <summary>
+    /// Purpose: inheritance and extends the source interface, in our case Socket class.
+    /// </summary>
     public class SocketClassAdapterImpl : Socket, ISocketAdapter
     {
         public Volt Get120Volt()
