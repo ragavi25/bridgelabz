@@ -6,6 +6,9 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
    public class Volt
     {
+        /// <summary>
+        /// purpose:Volt class using to meassure of Volts.
+        /// </summary>
         private int Volts;
         public  Volt (int v)
         {
