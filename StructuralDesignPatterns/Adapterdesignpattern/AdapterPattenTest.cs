@@ -6,9 +6,10 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
     public class AdapterPattenTest
     {
-        public void Test()
+        public static void Test()
         {
             TestObjectAdapter();
+            Console.WriteLine("-----------------------------------------------------------------");
             TestClassAdapter();
         }
         private static void TestObjectAdapter()
