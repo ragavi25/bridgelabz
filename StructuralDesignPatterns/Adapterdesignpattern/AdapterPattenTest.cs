@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
+    /// <summary>
+    /// Purpose:Here is a test program to consume our adapter design pattern implementation.
+    /// </summary>
     public class AdapterPattenTest
     {
         public static void Test()
