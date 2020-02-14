@@ -9,6 +9,9 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
     /// </summary>
     public class SocketObjAdapterImpl : ISocketAdapter
     {
+        /// <summary>
+        ///  the adapter implementations are almost same and they implement the SocketAdapter interface.
+        /// </summary>
         private Socket sock = new Socket();
         public Volt Get120Volt()
         {
