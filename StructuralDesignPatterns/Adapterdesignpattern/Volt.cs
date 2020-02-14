@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
+﻿namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
-   public class Volt
+    public class Volt
     {
         /// <summary>
         /// purpose:Volt class using to meassure of Volts.
