@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AdapterPattenTest.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ----------------------------------------------------------------------------------------
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
     public interface ISocketAdapter
