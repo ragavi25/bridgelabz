@@ -6,13 +6,14 @@ namespace DesiginPattern.ProtoTypeDesignPattern
 {
     public class TestPrototype
     {
-        
 
-        public void Test()
+
+        public static void Test()
         {
             ShallowCopy();
             ShallowCopyRef();
             DeepCopy();
+        }
             static void ShallowCopy()
             {
                 Employee empRamki = new Employee(1,"Ramki",150);
@@ -72,7 +73,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
                 Console.WriteLine(empRamki1.ToString());
                 Console.WriteLine(empRagu.ToString());
             }
-        }
+        
     }
 }
  
