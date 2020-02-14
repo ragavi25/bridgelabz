@@ -4,6 +4,9 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
+    /// <summary>
+    /// Purpose:uses of Composition and adapter contains the source object.
+    /// </summary>
     public class SocketObjAdapterImpl : ISocketAdapter
     {
         private Socket sock = new Socket();
