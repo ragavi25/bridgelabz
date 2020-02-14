@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
-    public class SocketAdapterImpl : Socket, ISocketAdapter
+    public class SocketClassAdapterImpl : Socket, ISocketAdapter
     {
         public Volt Get120Volt()
         {
