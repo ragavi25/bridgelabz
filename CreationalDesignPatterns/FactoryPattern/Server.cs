@@ -1,0 +1,46 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=TestFactory.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ----------------------------------------------------------------------------------------
+namespace DesiginPattern.Factory_Pattern
+{
+    /// <summary>
+    /// Creating a sub-clases of server. 
+    /// </summary>
+    public class Server : Computer
+    {/// <summary>
+     /// The sub-classes Server  are extending Computer super class.
+     /// </summary>
+        private readonly string cpu;
+        private readonly string hdd;
+        private readonly string ram;
+
+        public Server(string ram, string cpu, string hdd)
+        {
+           
+            this.ram = ram;
+            this.cpu = cpu;
+            this.hdd = hdd;
+        }
+        public override string Ram()
+        {
+            ////Override the Ram instance
+            return this.ram;
+        }
+        public override string Cpu()
+        {
+            ////Override the Cpu instance
+            return this.cpu;
+        }
+
+        public override string Hdd()
+        {
+            ////Override the Hdd instance
+            return this.hdd;
+        }
+
+       
+    }
+}
