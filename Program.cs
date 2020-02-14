@@ -39,6 +39,7 @@ namespace DesiginPattern
                     break;
 
             }
+            Console.WriteLine("***********************************************************");
             goto HI;
         }
     }
