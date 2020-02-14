@@ -8,7 +8,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
     {
         
 
-        public static void Test()
+        public void Test()
         {
             ShallowCopy();
             ShallowCopyRef();
