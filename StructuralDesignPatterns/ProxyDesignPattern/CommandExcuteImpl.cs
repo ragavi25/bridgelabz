@@ -1,0 +1,10 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DesiginPattern.StructuralDesignPatterns.ProxyDesignPattern
+{
+    class CommandExcuteImpl
+    {
+    }
+}
