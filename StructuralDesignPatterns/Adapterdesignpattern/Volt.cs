@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
 {
-    class Volt
+   public class Volt
     {
     }
 }
