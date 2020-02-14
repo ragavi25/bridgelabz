@@ -8,6 +8,7 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
     {
         public static void Test()
         {
+            Console.WriteLine("Object");
             TestObjectAdapter();
             Console.WriteLine("-----------------------------------------------------------------");
             TestClassAdapter();
