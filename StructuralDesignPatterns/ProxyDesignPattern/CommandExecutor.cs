@@ -5,11 +5,10 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns.ProxyDesignPattern
 {
-    interface CommandExecutor
+    public interface CommandExecutor
     {
-        public void runCommand(string cmd)
-        {
-            Throws Exception;
-        }
+        public void RunCommand(string cmd);
+
+
     }
 }
