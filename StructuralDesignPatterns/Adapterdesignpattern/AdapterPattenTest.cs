@@ -11,6 +11,7 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
             Console.WriteLine("Object");
             TestObjectAdapter();
             Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("Class");
             TestClassAdapter();
         }
         private static void TestObjectAdapter()
