@@ -6,6 +6,6 @@ namespace DesiginPattern.StructuralDesignPatterns.ProxyDesignPattern
 {
     interface CommandExecutor
     {
-        public void
+        public void runcommind
     }
 }
