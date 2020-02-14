@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.ProtoTypeDesignPattern
 {
-  public class Icloneable :Employee
+  public class Icloneable : Employee
     {
         public Icloneable(int id, string name, int deptId) : base(id, name, deptId)
         {
