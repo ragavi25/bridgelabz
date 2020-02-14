@@ -32,7 +32,7 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
                 Volt v120 = getVolt(sockad, 120);
                 Console.WriteLine("v3 volts using Class Adapter=" + V3.getVolts());
                 Console.WriteLine("v12 volts using Class Adapter=" + V12.getVolts());
-                Console.WriteLine("v120 volts using Object Adapter=" + v120.getVolts());
+                Console.WriteLine("v120 volts using Class Adapter=" + v120.getVolts());
 
             }
         }
