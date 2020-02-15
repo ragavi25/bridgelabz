@@ -1,4 +1,5 @@
 ﻿using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
+using DesiginPattern.BehavioralDesignPatterns.VisitorPattern;
 using DesiginPattern.Factory_Pattern;
 using DesiginPattern.ProtoTypeDesignPattern;
 using DesiginPattern.Singleton;
@@ -13,7 +14,7 @@ namespace DesiginPattern
         public static void Main(string[] args)
         {
             HI:
-            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern\n8.ObserverPattern");
+            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern\n8.ObserverPattern\n9.VisitorPattern");
             int ch = Utility.UserInt();
             switch(ch)
             {
@@ -45,6 +46,9 @@ namespace DesiginPattern
                     break;
                 case 8:
                     ObserverPatternTest.Test();
+                    break;
+                case 9:
+                    ShopingCardClient.Test();
                     break;
             }
             Console.WriteLine("***********************************************************");
