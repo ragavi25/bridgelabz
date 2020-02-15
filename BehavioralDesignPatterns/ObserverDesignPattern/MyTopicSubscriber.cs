@@ -26,7 +26,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
             }
             else
             {
-                Console.WriteLine(Name + "New Message" + msg);
+                Console.WriteLine(Name + "New UPDATE Message:" + msg);
             }
         }
     }

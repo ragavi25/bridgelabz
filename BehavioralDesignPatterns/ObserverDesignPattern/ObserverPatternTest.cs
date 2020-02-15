@@ -9,6 +9,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
         public static void Test()
         {
             MyTopic topic = new MyTopic();
+            //IObservers OBJ = null;
             IObservers obj1 = new MyTopicSubscriber("Person1:");
             IObservers obj2 = new MyTopicSubscriber("Person2:");
             IObservers obj3 = new MyTopicSubscriber("Person3:");
