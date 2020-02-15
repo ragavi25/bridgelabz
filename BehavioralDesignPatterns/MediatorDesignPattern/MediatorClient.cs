@@ -4,7 +4,11 @@ using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
-    class MediatorClient
+    public class MediatorClient
     {
+        public static void Test()
+        {
+
+        }
     }
 }
