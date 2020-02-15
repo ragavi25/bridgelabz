@@ -7,6 +7,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
 {
     public class MyTopic : Subject
     {
+        private List<Observer> observer;
         public object GetUptate(Observer obj)
         {
             throw new NotImplementedException();
