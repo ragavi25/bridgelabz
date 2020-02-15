@@ -9,9 +9,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
         public static void Test()
         {
             MyTopic topic = new MyTopic();
-            IObservers obj1 = new MyTopicSubscriber("Person1");
-            IObservers obj2 = new MyTopicSubscriber("Person2");
-            IObservers obj3 = new MyTopicSubscriber("Person3");
+            IObservers obj1 = new MyTopicSubscriber("Person1:");
+            IObservers obj2 = new MyTopicSubscriber("Person2:");
+            IObservers obj3 = new MyTopicSubscriber("Person3:");
             topic.Register(obj1);
             topic.Register(obj2);
             topic.Register(obj3);
