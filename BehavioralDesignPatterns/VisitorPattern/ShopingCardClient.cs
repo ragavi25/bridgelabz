@@ -25,7 +25,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             ShoppingCartVisitor cartVisitor = new ShopingCardImpl();
             foreach (ItemElement item in items)
             {
-                
+                sum = sum + item.Accept(cartVisitor);   
             }
             return sum;
         }
