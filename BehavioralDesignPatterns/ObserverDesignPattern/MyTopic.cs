@@ -10,6 +10,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
         private List<Observer> observer;
         private string Message;
         private bool Changed;
+        private Object MUTEX = new Object();
         public object GetUptate(Observer obj)
         {
             throw new NotImplementedException();
