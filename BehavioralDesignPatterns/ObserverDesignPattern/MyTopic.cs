@@ -1,7 +1,6 @@
 ﻿using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns
 {
@@ -11,6 +10,10 @@ namespace DesiginPattern.BehavioralDesignPatterns
         private string Message;
         private bool Changed;
         private Object MUTEX = new Object();
+        public MyTopic()
+        {
+            this.observer = new List<Observer>();
+        }
         public object GetUptate(Observer obj)
         {
             throw new NotImplementedException();
