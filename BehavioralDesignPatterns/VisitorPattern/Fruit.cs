@@ -4,7 +4,7 @@
     {
         private string Name;
         private int Weight;
-        private string Priceperkg;
+        private int Priceperkg;
         public string getName()
         {
             return this.Name;
@@ -13,7 +13,7 @@
         {
             return Weight;
         }
-        public string getPriceperkg()
+        public int getPriceperkg()
         {
             return Priceperkg;
         }

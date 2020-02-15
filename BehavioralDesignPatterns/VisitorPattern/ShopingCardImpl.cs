@@ -25,7 +25,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 
         public int Visit(Fruit fruit)
         {
-            throw new NotImplementedException();
+            int cost = fruit.getPriceperkg() * fruit.getWeight();
+            Console.WriteLine(fruit.getName() + "Cost =" + cost);
+            return cost;
         }
     }
 }
