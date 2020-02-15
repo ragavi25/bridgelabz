@@ -1,8 +1,10 @@
-﻿namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
+﻿using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
+
+namespace DesiginPattern.BehavioralDesignPatterns
 {
-    public class Observer
+    public interface IObservers
     {
         public void Uptate();
-        public void SetSubject(Subject sub);
+        public void SetSubject(ISubject sub);
     }
 }

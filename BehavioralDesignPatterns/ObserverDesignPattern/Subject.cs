@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
 {
-    interface Subject
+    interface ISubject
     {
-        public void Register(Observer obj);
-        public void UnRegister(Observer obj);
+        public void Register(IObservers obj);
+        public void UnRegister(IObservers obj);
         public void NotifyObserver();
-        public Object GetUptate(Observer obj);
+        public Object GetUptate(IObservers obj);
     }
 }

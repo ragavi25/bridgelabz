@@ -5,46 +5,54 @@ using System.Collections.Generic;
 
 namespace DesiginPattern.BehavioralDesignPatterns
 {
-    public class MyTopic : Subject
+    public class MyTopic : ISubject
     {
-        private List<Observer> observer;
+        private List<IObservers> observer;
         private string Message;
         private bool Changed;
-        private  Object MUTEX = new Object();
+      //  private  Object MUTEX = new Object();
        // private object synchronized;
 
         public MyTopic()
         {
-            this.observer = new List<Observer>();
+            this.observer = new List<IObservers>();
         }
-        public object GetUptate(Observer obj)
+        public object GetUptate(IObservers obj)
         {
-            throw new NotImplementedException();
+            return this.Message;
         }
 
         public void NotifyObserver()
         {
-            List<Observer> local = null;
+            List<IObservers> local = null;
             if (!Changed)
                 return;
-            local = new List<Observer>(this.observer);
+            local = new List<IObservers>(this.observer);
             this.Changed = false;
-            foreach(Observer obj in local)
+            foreach(IObservers obj in local)
             {
                 obj.Uptate();
             }
         }
 
-        public void Register(Observer obj)
+        public void Register(IObservers obj)
         {
             if (obj == null) throw new Exception("Null Observers");
             observer.Add(obj);
 
         }
 
-        public void UnRegister(Observer obj)
+        public void UnRegister(IObservers obj)
         {
             observer.Remove(obj);
+        }
+        public void PostMsg(string msg)
+        {
+            Console.WriteLine("Message:" + msg);
+            this.Message = msg;
+            this.Changed = true;
+            this.NotifyObserver();
+
         }
     }
 
