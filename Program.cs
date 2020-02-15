@@ -12,7 +12,7 @@ namespace DesiginPattern
         public static void Main(string[] args)
         {
             HI:
-            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern");
+            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern\n8.ObserverPattern");
             int ch = Utility.UserInt();
             switch(ch)
             {
