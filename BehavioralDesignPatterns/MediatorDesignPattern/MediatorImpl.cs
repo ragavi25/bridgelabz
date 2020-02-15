@@ -18,7 +18,14 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 
         public void SendMessage(string msg, User user)
         {
-            
+            foreach(User user1 in this.users )
+            {
+                if(user1 !=user)
+                {
+                    user1.Recevie(msg);
+                }
+
+            }
         }
     }
 }
