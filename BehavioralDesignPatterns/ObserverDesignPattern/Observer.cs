@@ -2,5 +2,7 @@
 {
     public class Observer
     {
+        public void Uptate();
+        public void SetSubject(Subject sub);
     }
 }
