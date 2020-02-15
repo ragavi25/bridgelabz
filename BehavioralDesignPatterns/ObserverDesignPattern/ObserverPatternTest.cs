@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
 {
-    class ObserverPatternTest
+    public class ObserverPatternTest
     {
         public void Test()
         {

@@ -5,6 +5,6 @@ namespace DesiginPattern.BehavioralDesignPatterns
     public interface IObservers
     {
         public void Uptate();
-        public void SetSubject(ISubject sub);
+        public void setSubject(ISubject subject);
     }
 }

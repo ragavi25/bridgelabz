@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
 {
-    interface ISubject
+     public interface ISubject
     {
         public void Register(IObservers obj);
         public void UnRegister(IObservers obj);
