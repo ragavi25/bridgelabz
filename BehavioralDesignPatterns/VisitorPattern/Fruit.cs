@@ -19,7 +19,7 @@
         }
         public int Accept(ShoppingCartVisitor visitor)
         {
-            
+            return visitor.Visit(this);
         }
     }
 }
