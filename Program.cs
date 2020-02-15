@@ -1,6 +1,7 @@
 ﻿using DesiginPattern.Factory_Pattern;
 using DesiginPattern.ProtoTypeDesignPattern;
 using DesiginPattern.Singleton;
+using DesiginPattern.StructuralDesignPatterns;
 using DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern;
 using System;
 
@@ -11,7 +12,7 @@ namespace DesiginPattern
         public static void Main(string[] args)
         {
             HI:
-            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern");
+            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern");
             int ch = Utility.UserInt();
             switch(ch)
             {
@@ -29,7 +30,8 @@ namespace DesiginPattern
                     break;
                 case 4:
                     TestFactory testFactory = new TestFactory();
-                    TestFactory.TestFactoryObj();
+                    testFactory.TestFactoryObj();
+                    
                     break;
                 case 5:
                     TestPrototype.Test();
@@ -37,7 +39,9 @@ namespace DesiginPattern
                 case 6:
                     AdapterPattenTest.Test();
                     break;
-
+                case 7:
+                    ProxyPatternText.Text();
+                    break;
             }
             Console.WriteLine("***********************************************************");
             goto HI;
