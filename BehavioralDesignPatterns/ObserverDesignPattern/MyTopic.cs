@@ -8,6 +8,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
     public class MyTopic : Subject
     {
         private List<Observer> observer;
+        private string Message;
         public object GetUptate(Observer obj)
         {
             throw new NotImplementedException();
