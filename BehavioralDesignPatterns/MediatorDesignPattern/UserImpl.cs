@@ -9,12 +9,12 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 
         public override void Recevie(string msg)
         {
-           Console.WriteLine(this.Name+"Recivied Message: ")
+            Console.WriteLine(this.Name + "Recivied Message: " +msg);
         }
 
         public override void Send(string msg)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
