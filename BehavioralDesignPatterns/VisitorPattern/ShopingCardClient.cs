@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ShoppingCardClient.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// -------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +12,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
     public class ShopingCardClient
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void Test()
         {
             ItemElement[] items = new ItemElement[]
@@ -18,7 +27,11 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             int Total = Calculate(items);
             Console.WriteLine("Total Cost: " + Total);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         private static int Calculate(ItemElement[] items)
         {
             int sum = 0;

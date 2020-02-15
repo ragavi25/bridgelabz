@@ -1,13 +1,28 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ShoppingCardClient.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// -------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ShopingCardImpl : ShoppingCartVisitor
     {
+     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="book"></param>
+    /// <returns></returns>
         public int Visit(Book book)
         {
+            
             int price = 0;
             if(book.getCost() > 100)
             {
@@ -22,7 +37,11 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fruit"></param>
+        /// <returns></returns>
         public int Visit(Fruit fruit)
         {
             int cost = fruit.getPriceperkg() * fruit.getWeight();
