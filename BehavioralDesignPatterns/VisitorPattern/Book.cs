@@ -2,9 +2,18 @@
 {
     public class Book : ItemElement
     {
-        private int Cost;
-        private string ISBNumber;
-       public int getCost()
+        private readonly int Cost;
+        private readonly string ISBNumber;
+        private readonly int v1;
+        private readonly string v2;
+
+        public Book(int Cost, string ISBNumber)
+        {
+            this.Cost = Cost;
+            this.ISBNumber= ISBNumber;
+        }
+
+        public int getCost()
         {
             return Cost;
         }

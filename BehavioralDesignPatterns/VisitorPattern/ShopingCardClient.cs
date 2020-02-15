@@ -12,8 +12,8 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             {
                 new Book(50,"2754"),
                 new  Book(70,"2489"),
-                new Fruit("Apple","2kg",100),
-                new Fruit("Orange","1kg",80)
+                new Fruit("Apple",2,100),
+                new Fruit("Orange",1,80)
             };
             int Total = Calculate(items);
             Console.WriteLine("Total Cost: " + Total);

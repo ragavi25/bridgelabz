@@ -17,7 +17,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             {
                 price = book.getCost();
             }
-            Console.WriteLine("BOOK ISBN:" + book.getISBNumber() + "Price:" + price);
+            Console.WriteLine("BOOK ISBN:" + book.getISBNumber() +" \n " + "Price:" + price);
             return price;
 
 
@@ -26,7 +26,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
         public int Visit(Fruit fruit)
         {
             int cost = fruit.getPriceperkg() * fruit.getWeight();
-            Console.WriteLine(fruit.getName() + "Cost =" + cost);
+            Console.WriteLine("Name: "+ fruit.getName() +"\n"+ "Cost =" + cost);
             return cost;
         }
     }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
-    interface ItemElement
+    public interface ItemElement
     {
+        public int Accept(ShoppingCartVisitor visitor);
     }
 }

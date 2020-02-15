@@ -1,6 +1,9 @@
 ﻿namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
-    public class ShoppingCartVisitor
+    public interface ShoppingCartVisitor
     {
+        int Visit(Book book);
+        int Visit(Fruit fruit);
+
     }
 }
