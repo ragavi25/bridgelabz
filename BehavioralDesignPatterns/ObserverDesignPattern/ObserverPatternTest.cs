@@ -18,6 +18,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
             obj1.setSubject(topic);
             obj2.setSubject(topic);
             obj3.setSubject(topic);
+            obj1.Uptate();
 
         }
     }
