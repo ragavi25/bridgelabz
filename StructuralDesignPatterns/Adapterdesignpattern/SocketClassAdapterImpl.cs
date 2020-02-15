@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
+namespace DesiginPattern.StructuralDesignPatterns
 {
     /// <summary>
     /// Purpose: inheritance and extends the source interface, in our case Socket class.
