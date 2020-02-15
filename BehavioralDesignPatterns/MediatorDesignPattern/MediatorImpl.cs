@@ -18,7 +18,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 
         public void SendMessage(string msg, User user)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
