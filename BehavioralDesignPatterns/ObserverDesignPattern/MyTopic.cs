@@ -1,4 +1,5 @@
 ﻿using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
+using Sigil;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,9 @@ namespace DesiginPattern.BehavioralDesignPatterns
         private List<Observer> observer;
         private string Message;
         private bool Changed;
-        private Object MUTEX = new Object();
+        private  Object MUTEX = new Object();
+       // private object synchronized;
+
         public MyTopic()
         {
             this.observer = new List<Observer>();
@@ -21,17 +24,29 @@ namespace DesiginPattern.BehavioralDesignPatterns
 
         public void NotifyObserver()
         {
-            throw new NotImplementedException();
+            List<Observer> local = null;
+            if (!Changed)
+                return;
+            local = new List<Observer>(this.observer);
+            this.Changed = false;
+            foreach(Observer obj in local)
+            {
+                obj.Uptate();
+            }
         }
 
         public void Register(Observer obj)
         {
-            throw new NotImplementedException();
+            if (obj == null) throw new Exception("Null Observers");
+            observer.Add(obj);
+
         }
 
         public void UnRegister(Observer obj)
         {
-            throw new NotImplementedException();
+            observer.Remove(obj);
         }
     }
+
+    
 }
