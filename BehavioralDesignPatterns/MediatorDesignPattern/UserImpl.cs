@@ -6,10 +6,14 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
     public class UserImpl : User
     {
-         public UserImpl(Mediator m,string Name)
-         {
-            User(m, Name);
-         }
+        private string Name;
+
+        public UserImpl(Mediator m, string Name)
+        {
+            M = m;
+            this.Name = Name;
+        }
+
         public override void Recevie(string msg)
         {
             Console.WriteLine(this.Name + "Recivied Message: " +msg);
