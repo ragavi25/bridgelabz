@@ -6,5 +6,6 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
    public class UserImpl
     {
+
     }
 }
