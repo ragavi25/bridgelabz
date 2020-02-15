@@ -14,8 +14,13 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
         }
         public void setSubject(ISubject subject)
         {
+            this.topic = subject;
+        }
+
+        public void Uptate()
+        {
             string msg = (string)topic.GetUptate(this);
-            if(msg==null)
+            if (msg == null)
             {
                 Console.WriteLine("NO new Message");
             }
@@ -23,11 +28,6 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
             {
                 Console.WriteLine(Name + "New Message" + msg);
             }
-        }
-
-        public void Uptate()
-        {
-            throw new NotImplementedException();
         }
     }
 }
