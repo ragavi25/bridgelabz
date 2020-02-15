@@ -3,8 +3,8 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="R Ragavi"/>
-// ----------------------------------------------------------------------------------------
-namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
+// -------------------------------------------------------------------------------------------------------
+namespace DesiginPattern.StructuralDesignPatterns
 {
     public class Volt
     {
@@ -20,7 +20,7 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
         {
             return Volts;
         }
-        public void setVolts (int Volts)
+        public void setVolts(int Volts)
         {
             this.Volts = Volts;
         }
