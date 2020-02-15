@@ -9,6 +9,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
     {
         private List<Observer> observer;
         private string Message;
+        private bool Changed;
         public object GetUptate(Observer obj)
         {
             throw new NotImplementedException();
