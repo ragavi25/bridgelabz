@@ -6,9 +6,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
     public class UserImpl : User
     {
-         public UserImpl()
+         public UserImpl(Mediator m,string Name)
          {
-
+            User(m, Name);
          }
         public override void Recevie(string msg)
         {
