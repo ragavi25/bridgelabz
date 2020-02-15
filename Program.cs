@@ -1,4 +1,5 @@
-﻿using DesiginPattern.Factory_Pattern;
+﻿using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
+using DesiginPattern.Factory_Pattern;
 using DesiginPattern.ProtoTypeDesignPattern;
 using DesiginPattern.Singleton;
 using DesiginPattern.StructuralDesignPatterns;
@@ -43,6 +44,7 @@ namespace DesiginPattern
                     ProxyPatternText.Text();
                     break;
                 case 8:
+                    ObserverPatternTest.Test();
                     break;
             }
             Console.WriteLine("***********************************************************");
