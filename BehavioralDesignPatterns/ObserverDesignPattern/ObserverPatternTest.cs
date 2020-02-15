@@ -19,6 +19,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
             obj2.setSubject(topic);
             obj3.setSubject(topic);
             obj1.Uptate();
+            topic.PostMsg("New Message");
 
         }
     }
