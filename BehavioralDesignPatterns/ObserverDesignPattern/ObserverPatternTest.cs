@@ -6,7 +6,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern
 {
     public class ObserverPatternTest
     {
-        public void Test()
+        public static void Test()
         {
             MyTopic topic = new MyTopic();
             IObservers obj1 = new MyTopicSubscriber("Person1");
