@@ -42,6 +42,7 @@ namespace DesiginPattern
                 case 7:
                     ProxyPatternText.Text();
                     break;
+                case 8:
             }
             Console.WriteLine("***********************************************************");
             goto HI;
