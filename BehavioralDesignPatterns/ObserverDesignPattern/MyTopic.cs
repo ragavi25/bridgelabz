@@ -12,24 +12,22 @@ using System.Collections.Generic;
 namespace DesiginPattern.BehavioralDesignPatterns
 {
     /// <summary>
-    /// 
+    /// purpose:proceed with the concrete implementation of our topic.
     /// </summary>
     public class MyTopic : ISubject
     {
         private List<IObservers> observer;
         private string Message;
         private bool Changed;
-      //  private  Object MUTEX = new Object();
-       // private object synchronized;
-       /// <summary>
-       /// 
-       /// </summary>
+        /// <summary>
+        /// Purpose:Used to list of Observers in topics.
+        /// </summary>
         public MyTopic()
         {
             this.observer = new List<IObservers>();
         }
         /// <summary>
-        /// 
+        /// purpose:Update the Observer Messages.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -38,7 +36,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
             return this.Message;
         }
         /// <summary>
-        /// 
+        /// purpose:used to make sure any observer registered after message is received is  notified.
         /// </summary>
         public void NotifyObserver()
         {
@@ -53,7 +51,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
             }
         }
         /// <summary>
-        /// 
+        /// Purpose:Used to Register of Observer.
         /// </summary>
         /// <param name="obj"></param>
         public void Register(IObservers obj)
@@ -63,7 +61,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
 
         }
         /// <summary>
-        /// 
+        /// Purpose:Unregister observer to remove the observer. 
         /// </summary>
         /// <param name="obj"></param>
         public void UnRegister(IObservers obj)
@@ -71,7 +69,7 @@ namespace DesiginPattern.BehavioralDesignPatterns
             observer.Remove(obj);
         }
         /// <summary>
-        /// 
+        /// purpose:post Message to the Observer.
         /// </summary>
         /// <param name="msg"></param>
         public void PostMsg(string msg)
