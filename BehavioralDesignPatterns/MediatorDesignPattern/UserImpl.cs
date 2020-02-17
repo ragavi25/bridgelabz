@@ -19,9 +19,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
         /// this oly purpose of readonly User Name.
         /// </summary>
        
-        public UserImpl(Mediator m, string Name)
+        public UserImpl(IMediator m, string Name)
         {
-            M = m;
+            Mediators = m;
             this.Name = Name;
         }
         /// <summary>
@@ -40,7 +40,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
         public override void Send(string msg)
         {
             Console.WriteLine(this.Name + "Sending Message:" + msg);
-            M.SendMessage(msg, this);
+            Mediators.SendMessage(msg, this);
         }
     }
 }

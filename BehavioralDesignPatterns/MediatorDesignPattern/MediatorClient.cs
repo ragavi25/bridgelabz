@@ -21,15 +21,17 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
         public static void Test()
         {
             
-            Mediator m = new MediatorImpl();
-            User user = new UserImpl(m, "Ragavi:");
-            User user1 = new UserImpl(m, "Ramya:");
-            User user2 = new UserImpl(m, "Ramki:");
-            User user3 = new UserImpl(m, "Ragu:");
-            m.AddUser(user);
-            m.AddUser(user1);
-            m.AddUser(user2);
-            m.AddUser(user3);
+           IMediator mediator = new MediatorImpl();
+            ////Passing  Dependencies.
+            User user = new UserImpl(mediator, "Ragavi:");
+            User user1 = new UserImpl(mediator, "Ramya:");
+            User user2 = new UserImpl(mediator, "Ramki:");
+            User user3 = new UserImpl(mediator, "Ragu:");
+            //// Passing Method Dependencies.
+            mediator.AddUser(user);
+            mediator.AddUser(user1);
+            mediator.AddUser(user2);
+            mediator.AddUser(user3);
             user.Send("Hi All,Welcome");
 
         }

@@ -13,7 +13,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
     /// <summary>
     /// Purprose:create concrete mediator class.
     /// </summary>
-    public class MediatorImpl : Mediator
+    public class MediatorImpl : IMediator
     {
         /// <summary>
         ///  it will have a list of users in the group and provide logic for the communication between the users.

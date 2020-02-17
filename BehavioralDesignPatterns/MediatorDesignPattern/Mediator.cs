@@ -13,13 +13,13 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
     /// <summary>
     /// Purpose : create Mediator interface that will define the contract for concrete mediators.
     /// </summary>
-    public interface Mediator
+    public interface IMediator
     {/// <summary>
-    /// create a method used to sendMessage to users.
-    /// </summary>
-    /// <param name="msg"></param>
-    /// <param name="user"></param>
-           public void SendMessage(String msg, User user);
+     /// create a method used to sendMessage to users.
+     /// </summary>
+     /// <param name="msg"></param>
+     /// <param name="user"></param>
+        public void SendMessage(String msg, User user);
         /// <summary>
         /// create a method used to AddUsers.
         /// </summary>
