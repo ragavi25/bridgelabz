@@ -1,8 +1,17 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=TestPrototype.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ---------------------------------------------------------------------------------------------------------
+
+using Newtonsoft.Json;
 
 namespace DesiginPattern.ProtoTypeDesignPattern
 {
+    /// <summary>
+    /// Purpose: Address class used to get the address.
+    /// </summary>
     public class Address
     {
     public Address(string state, string city)
@@ -20,7 +29,10 @@ namespace DesiginPattern.ProtoTypeDesignPattern
         {
             return string.Format("State : "+this.State+"  "+"City:"+this.City);
         }
-
+        /// <summary>
+        /// Address clone method used to clone the state and city.
+        /// </summary>
+        /// <returns></returns>
         public Address Clone()
         {
             return new Address( this.State, this.City );   
