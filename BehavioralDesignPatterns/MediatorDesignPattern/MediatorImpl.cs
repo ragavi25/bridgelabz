@@ -11,7 +11,7 @@ using System.Text;
 namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
     /// <summary>
-    /// 
+    /// Purpose:create concrete mediator class.
     /// </summary>
     public class MediatorImpl : Mediator
     {
