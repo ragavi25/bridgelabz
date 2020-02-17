@@ -8,12 +8,17 @@ using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
 
 namespace DesiginPattern.BehavioralDesignPatterns
 {
-    /// <summary>
-    /// 
-    /// </summary>
+   
     public interface IObservers
     {
+        /// <summary>
+        /// method to update the observer, used by subject
+        /// </summary>
         public void Uptate();
+        /// <summary>
+        /// Attach whith subject to observer.
+        /// </summary>
+        /// <param name="subject"></param>
         public void setSubject(ISubject subject);
     }
 }
