@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=TestPrototype.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ---------------------------------------------------------------------------------------------------------
+
+using System;
 
 namespace DesiginPattern.ProtoTypeDesignPattern
 {
     public class TestPrototype
     {
-
+        /// <summary>
+        /// Purpose:Test the clone to Employee. 
+        /// </summary>
 
         public static void Test()
         {
@@ -14,6 +21,9 @@ namespace DesiginPattern.ProtoTypeDesignPattern
             ShallowCopyRef();
             DeepCopy();
         }
+        /// <summary>
+        /// Purpose:ShallowCopy used to copy the empioyee to another employee. 
+        /// </summary>
             static void ShallowCopy()
             {
                 Employee empRamki = new Employee(1,"Ramki",150);
@@ -27,6 +37,9 @@ namespace DesiginPattern.ProtoTypeDesignPattern
                 Console.WriteLine(empRamki.ToString());
                
             }
+        /// <summary>
+        /// Purpose:ShallowCopyRef used to the adding some values lone to the employee.
+        /// </summary>
             static void ShallowCopyRef()
             {
                 Employee emp = new Employee(1, "Ramki", 150)
@@ -50,6 +63,9 @@ namespace DesiginPattern.ProtoTypeDesignPattern
                 Console.WriteLine(empRamki1.ToString());
                 Console.WriteLine(empRagu.ToString());
             }
+        /// <summary>
+        /// Puepose:Get the original values.
+        /// </summary>
             static void DeepCopy()
             {
                 Employee emp = new Employee(1, "Ramki", 150)
