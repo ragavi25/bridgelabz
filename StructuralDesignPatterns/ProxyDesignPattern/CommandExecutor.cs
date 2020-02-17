@@ -11,6 +11,9 @@ using System.Text;
 
 namespace DesiginPattern.StructuralDesignPatterns
 {
+    /// <summary>
+    ///  Purpose:here is our interface and its implementation class.
+    /// </summary>
     public interface CommandExecutor
     {
         public void RunCommand(string cmd);
