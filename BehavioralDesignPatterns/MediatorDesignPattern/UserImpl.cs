@@ -19,9 +19,9 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
         /// this oly purpose of readonly User Name.
         /// </summary>
        
-        public UserImpl(IMediator m, string Name)
+        public UserImpl(IMediator mediator, string Name)
         {
-            Mediators = m;
+            Mediators = mediator;
             this.Name = Name;
         }
         /// <summary>
