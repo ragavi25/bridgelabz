@@ -11,23 +11,21 @@ using System.Text;
 namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
     /// <summary>
-    /// Purpose:create concrete mediator class.
+    /// Purprose:create concrete mediator class.
     /// </summary>
     public class MediatorImpl : Mediator
     {
         /// <summary>
-        /// 
+        ///  it will have a list of users in the group and provide logic for the communication between the users.
         /// </summary>
         private List<User> users;
-        /// <summary>
-        /// 
-        /// </summary>
+       
         public MediatorImpl ()
         {
             this.users = new List<User>();
         }
         /// <summary>
-        /// 
+        /// pupose of Add the users.
         /// </summary>
         /// <param name="user"></param>
         public void AddUser(User user)
@@ -35,7 +33,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
             this.users.Add(user);
         }
         /// <summary>
-        /// 
+        /// pupose of used to SendMessage to Users.
         /// </summary>
         /// <param name="msg"></param>
         /// <param name="user"></param>
