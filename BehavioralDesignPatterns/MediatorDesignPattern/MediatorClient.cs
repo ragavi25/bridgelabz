@@ -11,12 +11,12 @@ using System.Text;
 namespace DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern
 {
     /// <summary>
-    /// 
+    /// Purpose: test this our  application with a Mediator program
     /// </summary>
     public class MediatorClient
     {
         /// <summary>
-        /// 
+        /// purpose:create mediator and add users to the group and one of the user will send a message.
         /// </summary>
         public static void Test()
         {
