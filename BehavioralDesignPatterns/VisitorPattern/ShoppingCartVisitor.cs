@@ -7,7 +7,7 @@
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
     /// <summary>
-    /// 
+    /// We have visit() method for different type of items in Visitor interface that will be implemented by concrete visitor class.
     /// </summary>
     public interface ShoppingCartVisitor
     {
