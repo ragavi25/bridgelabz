@@ -11,12 +11,12 @@ using System.Text;
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
     /// <summary>
-    /// 
+    ///  we will implement visitor interface and every item will have it’s own logic to calculate the cost.
     /// </summary>
     public class ShopingCardImpl : ShoppingCartVisitor
     {
      /// <summary>
-    /// 
+    /// purpose:Visit method used to get book value.
     /// </summary>
     /// <param name="book"></param>
     /// <returns></returns>
@@ -38,7 +38,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 
         }
         /// <summary>
-        /// 
+        /// Visit method used to get the furit value.
         /// </summary>
         /// <param name="fruit"></param>
         /// <returns></returns>
