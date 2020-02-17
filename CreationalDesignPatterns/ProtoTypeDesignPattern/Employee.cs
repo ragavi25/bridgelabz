@@ -1,4 +1,11 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=TestPrototype.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ---------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -38,7 +45,7 @@ namespace DesiginPattern.ProtoTypeDesignPattern
 
         public new Employee Clone()
        {
-            
+            ////Clone the Employee Name and DeptId.
             return new Employee(this.Id,this.Name,this.DeptId);
         }
     }
