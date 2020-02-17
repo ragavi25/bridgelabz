@@ -11,7 +11,7 @@ using System.Text;
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
     /// <summary>
-    /// 
+    /// Purpose:To implement visitor pattern, first of all we will create different type of items (Elements) to be used in shopping cart.
     /// </summary>
     public interface ItemElement
     {
