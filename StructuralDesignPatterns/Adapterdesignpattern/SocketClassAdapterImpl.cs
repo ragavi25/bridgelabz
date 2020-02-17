@@ -4,6 +4,7 @@
 // </copyright>
 // <creator name="R Ragavi"/>
 // ----------------------------------------------------------------------------------------
+using DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern;
 using System;
 using System.Collections.Generic;
 using System.Text;

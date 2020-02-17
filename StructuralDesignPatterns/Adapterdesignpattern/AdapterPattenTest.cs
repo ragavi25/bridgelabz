@@ -25,8 +25,10 @@ namespace DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern
         }
         private static void TestObjectAdapter()
         {
+            ////create SocketAdapter 
             ISocketAdapter sockad = new SocketObjAdapterImpl();
             {
+                ////get the Volt of 3,12,120 
                 Volt V3 = getVolt(sockad, 3);
                 Volt V12 = getVolt(sockad, 12);
                 Volt v120 = getVolt(sockad, 120);
