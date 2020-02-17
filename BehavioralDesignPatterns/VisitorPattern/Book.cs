@@ -7,7 +7,7 @@
 namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
 {
     /// <summary>
-    /// 
+    ///  create some concrete classes for different types of items.
     /// </summary>
     public class Book : ItemElement
     {
@@ -15,18 +15,14 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
         private readonly string ISBNumber;
         private readonly int v1;
         private readonly string v2;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Cost"></param>
-        /// <param name="ISBNumber"></param>
+       
         public Book(int Cost, string ISBNumber)
         {
             this.Cost = Cost;
             this.ISBNumber= ISBNumber;
         }
         /// <summary>
-        /// 
+        /// Getcost used to get the current amount .
         /// </summary>
         /// <returns></returns>
         public int getCost()
@@ -34,7 +30,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             return Cost;
         }
         /// <summary>
-        /// 
+        /// getISBNumer used to get the number of book isbn.
         /// </summary>
         /// <returns></returns>
         public string getISBNumber()
@@ -42,7 +38,7 @@ namespace DesiginPattern.BehavioralDesignPatterns.VisitorPattern
             return ISBNumber;
         }
         /// <summary>
-        /// 
+        /// Accept metod used to accept the shopingcard visitor.
         /// </summary>
         /// <param name="visitor"></param>
         /// <returns></returns>
