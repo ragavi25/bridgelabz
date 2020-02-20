@@ -1,62 +1,24 @@
-﻿using DesiginPattern.BehavioralDesignPatterns.MediatorDesignPattern;
-using DesiginPattern.BehavioralDesignPatterns.ObserverDesignPattern;
-using DesiginPattern.BehavioralDesignPatterns.VisitorPattern;
-using DesiginPattern.Factory_Pattern;
-using DesiginPattern.ProtoTypeDesignPattern;
-using DesiginPattern.Singleton;
-using DesiginPattern.StructuralDesignPatterns;
-using DesiginPattern.StructuralDesignPatterns.Adapterdesignpattern;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace DesiginPattern
+namespace EmployeeManagement
 {
-    class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
-            HI:
-            Console.WriteLine("Enter your choice:\n1.Eager Initialization\n2.Lazy Initialization\n3.Threadsafe Initialization\n4.Factory Pattern\n5.PrototypePattern\n6.AdapterDesignPattern\n7.ProxyPattern\n8.ObserverPattern\n9.VisitorPattern\n10.MediatorDesignPattern");
-            int ch = Utility.UserInt();
-            switch(ch)
-            {
-                case 1:
-                    EagerSingleton eager = EagerSingleton.GetInstance;
-                    eager.PrintDetailsStudent();
-                    break;
-                case 2:
-                    LazySingleton lazy = LazySingleton.GetInstance;
-                    lazy.PrintDetailsStudent();
-                    break;
-                case 3:
-                    ThreadSafeSingleton threadSafe = ThreadSafeSingleton.GetInstance;
-                    threadSafe.PrintDetailsStudent();
-                    break;
-                case 4:
-                    TestFactory testFactory = new TestFactory();
-                    testFactory.TestFactoryObj();
-                    
-                    break;
-                case 5:
-                    TestPrototype.Test();
-                    break;
-                case 6:
-                    AdapterPattenTest.Test();
-                    break;
-                case 7:
-                    ProxyPatternText.Text();
-                    break;
-                case 8:
-                    ObserverPatternTest.Test();
-                    break;
-                case 9:
-                    ShopingCardClient.Test();
-                    break;
-                case 10:
-                    MediatorClient.Test();
-                    break;
-            }
-            Console.WriteLine("***********************************************************");
-            goto HI;
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }
