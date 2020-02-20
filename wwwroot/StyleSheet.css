@@ -1,0 +1,62 @@
+﻿
+body {
+    background-image:url(Register.jpg);
+    height:100vh;
+    background-position :center;
+    background-size:cover;
+}
+.Login_Form
+{
+    width:300px;
+    padding:10% 0 0 ;
+    margin:auto;
+}
+.form{
+    position:relative;
+    z-index:1;
+    background:#ffff;
+    max-width:360px;
+    margin:0 auto 100px;
+    padding:45px;
+    text-align:center
+}
+.form input{
+    font-family:"Roboto",sans-serif;
+    outline:1px;
+    background:#f2f2f2;
+    width:100%;
+    border:0;
+    margin:15px;
+    box-sizing:border-box;
+    font-size:14px;
+}
+.form button{
+    font-family:"Roboto",sans-serif;
+    text-transform:uppercase;
+    outline:0;
+    background:#40AF50;
+    width:100%;
+    border:0;
+    padding:15PX;
+    color:peachpuff;
+    cursor:pointer;
+
+}
+.form button:hover,.form button:active
+{
+    background:red;
+}
+form.Message {
+    margin:15px 0 0;
+    color:aliceblue;
+    font-size:120px;
+
+}
+form.Message a
+{
+    color:#4CAF50;
+    text-decoration:none;
+}
+form.Register-form {
+        display: none;
+    }

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>EmployeeManagement</title>
+</head>
+<script src="Employee.js"></script>
+<link href="StyleSheet.css" rel="stylesheet" />
+<body onload="">
+    <div class="Login_Form">
+        <div class="form">
+            <form class="Register-form" name="myform" onsubmit="return  formValidation()">
+                <input type="text" placeholder="Enter UserId" name="UserId" required />
+                <input type="text" placeholder="Enter FirstName" name="FirstName" required />
+                <input type="text" placeholder="Enter LastName" name="LastName" required />
+                <input type="text" placeholder="Enter Email" name="Email" required />
+                <input type="text" placeholder=" Enter UserName" name="username" required />
+                <input type="password" placeholder="Enter Password" name="password" required />
+                <input type="text" placeholder="Enter MobileNumber" name="Mobile" required />
+                <input type="text" placeholder="Enter Address" name="Address" required />
+                <button>Register</button>
+                <p class="Message">Already Registered? <a href="#">Login</a></p>
+            </form>
+            <form class="login">
+                <input type="text" placeholder="Enter UserName and EmailID" name="UserName" required/>
+                <input type="password" placeholder="Enter PassWord" name="Pasword" required />
+                <button>Login</button>
+                <p class="Message">Not Registered? <a href="#">Register</a></p>
+            </form>
+           
+        </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <script>
+        $('.Message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+    </script>
+</body>
+</html>
+
+
