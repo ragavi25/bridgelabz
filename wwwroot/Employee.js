@@ -15,6 +15,9 @@
                         if (PassWordValidation(PsW, 5, 8)) {
                             if (ValidateNumber(MoblieN)) {
                                 if (Alphanumaric(Addr)) {
+                                    if (EmpUpdate()) {
+
+                                    }
 
                                 }
                             }
@@ -67,6 +70,14 @@ function Alphanumaric(Addr) {
         return false;
     }
 }
+function EmpUpdate() {
+    if (UserId_validation(UId, mx, my) == true && PassWordValidation(PsW, mx, my) == true && AllLetter(FName) == true && Alphanumaric(Addr) == true)
+        alert('Successfully Upataded');
+    else {
+        alert('not correct check your detatils');
+    }
+}
+
 
 
 
