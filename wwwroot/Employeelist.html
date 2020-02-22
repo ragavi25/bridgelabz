@@ -7,34 +7,15 @@
 <script src="Employee.js"></script>
 <link href="StyleSheet.css" rel="stylesheet" />
 <body>
-    <h2>Wellcome Employemanagement</h2>
+    <center><h1>Wellcome Employemanagement</h1></center>
     <div class="form">
-        <div class="updateform">
 
-            <form class="EmployeeUpadate" name="myform" onsubmit="return ">
-                <input type="text" placeholder="Enter UserId" name="UserId" required />
-                <input type="text" placeholder="Enter FirstName" name="FirstName" required />
-                <input type="text" placeholder="Enter LastName" name="LastName" required />
-                <input type="text" placeholder="Enter Email" name="Email" required />
-                <input type="text" placeholder=" Enter UserName" name="username" required />
-                <input type="password" placeholder="Enter Password" name="password" required />
-                <input type="text" placeholder="Enter MobileNumber" name="Mobile" required />
-                <input type="text" placeholder="Enter Address" name="Address" required />
-                <button>Update</button>
-                <p class="Message"><a href="#"></a></p>
-            </form>
-            <form>
-                <p class="Message">EmployeeList<a href="#">EmployeeList</a></p>
-            </form>
-        </div>
+       <button><a href="add.html">Add</a></button>
+        <button>  <a href="delete.html">Delete</a><br /></button>
+        <button>   <a href="EmpleView.html">EmployeeView</a><br /></button>
+        <button><a href="Update.html">Update</a></button>
+
     </div>
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
-    <script>
-        $('.Message a').click(function () {
-
-            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
-        });
-
-    </script>
+   
 </body>
 </html>

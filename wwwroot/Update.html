@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Update</title>
+</head>
+<link href="StyleSheet.css" rel="stylesheet" />
+<script src="Employee.js"></script>
+<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".bt_up").click(function () {
+            var formData = new FormData;
+            
+            formData.append("userId", $("#Uid").val());
+            formData.append("FirstName", $("#Fn").val());
+            formData.append("LastName", $("#Ln").val());
+            formData.append("Email", $("#email").val());
+            formData.append("UserName", $("#Un").val());
+            formData.append("Password", $("#psd").val());
+            formData.append("Mobile", $("#phone").val());
+            formData.append("Address", $("#addr").val());
+
+            $.ajax({
+                url: "api/update",
+                type: 'PUT',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+
+                success: function (response) {
+                    window.location.href = 'https://localhost:5001/EmpleView.html'
+                    alert("Updated!!")
+                }
+            });
+        });
+    });
+
+</script>
+<body>
+    <div class="form">
+        <div class="updateform">
+
+            <form class="EmployeeUpadate" name="myform" onsubmit="return formValidation()  ">
+                <input type="text" id="Uid" placeholder="Enter Id" name="UserId" required />
+                <input type="text" id="Fn" placeholder="Enter FirstName" name="FirstName" required />
+                <input type="text" id="Ln" placeholder="Enter LastName" name="LastName" required />
+                <input type="text" id="email" placeholder="ENTER Email" name="Email" required />
+                <input type="text" id="Un" placeholder="Enter Username" name="UserName" required />
+                <input type="text" id="psd" placeholder="Enter PassWord" name="PassWord" required />
+                <input type="text" id="phone" placeholder="Enter MobileNumber" name="Mobile" required />
+                <input type="text" id="addr" placeholder="ENTER Address" name="Address" required />
+                <button class="bt_up">Update</button>
+                <p class="Message"><a href="#"></a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -77,6 +77,15 @@ function EmpUpdate() {
         alert('not correct check your detatils');
     }
 }
+function AllLetter(LName) {
+    var letters = /^[A-Za-z]+$/;
+    if (LName.value.match(letters)) {
+        return true;
+    } else {
+        alert('Firstname must have alphabet characters only');
+        LName.focus();
+        return false;
+    }
 
 
 

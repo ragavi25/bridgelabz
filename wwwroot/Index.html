@@ -8,23 +8,22 @@
 <link href="StyleSheet.css" rel="stylesheet" />
 <script type="text/javascript">
     $(document).ready(function () {
-        $(#btn_save).click(function () {
-            var userid = document.getElementById("id");
+        $('#btn_save').click(function () {
+          
             var firstn = document.getElementById("Fn");
             var Lastn = document.getElementById("Ln");
             var E = document.getElementById("email");
-            var u = document.getElementById("Un");
-            var psd = document.getElementById("ps");
+            var u = document.getElementById("SA");
             var p = document.getElementById("phone");
             var add = document.getElementById("addr");
-            if (userid.value == "" || firstn.value == "" || Lastn.value == "" || E.value == "" || u.value == "" || psd.value == "" || p.value == "" || ad.value == "") {
+            if ( firstn.value == "" || Lastn.value == "" || E.value == "" || u.value == ""  || p.value == "" || ad.value == "") {
                 alert("Enter fill all the details");
                 return false;
             }
             $.ajax({
                 type: "GET",
                 URL: "api/add",
-                data: "{'userid':'" + userid.value + "','firstn':'" + firstn.value + "','Lastn':'" + Lastn.value + "','E':'" + E.value + "','u':'" + u.value + "','psd':'" + psd.value + "','p':'" + p.value + "','ad':'" + ad.value + "'}",
+                data: "{'firstn':'" + firstn.value + "','Lastn':'" + Lastn.value + "','E':'" + E.value + "','u':'" + u.value + "','p':'" + p.value + "','ad':'" + ad.value + "'}",
                 success: function (data) {
                     show.data();
                     alert("sumbit successfully");
@@ -35,42 +34,33 @@
         });
 
     });
-    function update() {
-        
-       var userid = document.getElementById("id");
-            var firstn = document.getElementById("Fn");
-            var Lastn = document.getElementById("Ln");
-            var E = document.getElementById("email");
+     $(document).ready(function () {
+        $('#bt_login').click(function () {
+          
+           
             var u = document.getElementById("Un");
-            var psd = document.getElementById("ps");
-            var p = document.getElementById("phone");
-        var add = document.getElementById("addr");
-        if (userid.value == "" || firstn.value == "" || Lastn.value == "" || E.value == "" || u.value == "" || psd.value == "" || p.value == "" || ad.value == "") {
+            var p = document.getElementById("ps");
+           
+            if (  u.value == ""  || p.value == "" ) {
                 alert("Enter fill all the details");
                 return false;
-        $.ajax({
-            url: "/api/Update",
-           
-            type: "POST",
-            data:  "{'userid':'" + userid.value + "','firstn':'" + firstn.value + "','Lastn':'" + Lastn.value + "','E':'" + E.value + "','u':'" + u.value + "','psd':'" + psd.value + "','p':'" + p.value + "','ad':'" + ad.value + "'}",
-            success: function (data) {
-                
-                $('.upadateform').hide();
-                $('#id').val("");
-                 $('#Fn').val(""),
-             $('#Ln').val(""),
-            $('#email').val(""),
-            $('#Un').val(""),
-             $('ps').val(""),
-             $('phone').val(""),
-             $('addr').val(""),
-                
-                
-            },
-            error: function (errormessage) {
-                alert(errormessage.responseText);
             }
+            $.ajax({
+                type: "GET",
+                URL: "https:api/login",
+                data: "{'u':'" + u.value + "','p':'" + p.value + "'}",
+                success: function (data) {
+                    show.data();
+                    alert("sumbit successfully");
+                    ClearField();
+                }
+
+            });
         });
+
+    });
+
+
        
 </script>
 <body>
@@ -88,10 +78,10 @@
                 <button id="btn_save ">Register</button>
                 <p class="Message">Already Registered? <a href="#">Login</a></p>
             </form>
-            <form class="login">
+            <form class="login" onsubmit="return formValidation()">
                 <input type="text" id="Un" placeholder="Enter UserName and EmailID" name="UserName" required />
                 <input type="password" id="ps" placeholder="Enter PassWord" name="Pasword" required />
-                <button>
+                <button id="bt_login">
 
                     <a href="Employeelist.html"> Login</a>
                 </button>
@@ -99,48 +89,19 @@
             </form>
         </div>
     </div>
-    <div class="upadateform1">
-        <div class="form">
-            <form class="upadateform" name="myform" onclick="return update()">
-                <input type="text" id="id" placeholder="Enter UserId" name="UserId" required />
-                <input type="text" id="Fn" placeholder="Enter FirstName" name="FirstName" required />
-                <input type="text" id="Ln" placeholder="Enter LastName" name="LastName" required />
-                <input type="text" id="email" placeholder="Enter Email" name="Email" required />
-                <input type="text" id="Un" placeholder=" Enter UserName" name="username" required />
-                <input type="password" id="ps" placeholder="Enter Password" name="password" required />
-                <input type="text" id="phone" placeholder="Enter MobileNumber" name="Mobile" required />
-                <input type="text" id="addr" placeholder="Enter Address" name="Address" required />
-                <button id="bt">Update<a href="#"></a> </button>
-            </form>
-        </div>
-        
-    </div>
-    <div class="delete">
-        <div class="form">
-            <form>
-                <button id="bd">Delete</button>
-            </form>    
-        </div>
-    </div>
-    <div class="list">
-        <div class="form">
-            <form>
-                <button id="vi">Employeelist</button>
-            </form>
-        </div>
-    </div>
+    
+   
+    
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
     <script>
         $('.Message a').click(function () {
 
-            $('')
+          
             $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
         });
-        $('')
-
+       
     </script>
 </body>
 </html>
 
 
-''
