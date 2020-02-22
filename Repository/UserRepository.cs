@@ -8,11 +8,42 @@ namespace EmployeeManagement.Repository
 {
     public interface IUserRepository
     {
-        IEnumerable<Employees> GetEmployees();
+
+        /// <summary>
+        /// Gets all employee.
+        /// </summary>
+        /// <returns>
+        /// Returns a list of all employees.
+        /// </returns>
+        IEnumerable<Employees> GetAllEmployee();
+
+        /// <summary>
+        /// Adds the employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
         void AddEmployee(Employees employee);
+
+        /// <summary>
+        /// Updates the employee.
+        /// </summary>
+        /// <param name="employee">The employee.</param>
         void UpdateEmployee(Employees employee);
-        Employees GetEmployeeData(int id);
-        void DeleteEmployee(int id);
-        bool Login(Employees employees);
+
+        /// <summary>
+        /// Deletes the employee.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        void DeleteEmployee(int? userId);
+
+        /// <summary>
+        /// Logins the employee.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="password">The password.</param>
+        /// <returns>
+        /// Returns true if email and password exist else false.
+        /// </returns>
+        bool LoginEmployee(string username, string password);
+
     }
 }
