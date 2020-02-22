@@ -9,20 +9,29 @@ namespace EmployeeManagement.Model
     public class Employees
     {
         [Required]
-        public int Id { get; set; }
+        private int UserId;
         [Required]
-        public string FirstName { get; set; }
+        private string firstName;
         [Required]
-        public string LastName { get; set; }
+        private string lastName;
         [Required]
-        public string Email { get; set; }
+        private string email;
         [Required]
-        public string UserName { get; set; }
+        private string userName;
         [Required]
-        public string Password { get; set; }
+        private string password;
         [Required]
-        public string Mobile { get; set; }
+        private string mobile;
         [Required]
-        public string Address { get; set; }
+        private string address;
+
+        public int Id { get => this.UserId; set =>this.UserId = value; }
+        public string FirstName { get => this.firstName; set =>this.firstName = value; }
+        public string LastName { get => this.lastName; set => this.lastName = value; }
+        public string Email { get => this.email; set =>this. email = value; }
+        public string UserName { get =>this. userName; set => this.userName = value; }
+        public string Password { get =>this. password; set =>this. password = value; }
+        public string Mobile { get =>this. mobile; set =>this. mobile = value; }
+        public string Address { get => this.address; set =>this. address = value; }
     }
 }
