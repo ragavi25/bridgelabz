@@ -33,7 +33,7 @@ namespace EmployeeManagement.Repository
         /// Deletes the employee.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        void DeleteEmployee(int? userId);
+        void DeleteEmployee(int userId);
 
         /// <summary>
         /// Logins the employee.

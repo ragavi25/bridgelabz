@@ -12,40 +12,40 @@ namespace EmployeeManagement.Repository
 {
     public class EmployeeRep :IUserRepository
     {
-        public SqlConnection Connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB; Database=EmployeeManagements;IntegratedSecurity=true");
+        public SqlConnection Connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Fundoo;Integrated Security=True");
         
         public void AddEmployee(Employees employee)
         {
             SqlCommand command = new SqlCommand("spAddEmployee", Connection);
             command.CommandType = CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@userId", employee.Id);
             command.Parameters.AddWithValue("@FirstName", employee.FirstName);
             command.Parameters.AddWithValue("@LastName", employee.LastName);
-            command.Parameters.AddWithValue("@email", employee.Email);
-            command.Parameters.AddWithValue("@UserName", employee.UserName);
-            command.Parameters.AddWithValue("@password", employee.Password);
+            command.Parameters.AddWithValue("@Email", employee.Email);
+            command.Parameters.AddWithValue("@PassWord", employee.Password);
             command.Parameters.AddWithValue("@Mobile", employee.Mobile);
-            command.Parameters.AddWithValue("@address", employee.Address);
 
             Connection.Open();
-            command.ExecuteNonQuery();
+            int i=command.ExecuteNonQuery();
             Connection.Close();
+            if (i > 0)
+            {
+                Console.WriteLine("Added");
+            }
+           
         }
 
         public void UpdateEmployee(Employees employee)
         {
             SqlCommand command = new SqlCommand("spUpdateemployee ", Connection);
             command.CommandType = CommandType.StoredProcedure;
+           
 
-            command.Parameters.AddWithValue("@userId", employee.Id);
             command.Parameters.AddWithValue("@FirstName", employee.FirstName);
             command.Parameters.AddWithValue("@LastName", employee.LastName);
             command.Parameters.AddWithValue("@email", employee.Email);
-            command.Parameters.AddWithValue("@UserName", employee.UserName);
             command.Parameters.AddWithValue("@password", employee.Password);
             command.Parameters.AddWithValue("@Mobile", employee.Mobile);
-            command.Parameters.AddWithValue("@address", employee.Address);
 
             Connection.Open();
             command.ExecuteNonQuery();
@@ -58,21 +58,18 @@ namespace EmployeeManagement.Repository
 
             List<Employees> employees = new List<Employees>();
 
-            SqlCommand command = new SqlCommand("spGetAllemployee ", Connection);
+            SqlCommand command = new SqlCommand("spGetAllemployee", Connection);
             command.CommandType = CommandType.StoredProcedure;
             Connection.Open();
             SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
                 Employees employee = new Employees();
-                employee.Id = Convert.ToInt32(dataReader["Id"]);
                 employee.FirstName = dataReader["FirstName"].ToString();
                 employee.LastName = dataReader["LastName"].ToString();
                 employee.Email = dataReader["Email"].ToString();
-                employee.UserName = dataReader["UserName"].ToString();
                 employee.Password = dataReader["PassWord"].ToString();
                 employee.Mobile = dataReader["Mobile"].ToString();
-                employee.Address = dataReader["Address"].ToString();
                 employees.Add(employee);
 
             }
@@ -81,19 +78,19 @@ namespace EmployeeManagement.Repository
             return employees;
         }
 
-        public void DeleteEmployee(int? userId)
+        public void DeleteEmployee(int userId)
         {
             SqlCommand cmd = new SqlCommand("spDeleteEmployee", Connection);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@userId", userId);
+            cmd.Parameters.AddWithValue("@Id", userId);
 
            Connection.Open();
             cmd.ExecuteNonQuery();
             Connection.Close();
         }
 
-        public bool LoginEmployee(string username, string password)
+        public bool LoginEmployee(string email, string password)
         {
             SqlCommand cmd = new SqlCommand("spGetAllemployee", Connection);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -103,7 +100,7 @@ namespace EmployeeManagement.Repository
                 {
                     if (Equals(data["PassWord"].ToString(),password))
                     {
-                        if (Equals(data["UserName"].ToString(), username))
+                        if (Equals(data["Email"].ToString(), email))
                         {
                             return true;
                         }
