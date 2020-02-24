@@ -1,61 +1,124 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head> 
     <meta charset="utf-8" />
     <title>Update</title>
+    <link href="StyleSheet.css" rel="stylesheet" />
+    <link href="StyleSheet.css" rel="stylesheet" />
 </head>
-<link href="StyleSheet.css" rel="stylesheet" />
-<script src="Employee.js"></script>
-<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".bt_up").click(function () {
-            var formData = new FormData;
-            
-            formData.append("userId", $("#Uid").val());
-            formData.append("FirstName", $("#Fn").val());
-            formData.append("LastName", $("#Ln").val());
-            formData.append("Email", $("#email").val());
-            formData.append("UserName", $("#Un").val());
-            formData.append("Password", $("#psd").val());
-            formData.append("Mobile", $("#phone").val());
-            formData.append("Address", $("#addr").val());
-
-            $.ajax({
-                url: "api/update",
-                type: 'PUT',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: formData,
-
-                success: function (response) {
-                    window.location.href = 'https://localhost:5001/EmpleView.html'
-                    alert("Updated!!")
-                }
-            });
-        });
-    });
-
-</script>
 <body>
-    <div class="form">
-        <div class="updateform">
 
-            <form class="EmployeeUpadate" name="myform" onsubmit="return formValidation()  ">
-                <input type="text" id="Uid" placeholder="Enter Id" name="UserId" required />
-                <input type="text" id="Fn" placeholder="Enter FirstName" name="FirstName" required />
-                <input type="text" id="Ln" placeholder="Enter LastName" name="LastName" required />
-                <input type="text" id="email" placeholder="ENTER Email" name="Email" required />
-                <input type="text" id="Un" placeholder="Enter Username" name="UserName" required />
-                <input type="text" id="psd" placeholder="Enter PassWord" name="PassWord" required />
-                <input type="text" id="phone" placeholder="Enter MobileNumber" name="Mobile" required />
-                <input type="text" id="addr" placeholder="ENTER Address" name="Address" required />
-                <button class="bt_up">Update</button>
-                <p class="Message"><a href="#"></a></p>
-            </form>
+    <div class="form">
+        <div class="update">Update Employee</div>
+        
+        <div class="alignment">
+            <div class="id">FirstName</div>
+            <input type="text" id="fname" name="firstname" />
+        </div>
+        <br />
+        <div class="alignment">
+            <div class="id">LastName</div>
+            <input type="text" id="lname" name="Lastname" />
+        </div>
+        <br />
+        <div class="alignment">
+            <div class="id">Email ID</div>
+            <input type="text" id="email" name="email" />
+        </div>
+        <br />
+        
+        <div class="alignment">
+            <div class="id">Password</div>
+            <input type="text" id="password" name="password" />
+        </div>
+        <br />
+        <div class="alignment">
+            <div class="id">Mobile</div>
+            <input type="text" id="Mobile" name="Mobile" />
+        </div>
+        <br />
+        
+        <div class="buttons">
+            <div class="btn">
+                <input type="button" id="btn" onclick="btn" value="Update" class="up" />
+            </div>
+            <div class="btn">
+                <input type="button" id="btn" onclick="window.location.href='https://localhost:5001/List.html'" value="Cancel" class="up" />
+            </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn").click(function () {
+                var formData = new FormData;
+             
+                formData.append("Firstname", $("#fname").val());
+                   formData.append("Lastname", $("#lname").val());
+                formData.append("email", $("#email").val());
+                 
+                formData.append("password", $("#password").val());
+                   formData.append("Mobile", $("#Mobile").val());
+             
+
+                $.ajax({
+                    url: "api/update",
+                    type: 'PUT',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+
+                    success: function (response) {
+                        window.location.href = 'https://localhost:5001/List.html'
+                        alert("Updated!!")
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <style>
+        .update {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 20px;
+        }
+
+        .alignment {
+            align-items: center;
+            display: flex;
+            justify-content: center
+        }
+
+        .id {
+            width: 100px;
+        }
+
+        .buttons {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            color:blueviolet;
+        }
+
+        .up {
+            border-radius: 10px;
+            background-color:blueviolet;
+            width: 80px;
+            height: 30px;
+            color: red;
+        }
+
+        .btn {
+            padding: 10px;
+            
+        }
+    </style>
 </body>
 </html>
