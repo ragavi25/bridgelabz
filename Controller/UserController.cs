@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using EmployeeManagement.EmployeeViews;
 
 using EmployeeManagement.Model;
-using EmployeeManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -12,23 +10,30 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeManagement.Controller
 {
     /// <summary>
-    /// 
+    /// using controller Microsoft.AspNetCore.Mvc.
     /// </summary>
 
     public class UserController : ControllerBase
     {
          /// <summary>
-         /// 
+         /// logoin the employees controller
          /// </summary>
         
-     public  EmpView empView = new EmployeeView();
+     public  IEmpView empView = new EmployeeView();
+        private IEmpView @object;
+
+        public UserController(IEmpView @object)
+        {
+            this.@object = @object;
+        }
+
         [HttpGet]
         [Route("api/login")]
         public ActionResult Login(string username,string password)
         {
            
             Employees employees = new Employees();
-            employees.UserName = username;
+            employees.Email = username;
             employees.Password = password;
             try
             {
@@ -46,11 +51,11 @@ namespace EmployeeManagement.Controller
             }
         }
         /// <summary>
-        /// 
+        /// Get the employees  controller
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/get")]
+        [Route("/api/get")]
         public ActionResult GetEmployees()
         {
             try
@@ -64,7 +69,7 @@ namespace EmployeeManagement.Controller
             }
         }
         /// <summary>
-        /// 
+        /// delete the employees controller.
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -83,7 +88,7 @@ namespace EmployeeManagement.Controller
             }
         }
         /// <summary>
-        /// 
+        /// Add the employess controller.
         /// </summary>
         /// <param name="usertId"></param>
         /// <param name="Firstname"></param>
@@ -96,19 +101,16 @@ namespace EmployeeManagement.Controller
         /// <returns></returns>
         [HttpPost]
         [Route("api/add")]
-        public ActionResult AddEmployees(int usertId,string Firstname,string LastName, string email,string UserName, string password,string Mobile, string address)
+        public ActionResult AddEmployees( string Firstname,string LastName, string email, string password,string Mobile)
         {
             try
             {
                 Employees employee = new Employees();
-                employee.Id = usertId;
-                employee.FirstName = Firstname;
+               employee.FirstName = Firstname;
                 employee.LastName = LastName;
                 employee.Email = email;
-                employee.UserName = UserName;
                 employee.Password = password;
                 employee.Mobile = Mobile;
-                employee.Address = address;
                 this.empView.Add(employee);
                 return this.Ok(employee);
             }
@@ -119,7 +121,7 @@ namespace EmployeeManagement.Controller
         }
 
         /// <summary>
-        /// 
+        /// Update the employees controller.
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="firstname"></param>
@@ -132,21 +134,17 @@ namespace EmployeeManagement.Controller
         /// <returns></returns>
         [HttpPut]
         [Route("api/update")]
-        public ActionResult UpdateEmployees(int userId, string firstname,string lastname, string email,string username, string password,string mobile, string address)
+        public ActionResult UpdateEmployees(string firstname,string lastname, string email, string password,string mobile)
         {
             try
             {
                 Employees employee = new Employees()
                 {
-                    Id = userId,
                     FirstName = firstname,
                     LastName = lastname,
                     Email = email,
-                    UserName = username,
                     Password = password,
-                    Mobile=mobile,
-                    Address = address
-                };
+                    Mobile=mobile                };
 
                 this.empView.Update(employee);
                 return this.Ok(employee);
