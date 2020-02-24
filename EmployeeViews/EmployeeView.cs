@@ -17,7 +17,7 @@ namespace EmployeeManagement.EmployeeViews
         /// 
         /// </summary>
         private int id;
-        IUserRepository repository = new EmployeeRep();
+         IUserRepository repository = new EmployeeRep();
         /// <summary>
         /// 
         /// </summary>
