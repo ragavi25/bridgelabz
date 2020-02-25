@@ -55,6 +55,7 @@ namespace EmployeeManagement.Repository
             /////Sqlcommand used for get the database query.
             SqlCommand command = new SqlCommand("spUpdateemployee ", Connection);
             command.CommandType = CommandType.StoredProcedure;
+           // command.CommandType = CommandType.Function;
             command.Parameters.AddWithValue("@FirstName", employee.FirstName);
             command.Parameters.AddWithValue("@LastName", employee.LastName);
             command.Parameters.AddWithValue("@email", employee.Email);
@@ -114,7 +115,8 @@ namespace EmployeeManagement.Repository
         public bool LoginEmployee(string email, string password)
         {
             ////Sqlcommand used for get the database query.
-            SqlCommand cmd = new SqlCommand("spGetAllemployee", Connection);
+            string s = "select dbo.login (@email,@password)";
+            SqlCommand cmd = new SqlCommand(s, Connection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 Connection.Open();
                 SqlDataReader data = cmd.ExecuteReader();
