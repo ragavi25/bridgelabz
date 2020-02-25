@@ -1,9 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=Controller.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="R Ragavi"/>
-// ----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +20,12 @@ namespace EmployeeManagement.EmployeeViews
     public class EmployeeView : IEmpView
     {
         /// <summary>
-        /// 
+        /// get the repository for database connection
         /// </summary>
         private int id;
          IUserRepository repository = new EmployeeRep();
         /// <summary>
-        /// 
+        /// add employees.
         /// </summary>
         /// <param name="employee"></param>
         public void Add(Employees employee)
@@ -33,7 +33,7 @@ namespace EmployeeManagement.EmployeeViews
             this.repository.AddEmployee(employee);
         }
         /// <summary>
-        /// 
+        /// Delete employess.
         /// </summary>
         /// <param name="id"></param>
         public void Delete(int id)
@@ -41,7 +41,7 @@ namespace EmployeeManagement.EmployeeViews
             this.repository.DeleteEmployee(id);
         }
         /// <summary>
-        /// 
+        /// Get the all Employees.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Employees> Get()
@@ -49,12 +49,12 @@ namespace EmployeeManagement.EmployeeViews
             return this.repository.GetAllEmployee();
         }
 
-        public bool Login(string username, string password)
+        public bool Login(string email, string password)
         {
-            return this.repository.LoginEmployee(username, password);
+            return this.repository.LoginEmployee(email, password);
         }
         /// <summary>
-        /// 
+        /// Update the employees
         /// </summary>
         /// <param name="employee"></param>
         public void Update(Employees employee)
