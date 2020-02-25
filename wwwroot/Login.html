@@ -11,7 +11,7 @@
         <div class="login">Login</div>
         <div class="alignment">
             <div class="UserName">Email</div>
-            <input type="text" name="UserName" id="UserName"> 
+            <input type="text" name="Email" id="UserName"> 
         </div>
         <br />
         <div class="alignment">
@@ -33,23 +33,23 @@
     <script type="text/javascript">
         $(function () {
 
-            $("#btn").attr('disabled', true);
-            function validateNext() {
-                var buttonNext = $("#UserName").val().trim() === '' || $("#password").val().trim() === '';
-                $("#btn").attr('disabled', buttonNext);
-            }
-            $('#UserName').on('keyup', validateNext);
-            $('#password').on('keyup', validateNext);
+         //   $("#btn").attr('disabled', true);
+          //  function validateNext() {
+           //     var buttonNext = $("#UserName").val().trim() === '' || $("#password").val().trim() === '';
+             //   $("#btn").attr('disabled', buttonNext);
+            //}
+           // $('#UserName').on('keyup', validateNext);
+           // $('#password').on('keyup', validateNext);
 
 
             $("#btn").click(function () {
                 var formData = new FormData;
-                formData.append("UserName", $("#UserName").val());
+                formData.append("Email", $("#UserName").val());
                 formData.append("password", $("#password").val());
 
                 $.ajax({
                     url: "api/login",
-                    type: 'POST',
+                    type: 'GET',
                     cache: false,
                     contentType: false,
                     processData: false,
