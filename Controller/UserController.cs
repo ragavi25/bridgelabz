@@ -18,7 +18,6 @@ namespace EmployeeManagement.Controller
     /// <summary>
     /// using controller Microsoft.AspNetCore.Mvc.
     /// </summary>
-
     public class UserController : ControllerBase
     {
         /// <summary>
