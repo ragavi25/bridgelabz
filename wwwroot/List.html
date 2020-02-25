@@ -12,7 +12,7 @@
         <table border="1" align="center" id="employee">
             <thead>
                 <tr>
-                    <th class="table">User Id</th>
+                   
                     <th class="table">FirstName</th>
                     <th class="table">LastName</th>
                     <th class="table">Email Id</th>
@@ -39,12 +39,10 @@
     $.ajax({
         url: "/api/get",
         type: "GET",
-        //contentType: "application/json;charset=utf-8",
-       // dataType: "json",
         success: function (data) {
             var html = $("#employee tbody" )
             $(data).each( function (index, item) {
-                html.append('<tr><th>' + item.ID +'</th><th>' + item.firstName + '</th><th>' + item.lastName + '</th><th>' + item.email + '</th><th>' + item.password+ '</th><th>' + item.mobile + '</th></tr>');
+                html.append('<tr><th>'  + item.firstName + '</th><th>' + item.lastName + '</th><th>' + item.email + '</th><th>' + item.password+ '</th><th>' + item.mobile + '</th></tr>');
             });
             
         },
@@ -53,23 +51,6 @@
         }
     });
         });
-       // $(document).ready(function () {
-          //  $.ajax({
-              //  url: "/api/get",
-              //  type: 'GET',
-
-              //  success: function (data) {
-                 //   var employeeTable = $("#employee tbody");
-                 //   $(data).each(function (index, emp) {
-        ///
-                     //   employeeTable.append('<tr><td>' + emp.FirstName + '</td><td>' + emp.LastName + '</td><td>' + emp.email + '</td><td>' + emp.password + '</td><td>' + emp.Mobile + '</td></tr>');
-              //  //    });
-              //  }
-
-
-           // });
-     //   });
-
     </script>
     <style>
         .list {
@@ -81,22 +62,18 @@
             align-items: center;
             padding: 20px
         }
-
         .table {
             border-radius: 5px;
         }
-
         .buttons {
             align-content: center;
             justify-content: center;
             display: flex;
         }
-
-        .btn {
+       .btn {
             padding: 20px;
         }
-
-        .update {
+       .update {
             background: #36718c;
             color: blueviolet;
             width: 75px;
@@ -104,7 +81,6 @@
             border: 1px solid;
             border-radius: 9px;
         }
-
         .table {
             width: 100px;
         }
