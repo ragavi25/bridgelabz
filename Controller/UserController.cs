@@ -1,9 +1,9 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=Controller.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="R Ragavi"/>
-// ----------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using EmployeeManagement.EmployeeViews;
@@ -21,29 +21,23 @@ namespace EmployeeManagement.Controller
 
     public class UserController : ControllerBase
     {
-         /// <summary>
-         /// logoin the employees controller
-         /// </summary>
-        
+        /// <summary>
+        /// logoin the employees controller
+        /// </summary>
+       
      public  IEmpView empView = new EmployeeView();
-        private IEmpView @object;
-
-        public UserController(IEmpView @object)
-        {
-            this.@object = @object;
-        }
-
+      
         [HttpGet]
         [Route("api/login")]
-        public ActionResult Login(string username,string password)
+        public  ActionResult Login(string email,string password)
         {
            
             Employees employees = new Employees();
-            employees.Email = username;
+            employees.Email = email;
             employees.Password = password;
             try
             {
-                bool responce = this.empView.Login(username, password);
+                bool responce = this.empView.Login(email, password);
                 if(responce)
                 {
                     return this.Ok(responce);
