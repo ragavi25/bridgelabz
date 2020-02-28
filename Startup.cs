@@ -1,50 +1,76 @@
-﻿using EmployeeManagement.EmployeeViews;
-using EmployeeManagement.Repository;
+﻿using Manager.Manager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.Context;
+using Repository.Repository;
+using Swashbuckle.AspNetCore.Swagger;
 
-namespace EmployeeManagement
+namespace Fundoo
 {
     public class Startup
     {
-       
-        
-        public Startup(IConfiguration configuration)
+        public IConfiguration configuration;
+        public Startup(IConfiguration configurations)
         {
+            configuration = configurations;
         }
-        public IConfiguration iconfiguration { get; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
-            //services.AddScoped<EmployeeRep>();
-            // services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("Employee"));
-            services.AddTransient<IUserRepository, EmployeeRep>();
-            services.AddTransient<IEmpView, EmployeeView>();
+            services.AddTransient<IAccountRep, AccountRepImpl>();
+            services.AddTransient<IAccountManger, AccountManagerImpl>();
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc();
+            services.AddCors(OP => OP.AddPolicy("Polices", builder =>
+               {
+                   builder.AllowAnyOrigin();
+                   builder.AllowAnyHeader();
+                   builder.AllowAnyMethod();
+               }));
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Fundoo Nodes API", 
+                    Version = "v1"
+
+                });
+            });
+           
         }
+
+        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors("Polices");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fundoo Nodes API V1");
+                });
             }
-            app.UseHttpsRedirection();
-            
-            app.UseStaticFiles();
-            app.UseMvc(route =>
+            else
             {
-               route.MapRoute(
-                    name: "default",
-                template: "{controller=User}/{action=Index}/{id?}"
-            );
+                app.UseHsts();
+            }
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
+            app.UseStaticFiles();
         }
     }
 }
