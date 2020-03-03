@@ -1,4 +1,0 @@
-C:\Users\BridgeLabz\source\repos\Repository\bin\Debug\netcoreapp3.0\Repository.exe
-C:\Users\BridgeLabz\source\repos\Repository\obj\Debug\netcoreapp3.0\Repository.csprojAssemblyReference.cache
-C:\Users\BridgeLabz\source\repos\Repository\obj\Debug\netcoreapp3.0\Repository.AssemblyInfoInputs.cache
-C:\Users\BridgeLabz\source\repos\Repository\obj\Debug\netcoreapp3.0\Repository.AssemblyInfo.cs
