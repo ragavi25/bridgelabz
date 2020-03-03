@@ -8,6 +8,7 @@ namespace Fundoo.Model
 {
     public class RegisterModel
     {
+        public bool Status;
         private string id;
         private string firstName;
         private string lastName;
