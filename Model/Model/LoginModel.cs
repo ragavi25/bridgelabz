@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// --------------------------------------------------------------------------------------------------------------------ss
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Model.Model
 {
-   public class LoginModel
+    public class LoginModel
     {
         private string email;
         private string password;
