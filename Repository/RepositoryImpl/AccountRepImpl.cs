@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Mail;
@@ -10,22 +16,24 @@ using Microsoft.IdentityModel.Tokens;
 using Model.Model;
 using Repository.Context;
 using StackExchange.Redis;
-using sun.security.util;
 
 namespace Repository.Repository
 {
     public class AccountRepImpl : IAccountRep
     {
-
+        /// <summary>
+        /// purpose:get the UserContext using database connections.
+        /// </summary>
         private readonly UserContext context;
-        private readonly object Jwtsetting;
-
-        //   private readonly Iconfigure iconfigure;
         public AccountRepImpl(UserContext userContext)
         {
-            this.context = userContext;
+            context = userContext;
         }
-
+        /// <summary>
+        /// Purpose:create the register.
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         public Task<int> CreateRegister(RegisterModel registerModel)
         {
             RegisterModel model = new RegisterModel()
@@ -38,10 +46,12 @@ namespace Repository.Repository
             };
             this.context.registers.Add(model);
             return Task.Run(() => context.SaveChanges());
-
-
         }
-
+        /// <summary>
+        /// Purpose:create the Login.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         public string Login(LoginModel loginModel)
         {
             LoginModel model = new LoginModel();
@@ -60,14 +70,12 @@ namespace Repository.Repository
             var tokenDiscripter = tokenHandler.CreateToken(tokenDescriptor);
             var securityToken = tokenHandler.WriteToken(tokenDiscripter);
             return securityToken;
-            //if (result == null && check == null)
-            //{
-            //    return false;
-            //}
-            //return true;
-
-
         }
+        /// <summary>
+        /// purpose:create the FindMail.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public bool FindEmail(string email)
         {
             var result = context.registers.Where(opt => opt.Email == email).SingleOrDefault();
@@ -77,6 +85,12 @@ namespace Repository.Repository
             }
             return false;
         }
+        /// <summary>
+        /// Purpose:create the Checkpassword.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool CheckPassword(string email, string password)
         {
             var result = context.registers.Where(opt => opt.Email == email && opt.Password == password).SingleOrDefault();
@@ -86,6 +100,11 @@ namespace Repository.Repository
             }
             return false;
         }
+        /// <summary>
+        /// Purpose:create the ForgotPassword.send the mail.
+        /// </summary>
+        /// <param name="forgotPassword"></param>
+        /// <returns></returns>
         public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword)
         {
             string email = forgotPassword.Email;
@@ -137,7 +156,10 @@ namespace Repository.Repository
 
             return null;
         }
-
+        /// <summary>
+        /// Purpose:create the NewPassword.
+        /// </summary>
+        /// <returns></returns>
         private string NawPassword()
         {
             string ch = "asdfghjklqwertyuiopzxcvbnm1234567890@";
@@ -149,7 +171,11 @@ namespace Repository.Repository
             }
             return new string(chars);
         }
-
+        /// <summary>
+        /// Purpose:create the ResetPassword.
+        /// </summary>
+        /// <param name="reset"></param>
+        /// <returns></returns>
         public async Task<string> ResetPassWord(ResetPassWord reset)
         {
             string password = reset.Password;
@@ -164,6 +190,11 @@ namespace Repository.Repository
             }
             return null;
         }
+        /// <summary>
+        /// purpose:create the EmailLogin.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         public async Task<RegisterModel> EmailLogin(LoginModel loginModel)
         {
             var Jwtsettings = new Jwtsetting();
@@ -196,6 +227,11 @@ namespace Repository.Repository
             }
             return null;
         }
+        /// <summary>
+        /// Purpose:create the FaceBookLogin.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
          public async Task<RegisterModel> FaceBookLogin(LoginModel loginModel)
             {
                 Jwtsetting jwt = new Jwtsetting();
@@ -228,7 +264,7 @@ namespace Repository.Repository
                 }
 
                 return null;
-            }
+         }
     }
 }
 
