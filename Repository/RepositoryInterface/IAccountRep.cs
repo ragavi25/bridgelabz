@@ -1,13 +1,19 @@
-﻿using Fundoo.Model;
+﻿// -----------------------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// ---------------------------------------------------------------------------------------------------------------------------------
+using Fundoo.Model;
 using Model.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Repository.Repository
 {
-   public interface IAccountRep
+    /// <summary>
+    /// Purpose:Using Intefacer get the all purpose of social login.
+    /// </summary>
+    public interface IAccountRep
     {
         public Task<int> CreateRegister(RegisterModel registerModel);
         public string Login(LoginModel loginModel);
