@@ -1,126 +1,141 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// --------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Threading.Tasks;
 using Fundoo.Model;
 using Manager.Manager;
 using Microsoft.AspNetCore.Mvc;
 using Model.Model;
-
 namespace Fundoo.Controller
 {
-
     public class AccountController : ControllerBase
     {
-       
-
-        //private readonly IAccountRep repository;
-      public readonly IAccountManger manager;
-      public AccountController(IAccountManger managers)
-       {
+        /// <summary>
+        /// Purpose:Using MicroControl Asp.net core.
+        /// </summary>
+        public readonly IAccountManger manager;
+        public AccountController(IAccountManger managers)
+        {
           this.manager = managers;
-           
-       }
-
+        }
+        /// <summary>
+        /// Purpose:Control the User Register.
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
-           try
+            try
             {
-                var result = await this.manager.Register(registerModel);
-                return this.Ok(registerModel );
+                bool result = await this.manager.Register(registerModel);
+                return Ok(registerModel );
             }
             catch (Exception e)
             {
-                return this.BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
         }
+        /// <summary>
+        /// Control the User Login.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("login")]
         public ActionResult login([FromBody] LoginModel loginModel)
         {
-            RegisterModel registerModel = new RegisterModel();
             try
             {
-                var responce = this.manager.Login(loginModel);
-                if (responce != null)
-                {
-                    return this.Ok(responce);
-
-                }
-                return this.BadRequest("user not register");
+                string responce = manager.Login(loginModel);
+                return responce != null ? Ok(responce) : (ActionResult)BadRequest("user not register");
             }
             catch (Exception e)
             {
-                return this.BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
-
         }
+        /// <summary>
+        /// purpose:Control the User ForgotPassword.
+        /// </summary>
+        /// <param name="forgotPassword"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("ForgotPassword")]
         public async Task<IActionResult> ForgotPasswordAsync([FromBody] ForgotPasswordModel forgotPassword)
         {
             try
             {
-                var result = await this.manager.ForgotPassword(forgotPassword);
-                return this.Ok(forgotPassword);
+                string result = await this.manager.ForgotPassword(forgotPassword);
+                return Ok(forgotPassword);
 
-            }catch(Exception g)
+            }
+            catch (Exception g)
             {
-                return this.BadRequest(g.Message);
+                return BadRequest(g.Message);
             }
         }
+        /// <summary>
+        /// purpose:Control the User ResetPassword.
+        /// </summary>
+        /// <param name="resetPass"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Reset")]
-        public async Task<IActionResult> Reset([FromBody] ResetPassWord resetPass )
+        public async Task<IActionResult> Reset([FromBody] ResetPassWord resetPass)
         {
             try
             {
-                var result = await this.manager.ResetPassWord(resetPass);
-                return this.Ok(resetPass);
+                string result = await manager.ResetPassWord(resetPass);
+                return Ok(resetPass);
             }
-            catch(Exception g)
+            catch (Exception g)
             {
-                return this.BadRequest(g.Message);
+                return BadRequest(g.Message);
             }
         }
+        /// <summary>
+        /// purpose:control the user EmailLogin.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("Email")]
         public IActionResult EmailLogin([FromBody] LoginModel loginModel)
         {
             try
             {
-                var responce = this.manager.EmailLogin(loginModel);
-                if (responce != null)
-                {
-                    return this.Ok(responce);
-
-                }
-                return this.BadRequest("user not register");
+                Task<RegisterModel> responce = this.manager.EmailLogin(loginModel);
+                return responce != null ? Ok(responce) : (IActionResult)BadRequest("user not register");
             }
             catch (Exception e)
             {
-                return this.BadRequest(e.Message);
+                return BadRequest(e.Message);
             }
         } 
+        /// <summary>
+        /// Purpose:Control the user Facebook Login.
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("FaceBookLogin")]
-    public IActionResult FacebookLogin([FromBody] LoginModel loginModel)
+        public IActionResult FacebookLogin([FromBody] LoginModel loginModel)
         {
             try
             {
-                var result = this.manager.FaceBookLogin(loginModel);
-                if(result!=null)
-                {
-                    return this.Ok(result);
-                }
-                return this.BadRequest("User not Register");
+                Task<RegisterModel> result = manager.FaceBookLogin(loginModel);
+                return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
             }
             catch (Exception h)
             {
-                return this.BadRequest(h.Message);
+                return BadRequest(h.Message);
             }
         }
     }
-
-
 }
