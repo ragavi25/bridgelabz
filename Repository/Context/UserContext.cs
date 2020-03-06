@@ -6,6 +6,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 using Fundoo.Model;
 using Microsoft.EntityFrameworkCore;
+using Model.Model.NodesModel;
+using Model.Model.LabelModel;
 
 namespace Repository.Context
 {
@@ -23,6 +25,8 @@ namespace Repository.Context
        /// Purpose:create the Registers table.
        /// </summary>
         public DbSet<RegisterModel> registers { get; set; }
+        public DbSet<Nodes> Nodes { get; set; }
+        public DbSet<Label> labels { get; set; }
       
 
     }
