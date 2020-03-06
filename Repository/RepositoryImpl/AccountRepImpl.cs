@@ -7,10 +7,12 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Expecto;
 using Fundoo.Model;
 using Microsoft.IdentityModel.Tokens;
 using Model.Model;
@@ -29,6 +31,12 @@ namespace Repository.Repository
         {
             context = userContext;
         }
+
+        public AccountRepImpl()
+        {
+        }
+
+
         /// <summary>
         /// Purpose:create the register.
         /// </summary>
@@ -52,7 +60,7 @@ namespace Repository.Repository
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public string Login(LoginModel loginModel)
+        public async Task<string> Login(LoginModel loginModel)
         {
             LoginModel model = new LoginModel();
             var result = FindEmail(loginModel.Email);
@@ -69,7 +77,9 @@ namespace Repository.Repository
             };
             var tokenDiscripter = tokenHandler.CreateToken(tokenDescriptor);
             var securityToken = tokenHandler.WriteToken(tokenDiscripter);
+            await Task.Run(() => context.SaveChanges());
             return securityToken;
+            
         }
         /// <summary>
         /// purpose:create the FindMail.
@@ -113,11 +123,24 @@ namespace Repository.Repository
                 RegisterModel user = this.context.registers.Where<RegisterModel>(Item => Item.Email == email).FirstOrDefault();
                 if (user != null)
                 {
+                    ////MailMessage mail = new MailMessage();
+                    ////mail.To.Add(email);
+                    ////mail.From = new MailAddress("raghavimr15@gmail.com");
+                    ////mail.Subject = " Account";
+                    ////string body = "";
+                    ////mail.Body = body;
+                    ////mail.IsBodyHtml = false;
+                    ////SmtpClient smtp = new SmtpClient
+                    ////{
+                    ////    Host = "smtp.gmail.com",
+                    ////    EnableSsl = true,
+                    ////    Credentials = new NetworkCredential("example@gmail.com", "password")
+                    ////};
+                    ////smtp.Send(mail);
 
                     string password = this.NawPassword();
-                    var fromAddress = new MailAddress("raghavimr15@gmail.com");
-                    var fromPassword = "ragavi";
-                    var toAddress = new MailAddress(forgotPassword.Email);
+                    var FromAddress = new MailAddress("raghavimr15@gmail.com");
+                    var ToAddress = new MailAddress(email);
                     string subject = "New Password";
                     string body = "Your new password is" + " " + password;
                     SmtpClient smtp = new SmtpClient
@@ -127,10 +150,11 @@ namespace Repository.Repository
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential(fromAddress.Address, fromPassword)
+                        Credentials = new System.Net.NetworkCredential("example@gmail.com", "Your password")
                     };
-                    using (var message = new MailMessage(fromAddress, toAddress)
+                    using (var message = new MailMessage(FromAddress, ToAddress)
                     {
+
                         Subject = subject,
                         Body = body
                     })
@@ -138,6 +162,7 @@ namespace Repository.Repository
                         try
                         {
                             smtp.Send(message);
+
                         }
                         catch (Exception e)
                         {
@@ -147,7 +172,7 @@ namespace Repository.Repository
 
                     user.Password = password;
                     this.context.Update(user);
-                    await Task.Run(() => this.context.SaveChangesAsync());
+                    await Task.Run(() => this.context.SaveChanges());
                     return "success";
                 }
 
@@ -240,14 +265,12 @@ namespace Repository.Repository
                 {
                     try
                     {
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Secret));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jwtsetting:Secret"));
                         var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
-                            expires: DateTime.Now.AddDays(1),
-                            signingCredentials: credential);
-
+                        expires: DateTime.Now.AddDays(1),
+                        signingCredentials: credential);
                         var cacheKey = loginModel.Email;
-
                         ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                         IDatabase database = connection.GetDatabase();
                         database.StringSet(cacheKey, token.ToString());
