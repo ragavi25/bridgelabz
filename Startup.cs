@@ -10,12 +10,12 @@ using Model.Model;
 using Repository.Context;
 using Repository.Repository;
 using Swashbuckle.AspNetCore.Swagger;
-using System.Collections.Generic;
 using System.Text;
-using System.IO;
-
-using Ext.Net;
 using ServiceStack;
+using Repository.RepositoryInterface;
+using Repository.RepositoryImpl;
+using Manager.ManagerImpl;
+using Manager.ManagerInterface;
 
 namespace Fundoo
 {
@@ -34,7 +34,11 @@ namespace Fundoo
             configuration.Bind(key: nameof(Jwtsetting), Jwtsettings);
             services.AddSingleton(Jwtsettings);
             services.AddTransient<IAccountRep, AccountRepImpl>();
+            services.AddTransient<INotes, NotesImpl>();
+            services.AddTransient<ILabel, LabelRep>();
             services.AddTransient<IAccountManger, AccountManagerImpl>();
+            services.AddTransient<INoteManager, NodeManagerImpl>();
+            services.AddTransient<ILabelManager, LabelManagerImpl>();
             services.AddDbContext<UserContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.AddAuthentication(configureOptions: x =>
@@ -91,9 +95,6 @@ namespace Fundoo
           
 
         }
-
-        
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
