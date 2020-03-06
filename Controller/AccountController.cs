@@ -35,6 +35,7 @@ namespace Fundoo.Controller
             {
                 bool result = await this.manager.Register(registerModel);
                 return Ok(registerModel );
+               
             }
             catch (Exception e)
             {
@@ -48,12 +49,14 @@ namespace Fundoo.Controller
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        public ActionResult login([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> login([FromBody] LoginModel loginModel)
         {
             try
             {
-                string responce = manager.Login(loginModel);
-                return responce != null ? Ok(responce) : (ActionResult)BadRequest("user not register");
+                string responce = await this.manager.Login(loginModel);
+                    return Ok(loginModel);
+               
+              //  return responce != null ? Ok(responce) : (ActionResult)BadRequest("user not register");
             }
             catch (Exception e)
             {
@@ -72,7 +75,7 @@ namespace Fundoo.Controller
             try
             {
                 string result = await this.manager.ForgotPassword(forgotPassword);
-                return Ok(forgotPassword);
+                return Ok(new { result});
 
             }
             catch (Exception g)
@@ -104,14 +107,22 @@ namespace Fundoo.Controller
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("Email")]
-        public IActionResult EmailLogin([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> EmailLogin([FromBody] LoginModel loginModel)
         {
             try
             {
-                Task<RegisterModel> responce = this.manager.EmailLogin(loginModel);
-                return responce != null ? Ok(responce) : (IActionResult)BadRequest("user not register");
+                 var r=this.manager.EmailLogin(loginModel);
+               // if (responce != null)
+               // {
+                    return Ok(loginModel);
+               // }
+              //  else
+               // {
+                  //  return this.BadRequest("not register");
+                //}
+                ////return responce != null ? Ok(responce) : (IActionResult)BadRequest("user not register");
             }
             catch (Exception e)
             {
@@ -123,14 +134,22 @@ namespace Fundoo.Controller
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("FaceBookLogin")]
-        public IActionResult FacebookLogin([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> FacebookLogin([FromBody] LoginModel loginModel)
         {
             try
             {
-                Task<RegisterModel> result = manager.FaceBookLogin(loginModel);
-                return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
+                var result = this.manager.FaceBookLogin(loginModel);
+                //if(result!=null)
+               // {
+                    return Ok(loginModel);
+                //}
+                //else
+               // {
+                  //  return this.BadRequest("not register");
+                //}
+               // return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
             }
             catch (Exception h)
             {
