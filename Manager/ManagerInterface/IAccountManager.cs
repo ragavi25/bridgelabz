@@ -26,7 +26,7 @@ namespace Manager.Manager
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public string Login(LoginModel loginModel);
+        public Task<string> Login(LoginModel loginModel);
         /// <summary>
         /// purpose:get the user  Forgot Password.
         /// </summary>
