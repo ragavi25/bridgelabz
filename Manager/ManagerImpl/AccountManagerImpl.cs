@@ -35,36 +35,37 @@ namespace Manager.Manager
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public Task<RegisterModel> EmailLogin(LoginModel loginModel)
+        public async Task<RegisterModel> EmailLogin(LoginModel loginModel)
         {
-            return this.Repository.EmailLogin(loginModel);
+            return await this.Repository.EmailLogin(loginModel);
         }
         /// <summary>
         /// Purpose:Get the Repository FacebookLogin.
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public Task<RegisterModel> FaceBookLogin(LoginModel loginModel)
+        public async Task<RegisterModel> FaceBookLogin(LoginModel loginModel)
         {
-            return this.Repository.FaceBookLogin(loginModel);
+            return  await this.Repository.FaceBookLogin(loginModel);
         }
         /// <summary>
         /// Purpose:Get the Repository ForgotPassword.
         /// </summary>
         /// <param name="forgotPassword"></param>
         /// <returns></returns>
-        public Task<string> ForgotPassword(ForgotPasswordModel forgotPassword)
+        public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword)
         {
-            return this.Repository.ForgotPassword(forgotPassword);
+            return await this.Repository.ForgotPassword(forgotPassword);
         }
         /// <summary>
         /// Purpose:Get the Repository Login.
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public string Login(LoginModel loginModel)
+        public async Task<string> Login(LoginModel loginModel)
         {
-            return  this.Repository.Login(loginModel);
+            var a = await this.Repository.Login(loginModel);
+            return a;
         }
         /// <summary>
         /// Purpose:Get the Repository Register.
