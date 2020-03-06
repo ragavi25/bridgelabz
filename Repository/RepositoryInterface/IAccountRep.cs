@@ -16,7 +16,7 @@ namespace Repository.Repository
     public interface IAccountRep
     {
         public Task<int> CreateRegister(RegisterModel registerModel);
-        public string Login(LoginModel loginModel);
+        public Task<string> Login(LoginModel loginModel);
         public Task<string> ForgotPassword(ForgotPasswordModel forgotPassword);
         public Task<string> ResetPassWord(ResetPassWord reset);
         public Task<RegisterModel> EmailLogin(LoginModel loginModel);
