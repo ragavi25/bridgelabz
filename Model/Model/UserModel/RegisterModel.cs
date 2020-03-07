@@ -16,15 +16,11 @@ namespace Fundoo.Model
         private string lastName;
         private string email;
         private string password;
-        [Required]
         public string FirstName { get =>this.firstName; set =>this. firstName = value; }
-        [Required]
-        public string LastName { get => this.lastName; set =>this. lastName = value; }
-        [Required]
+        public string LastName { get => this.lastName; set => this.lastName = value; }
         public string Email { get =>this. email; set =>this. email = value; }
-        [Required]
         public string Password { get => this.password; set =>this. password = value; }
-       [Key]
-       public string Id { get =>this. id; set =>this. id = value; }
+        [Key]
+        public string Id { get =>this. id; set =>this. id = value; }
     }
 }

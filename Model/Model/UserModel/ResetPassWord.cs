@@ -5,7 +5,6 @@
 // <creator name="R Ragavi"/>
 // ---------------------------------------------------------------------------------------------------------------------------------------
 using System.ComponentModel.DataAnnotations;
-
 namespace Model.Model
 {
     public class ResetPassWord
@@ -20,7 +19,7 @@ namespace Model.Model
         public string Password { get => this.password; set =>this. password = value; }
         [Required]
         public string Confirmpassword { get => this.confirmpassword; set =>this. confirmpassword = value; }
-       }
+    }
 }
 
 

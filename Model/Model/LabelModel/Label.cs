@@ -1,10 +1,10 @@
-﻿using Model.Model.NodesModel;
-using System;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=LabelController.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="R Ragavi"/>
+// --------------------------------------------------------------------------------------------------------------------
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
 namespace Model.Model.LabelModel
 {
 
