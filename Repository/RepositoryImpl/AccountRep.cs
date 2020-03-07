@@ -7,12 +7,10 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Expecto;
 using Fundoo.Model;
 using Microsoft.IdentityModel.Tokens;
 using Model.Model;
@@ -21,22 +19,20 @@ using StackExchange.Redis;
 
 namespace Repository.Repository
 {
-    public class AccountRepImpl : IAccountRep
+    public class AccountRep : IAccountRep
     {
         /// <summary>
         /// purpose:get the UserContext using database connections.
         /// </summary>
         private readonly UserContext context;
-        public AccountRepImpl(UserContext userContext)
+        public AccountRep(UserContext userContext)
         {
             context = userContext;
         }
 
-        public AccountRepImpl()
+        public AccountRep()
         {
         }
-
-
         /// <summary>
         /// Purpose:create the register.
         /// </summary>
@@ -78,8 +74,7 @@ namespace Repository.Repository
             var tokenDiscripter = tokenHandler.CreateToken(tokenDescriptor);
             var securityToken = tokenHandler.WriteToken(tokenDiscripter);
             await Task.Run(() => context.SaveChanges());
-            return securityToken;
-            
+            return securityToken;           
         }
         /// <summary>
         /// purpose:create the FindMail.
@@ -178,8 +173,7 @@ namespace Repository.Repository
 
                 return null;
             }
-
-            return null;
+           return null;
         }
         /// <summary>
         /// Purpose:create the NewPassword.
@@ -258,7 +252,7 @@ namespace Repository.Repository
         /// <param name="loginModel"></param>
         /// <returns></returns>
          public async Task<RegisterModel> FaceBookLogin(LoginModel loginModel)
-            {
+         { 
                 Jwtsetting jwt = new Jwtsetting();
                 var result = this.context.registers.Where(r => r.Email == loginModel.Email).SingleOrDefault();
                 if (result != null)
@@ -285,7 +279,6 @@ namespace Repository.Repository
                         throw new Exception(e.Message);
                     }
                 }
-
                 return null;
          }
     }
