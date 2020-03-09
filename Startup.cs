@@ -33,12 +33,14 @@ namespace Fundoo
             var Jwtsettings = new Jwtsetting();
             configuration.Bind(key: nameof(Jwtsetting), Jwtsettings);
             services.AddSingleton(Jwtsettings);
-            services.AddTransient<IAccountRep, AccountRepImpl>();
-            services.AddTransient<INotes, NotesImpl>();
+            services.AddTransient<IAccountRep, AccountRep>();
+            services.AddTransient<INotes, NotesRep>();
             services.AddTransient<ILabel, LabelRep>();
+            services.AddTransient<ICollaborator, CollaboratorRep>();
             services.AddTransient<IAccountManger, AccountManagerImpl>();
             services.AddTransient<INoteManager, NodeManagerImpl>();
             services.AddTransient<ILabelManager, LabelManagerImpl>();
+            services.AddTransient<ICollaboratorManager, CollaboratorManager>();
             services.AddDbContext<UserContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
             services.AddAuthentication(configureOptions: x =>
@@ -58,18 +60,14 @@ namespace Fundoo
                        ValidateAudience = false,
                        RequireExpirationTime = false,
                        ValidateLifetime = true,
-
-
-
                    };
-
                });
             services.AddCors(OP => OP.AddPolicy("Polices", builder =>
-               {
+            {
                    builder.AllowAnyOrigin();
                    builder.AllowAnyHeader();
                    builder.AllowAnyMethod();
-               }));
+            }));
 
             services.AddSwaggerGen(c =>
             {
