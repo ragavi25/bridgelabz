@@ -18,9 +18,9 @@ namespace Fundoo.Model
         private string password;
         public string FirstName { get =>this.firstName; set =>this. firstName = value; }
         public string LastName { get => this.lastName; set => this.lastName = value; }
+        [Key]
         public string Email { get =>this. email; set =>this. email = value; }
         public string Password { get => this.password; set =>this. password = value; }
-        [Key]
         public string Id { get =>this. id; set =>this. id = value; }
     }
 }
