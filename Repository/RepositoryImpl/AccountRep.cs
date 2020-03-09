@@ -118,26 +118,11 @@ namespace Repository.Repository
                 RegisterModel user = this.context.registers.Where<RegisterModel>(Item => Item.Email == email).FirstOrDefault();
                 if (user != null)
                 {
-                    ////MailMessage mail = new MailMessage();
-                    ////mail.To.Add(email);
-                    ////mail.From = new MailAddress("raghavimr15@gmail.com");
-                    ////mail.Subject = " Account";
-                    ////string body = "";
-                    ////mail.Body = body;
-                    ////mail.IsBodyHtml = false;
-                    ////SmtpClient smtp = new SmtpClient
-                    ////{
-                    ////    Host = "smtp.gmail.com",
-                    ////    EnableSsl = true,
-                    ////    Credentials = new NetworkCredential("example@gmail.com", "password")
-                    ////};
-                    ////smtp.Send(mail);
-
                     string password = this.NawPassword();
                     var FromAddress = new MailAddress("raghavimr15@gmail.com");
                     var ToAddress = new MailAddress(email);
                     string subject = "New Password";
-                    string body = "Your new password is" + " " + password;
+                    string body = "Your new password is" + password ;
                     SmtpClient smtp = new SmtpClient
                     {
                         Host = "smtp.gmail.com",
@@ -145,7 +130,7 @@ namespace Repository.Repository
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("example@gmail.com", "Your password")
+                        Credentials = new System.Net.NetworkCredential("raghavimr15@gmail.com", "rjvrragavi")
                     };
                     using (var message = new MailMessage(FromAddress, ToAddress)
                     {
