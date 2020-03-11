@@ -21,24 +21,34 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Fundoo.Model.RegisterModel", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired();
+                    b.Property<string>("Id");
 
-                    b.Property<string>("LastName")
-                        .IsRequired();
+                    b.Property<string>("LastName");
 
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.Property<string>("Password");
 
-                    b.HasKey("Id");
+                    b.HasKey("Email");
 
                     b.ToTable("registers");
+                });
+
+            modelBuilder.Entity("Model.Model.Collaborators.CollaboratorModel", b =>
+                {
+                    b.Property<string>("SenderEmail")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("NoteId");
+
+                    b.Property<string>("ReceiverEmail");
+
+                    b.HasKey("SenderEmail");
+
+                    b.ToTable("collaborators");
                 });
 
             modelBuilder.Entity("Model.Model.LabelModel.Label", b =>
@@ -71,6 +81,8 @@ namespace Repository.Migrations
                     b.Property<DateTime?>("Createdate1");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Email");
 
                     b.Property<DateTime?>("Modifieddate");
 
