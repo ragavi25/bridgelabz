@@ -79,9 +79,6 @@ namespace Fundoo.Controller
             {
                 return this.BadRequest(e.Message);
             }
-        }
-       
-        
-        
+        }      
     }
 }
