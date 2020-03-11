@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Experimental.System.Messaging;
 using Fundoo.Model;
 using Microsoft.IdentityModel.Tokens;
 using Model.Model;
@@ -29,7 +30,6 @@ namespace Repository.Repository
         {
             context = userContext;
         }
-
         public AccountRep()
         {
         }
@@ -112,13 +112,38 @@ namespace Repository.Repository
         /// <returns></returns>
         public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword)
         {
+            
             string email = forgotPassword.Email;
             if (email != null)
             {
+                string msg = email;
+                MessageQueue Myqueue;
+                ////Get a MessageQueue
+                if (MessageQueue.Exists(@".\private$\Myqueue"))
+                {
+                    Myqueue = new MessageQueue(@".\private$\Myqueue");
+                }
+                else
+                {
+                    Myqueue = MessageQueue.Create(@".\private$\Myqueue");
+                }
+                Message message = new Message();
+                message.Formatter = new BinaryMessageFormatter();
+                message.Body = msg;
+                message.Label = "MsmqMessage";
+                if (msg.Contains(email))
+                {
+                    message.Priority = MessagePriority.High;
+                }
+                else
+                {
+                    message.Priority = MessagePriority.Low;
+                }
+                
                 RegisterModel user = this.context.registers.Where<RegisterModel>(Item => Item.Email == email).FirstOrDefault();
                 if (user != null)
                 {
-                    string password = this.NawPassword();
+                    string password = this.NewPassword();
                     var FromAddress = new MailAddress("raghavimr15@gmail.com");
                     var ToAddress = new MailAddress(email);
                     string subject = "New Password";
@@ -132,7 +157,7 @@ namespace Repository.Repository
                         UseDefaultCredentials = false,
                         Credentials = new System.Net.NetworkCredential("raghavimr15@gmail.com", "rjvrragavi")
                     };
-                    using (var message = new MailMessage(FromAddress, ToAddress)
+                    using (var messaging = new MailMessage(FromAddress, ToAddress)
                     {
 
                         Subject = subject,
@@ -141,21 +166,19 @@ namespace Repository.Repository
                     {
                         try
                         {
-                            smtp.Send(message);
-
+                            Myqueue.Send(msg);
+                            smtp.Send(messaging);
                         }
                         catch (Exception e)
                         {
                             throw new Exception(e.Message);
                         }
                     }
-
                     user.Password = password;
                     this.context.Update(user);
                     await Task.Run(() => this.context.SaveChanges());
                     return "success";
                 }
-
                 return null;
             }
            return null;
@@ -164,7 +187,7 @@ namespace Repository.Repository
         /// Purpose:create the NewPassword.
         /// </summary>
         /// <returns></returns>
-        private string NawPassword()
+        private string NewPassword()
         {
             string ch = "asdfghjklqwertyuiopzxcvbnm1234567890@";
             Random random = new Random();
@@ -212,14 +235,11 @@ namespace Repository.Repository
                     var token = new JwtSecurityToken(
                         expires: DateTime.Now.AddDays(1),
                         signingCredentials: credential);
-
                     var cacheKey = loginModel.Email;
-
                     ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("127.0.0.1:6379");
                     IDatabase database = connection.GetDatabase();
                     database.StringSet(cacheKey, token.ToString());
                     database.StringGet(cacheKey);
-
                     result.Status = true;
                     await this.context.SaveChangesAsync();
                     return result;
@@ -244,7 +264,7 @@ namespace Repository.Repository
                 {
                     try
                     {
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jwtsetting:Secret"));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Secret));
                         var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
                         expires: DateTime.Now.AddDays(1),
@@ -254,7 +274,6 @@ namespace Repository.Repository
                         IDatabase database = connection.GetDatabase();
                         database.StringSet(cacheKey, token.ToString());
                         database.StringGet(cacheKey);
-
                         result.Status = true;
                         await this.context.SaveChangesAsync();
                         return result;

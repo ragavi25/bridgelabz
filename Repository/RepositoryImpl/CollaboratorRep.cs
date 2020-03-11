@@ -71,16 +71,6 @@ namespace Repository.RepositoryImpl
         {
             return this.context.collaborators.ToList();
         }
-        //public async Task<int> Update( int id,string email,string receivedemail)
-        //{
-        //    var result = this.context.collaborators.Where(op => op.NoteId == id).FirstOrDefault();
-        //    if(result!=null)
-        //    {
-        //        result.SenderEmail = email;
-        //        result.ReceiverEmail = receivedemail;
-        //         this.context.Update(result);
-        //    }
-        //  return await Task.Run(() => this.context.SaveChanges());
-        //}
+        
     }
 }
