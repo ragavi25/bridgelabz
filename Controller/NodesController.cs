@@ -13,7 +13,6 @@ using Model.Model.NodesModel;
 
 namespace Fundoo.Controller
 {
-
     public class NotesController : ControllerBase
     {
         private readonly INoteManager nodeManager;
