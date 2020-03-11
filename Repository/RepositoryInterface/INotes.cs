@@ -44,6 +44,6 @@ namespace Repository.RepositoryInterface
         /// <param name="id"></param>
         /// <returns></returns>
         public Task Delete(int id);
-       //// Task Update(int nodeId, string tittle, string description, DateTime? modifieddate, string changeColor, string addImg);
+   
     }
 }

@@ -32,14 +32,7 @@ namespace Repository.RepositoryInterface
         /// <param name="id"></param>
         /// <returns></returns>
         public Task<int> Delete(int id);
-        /// <summary>
-        /// Purpose:Create the Update.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="email"></param>
-        /// <param name="Receivedemail"></param>
-        /// <returns></returns>
-        //public Task<int> Update(int id, string email,string Receivedemail);
+        
     }
 }
 
