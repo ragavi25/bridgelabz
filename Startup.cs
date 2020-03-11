@@ -30,6 +30,7 @@ namespace Fundoo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             var Jwtsettings = new Jwtsetting();
             configuration.Bind(key: nameof(Jwtsetting), Jwtsettings);
             services.AddSingleton(Jwtsettings);
