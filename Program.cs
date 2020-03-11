@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore;
+﻿using Experimental.System.Messaging;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using System;
 
 namespace Fundoo
 {
@@ -7,7 +9,10 @@ namespace Fundoo
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            MessageQueue Myqueue;
+            Myqueue = new MessageQueue(@".\private$\Myqueue");
+             Myqueue.Receive();
+           CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
