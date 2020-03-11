@@ -114,14 +114,7 @@ namespace Fundoo.Controller
             try
             {
                  var r=this.manager.EmailLogin(loginModel);
-               // if (responce != null)
-               // {
                     return Ok(loginModel);
-               // }
-              //  else
-               // {
-                  //  return this.BadRequest("not register");
-                //}
                 ////return responce != null ? Ok(responce) : (IActionResult)BadRequest("user not register");
             }
             catch (Exception e)
@@ -141,15 +134,8 @@ namespace Fundoo.Controller
             try
             {
                 var result = this.manager.FaceBookLogin(loginModel);
-                //if(result!=null)
-               // {
                     return Ok(loginModel);
-                //}
-                //else
-               // {
-                  //  return this.BadRequest("not register");
-                //}
-               // return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
+               ////return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
             }
             catch (Exception h)
             {
