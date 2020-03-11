@@ -13,7 +13,6 @@ namespace Model.Model.Collaborators
         private int noteId;
         private string senderEmail;
         private string receiverEmail;
- 
         public int NoteId { get =>this.noteId; set =>this.noteId = value; }
          [Key]
         public string SenderEmail { get =>this.senderEmail; set =>this.senderEmail = value; }
