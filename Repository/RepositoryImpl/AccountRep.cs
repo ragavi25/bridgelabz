@@ -66,7 +66,8 @@ namespace Repository.Repository
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
-               {
+                {
+
                    new Claim("Name", loginModel.Email),
                     new Claim("Password",loginModel.Password)
                }),
@@ -230,7 +231,7 @@ namespace Repository.Repository
             {
                 try
                 {
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Jwtsettings.Secret));
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Jwtsettings.Secret"));
                     var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                     var token = new JwtSecurityToken(
                         expires: DateTime.Now.AddDays(1),
@@ -264,7 +265,7 @@ namespace Repository.Repository
                 {
                     try
                     {
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Secret));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("jwt.Secret"));
                         var credential = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                         var token = new JwtSecurityToken(
                         expires: DateTime.Now.AddDays(1),
