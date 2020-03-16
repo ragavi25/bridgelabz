@@ -50,5 +50,5 @@ namespace Repository.Repository
        /// <param name="loginModel"></param>
        /// <returns></returns>
         public  Task<RegisterModel> FaceBookLogin(LoginModel loginModel);
-   }
+    }
 }

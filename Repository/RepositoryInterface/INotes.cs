@@ -4,6 +4,7 @@
 // </copyright>
 // <creator name="R Ragavi"/>
 // --------------------------------------------------------------------------------------------------------------------
+using Microsoft.AspNetCore.Http;
 using Model.Model.NodesModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -44,6 +45,72 @@ namespace Repository.RepositoryInterface
         /// <param name="id"></param>
         /// <returns></returns>
         public Task Delete(int id);
-   
+        /// <summary>
+        /// Purpose:Create a UploadImages.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="img"></param>
+        /// <returns></returns>
+        public Task<string> UploadImg(int id, string img);
+        /// <summary>
+        /// Purpose:Create a Addcolor.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public Task<string> Color(int id, string color);
+        /// <summary>
+        /// Purpose:Create a Pin.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> Ispin(int id);
+        /// <summary>
+        /// Purpose:Create a Unpin.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> Unpin(int id);
+        /// <summary>
+        /// Purpose:Create a Archive.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> IsArchive(int id);
+        /// <summary>
+        /// Purpose:Create a UnArchive.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> UnArchive(int id);
+        /// <summary>
+        /// Purpose:Create a Reminder.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Reminder"></param>
+        /// <returns></returns>
+        public Task<int> Reminder(int id, string Reminder);
+        /// <summary>
+        /// Purpose:Create a GetArchive List.
+        /// </summary>
+        /// <returns></returns>
+        public List<Nodes> GetArchive();
+        /// <summary>
+        /// Purpose:Create a BIN.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<bool> IsBin(int id);
+        /// <summary>
+        /// Purpose:Create a GetBin list.
+        /// </summary>
+        /// <returns></returns>
+        public List<Nodes> GetBin();
+        /// <summary>
+        /// Purpose:Create a Restore the note.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task<string> Restore(int id);
     }
 }
