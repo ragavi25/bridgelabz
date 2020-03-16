@@ -23,6 +23,8 @@ namespace Model.Model.NodesModel
         private bool pin;
         private string changeColor;
         private string addImg;
+        private string reminder;
+        private bool bin;
         [Key]
         public int NodeId { get => this.nodeId; set => this.nodeId = value; } 
         public string Tittle { get =>this.tittle; set =>this.tittle = value; }
@@ -34,5 +36,8 @@ namespace Model.Model.NodesModel
         public string ChangeColor { get => this.changeColor; set =>this.changeColor = value; }
         public string AddImg { get =>this.addImg; set =>this.addImg = value; } 
         public string Email { get => this.email; set => this.email = value; }
+        public string Reminder { get => reminder; set => reminder = value; }
+       // public string Trash { get => trash; set => trash = value; }
+        public bool Bin { get => bin; set => bin = value; }
     }
 }
