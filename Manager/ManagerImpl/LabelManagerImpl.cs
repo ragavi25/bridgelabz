@@ -25,9 +25,9 @@ namespace Manager.ManagerImpl
         /// <param name="name"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task AddLabel(string name,int id)
+        public async Task AddLabel(string name,int id)
         {
-            return this.label.AddLabel(name,id);
+            await this.label.AddLabel(name,id);
         }
         /// <summary>
         /// Purpose:create the Deletelabel
@@ -52,9 +52,9 @@ namespace Manager.ManagerImpl
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Task update(int id, string name)
+        public async Task update(int id, string name)
         {
-            return this.label.Update(id, name);
+            await this.label.Update(id, name);
         }
     }
 }
