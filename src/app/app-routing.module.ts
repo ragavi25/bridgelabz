@@ -6,12 +6,15 @@ import { RegisterComponent } from './component/register/register.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { HomeComponent } from './component/home/home.component';
 import { AppModule } from './app.module';
+import { ServiceCardComponent } from './component/service-card/service-card.component';
 
 const routes: Routes = [
    { path: 'login', component: LoginComponent },
    {path:'register',component:RegisterComponent},
    {path:'forgot',component:ForgotpasswordComponent},
    {path:'',component:HomeComponent},
+   {path :'ServiceCard', component: ServiceCardComponent},
+  
 ];
 
 @NgModule({
@@ -19,6 +22,6 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [AppModule]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
