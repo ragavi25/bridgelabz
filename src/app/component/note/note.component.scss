@@ -1,0 +1,27 @@
+.notes{
+    width: 45em;
+    margin: 10px ;
+    padding: 0px;
+    cursor: text;
+}
+.text{
+    font-weight: 400;
+    padding: 20px;
+    opacity: 50%;
+
+}
+.input{
+    font-weight: 400;
+    font-size: initial;
+    border: none;
+    background: transparent;
+    width: 20em;
+    outline: none;
+    height: 3em;
+    margin-left: 20px;
+}
+.example-button-row {
+    margin-right: 1em;
+    padding-bottom: 5px;
+    text-align: center;
+}

@@ -1,0 +1,16 @@
+<mat-card *ngIf="!notes" class="notes" (click)="note()">
+    
+    <div class="text">Take a note............</div>
+</mat-card>
+<mat-card *ngIf="!Notes" class="notes">
+    <div >
+    <input class="input" type="text" matInput [formControl]="title" placeholder="Title"><br>
+    <input  class="input" type="text" matInput [formControl]="Note" placeholder="Take a Note.......">
+        </div>
+        
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)="Close()">Close</button>
+        </div>
+    
+</mat-card>
+
