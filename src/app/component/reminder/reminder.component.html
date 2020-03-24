@@ -1,0 +1,23 @@
+<app-note></app-note>
+<mat-card class="card">
+    <mat-list role="list" *ngIf="Notechange; else gridview">
+        <mat-card mat-list-item *ngFor="let note of message" [style.background-color]="note.color" class="card1">
+            <div (click)="open(note)">
+                <div>
+            <img *ngIf="image" class="image" src="{{note.image}}"> </div>
+                    <div class="title" *ngIf="note.title">{{note.title}}</div>
+                    <div class="title1" *ngIf="!note.title">Title</div>
+                    <div class="des" *ngIf="note.description">{{note.description}}</div>
+                    <div class="des1" *ngIf="!note.description">Description</div>
+                </div>
+                <app-pin class="pin" [getid]="note" ></app-pin>
+                <button class="btn" *ngIf="note.reminder">
+                    <mat-icon class="icon">Query</mat-icon>
+                    <div class="reminder">{{note.reminder}}</div>
+                    <button mat-icon-button (click)="reminderR(note.id)" class="btni" >
+                        <mat-icon class="icon1">Close</mat-icon>
+                    </button>
+                </button>
+        </mat-card>
+    </mat-list>
+</mat-card>
