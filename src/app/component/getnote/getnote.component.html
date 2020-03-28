@@ -1,0 +1,56 @@
+<div fxLayout="column">
+    <div fxFlex="100" class="note" fxLayoutAlign="space-around start" fxFlex.xs="95" >
+      <mat-card class="mat-card" fxFlex="50" fxLayout="row"  *ngIf="flag==true"
+      (click)="reverseFlag()" fxLayoutAlign="space-between start" fxFlex.xs="95" fxLayoutAlign.xs="space-around start">
+        <div fxFlex="65" data-text="Take a note.." class="text-area" contenteditable="true" class="maincard">
+        </div>
+      </mat-card>
+    </div>
+    
+    <div fxFlex="100" class="big-note" fxLayoutAlign="space-around start" *ngIf="flag==false" fxFlex.xs="100">
+      <mat-card  [style.backgroundColor]="setColor"  fxFlex="50" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutAlign.xs="space-around start" fxFlex.xs="95" fxFlex.sm="80">
+        <div fxLayout="row" fxLayoutGap="420px">
+        <input class="title" type="text" [formControl]="noteTitle" placeholder="Title">
+        <div *ngIf="value==false" (click)="reverseValue()" > <img src="../../../assets/image/pin.png"></div>
+        <div *ngIf="value==true" (click)="reverseValue()"> <img src="../../../assets/image/unpin.png"></div>
+      </div>
+        <div class="area">
+          <textarea class="add-note" matTextareaAutosize [formControl]="noteContent" placeholder="Take a note..."></textarea>
+        </div>
+        <mat-chip-list class="chip-list">
+    
+            <mat-chip class="show-reminders" style="margin-left: 10px;" *ngIf="reminderData">
+              <mat-icon matChipRemove class="time-icon" style="margin-right: 8px;">access_time</mat-icon>
+               <span class="show-time">{{reminderData}}</span>
+              <mat-icon matChipRemove class="remove" (click)="removeReminder()">close </mat-icon>
+            </mat-chip>
+            </mat-chip-list>
+        <div  class="icons">
+          <mat-card-footer fxLayout="row"  fxLayoutAlign="space-between center">
+              <app-icon (reminderEvent)="receiveReminderEvent($event)" (setColorEvent)="receiveSetColorEvent($event)" 
+              (archiveEvent)="receiveArchiveEvent($event)"> </app-icon>
+              <button  mat-button (click)="addNote()"><span class="close">Close</span></button>
+          </mat-card-footer>
+        </div>
+      </mat-card>
+    </div>
+    
+    <div >
+            <app-card fxFlex="100" fxLayoutAlign="space-around" [parentSubject]="parentSubject"></app-card>
+    
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

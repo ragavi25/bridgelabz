@@ -1,0 +1,163 @@
+.matcard{
+    margin-top:20px
+}
+
+.text-area{
+    border-color:white;
+}
+
+[contentEditable=true]:empty:not(:focus)::before{
+    content:attr(data-text);
+    font:550 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+}
+
+.maincard{
+    width:60%; color:rgb(173,166,166);
+}
+
+.note{
+    margin-top:20px;
+   
+}
+
+
+
+@media only screen and (max-width: 600px){
+.note{
+    margin-top:60px;
+}
+
+
+}
+.title{
+    border: none;
+    margin-bottom: 15px;
+    outline: none;
+    width:100%;
+    background:transparent;
+    
+    // color:rgb(143, 142, 142);
+     font:550 16px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    //  background-color: rgb(255, 255, 255);
+
+}
+.area{
+    width: 100%;
+}
+.add-note{
+    font:550 14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    background-color: rgb(255, 255, 255);
+    width:100%;
+    outline:none;
+    border:none;
+    background: transparent;
+    
+}
+
+.xyz{
+    position: relative;
+}
+
+.icons{
+    margin-top : 15px;
+    width: 100%;
+}
+
+.mat-card{
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.20);
+    -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+    border: 1px solid #dadce0;
+    margin-bottom: 40px;
+}
+
+.logo{
+    height: 39px;
+    width:10px;
+}
+
+
+.close{
+    box-sizing: border-box;
+    color: rgba(0,0,0,.87);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 550;
+    line-height: 1.25rem;
+    height: 36px;
+    padding: 8px 24px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.check-box{
+    opacity: .55;
+}
+.brush{
+    opacity: .55;
+}
+.photo{
+    opacity: .55;
+}
+
+img{
+    opacity: .55;
+}
+
+:host  .mat-chip {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+:host .mat-standard-chip {
+    padding: 7px 7px;
+    min-height: 26px;
+ 
+}
+
+:host .mat-chip.mat-standard-chip {
+    color: rgba(0,0,0,.87);
+    background: #0000001f;
+}
+
+:host .mat-standard-chip.mat-chip-with-trailing-icon {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 4px;
+    padding-left: 0px;
+}
+
+.time-icon{
+    margin-right: 8px;
+}
+
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+    color: rgba(0,0,0,.87);
+    opacity: 0.6;
+}
+
+.show-reminders .remove{
+    opacity: 1;
+    visibility: hidden;
+}
+.show-reminders:hover .remove{
+    opacity: 1;
+    visibility: visible;
+}
+
+.show-time{
+    color: rgba(0,0,0,.87);
+    font-weight: 550;
+    font-size: 11px;
+    border: 1px solid transparent;
+    text-align: center;
+
+}
+
+.chip-list{
+    margin-top:10px;
+}
