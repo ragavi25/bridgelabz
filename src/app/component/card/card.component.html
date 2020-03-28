@@ -1,0 +1,119 @@
+<div fxLayout="column">
+    <div  fxLayout="row" fxLayoutAlign="end center" *ngIf="pincard.length <= 0 && Unpincard.length <= 0">
+    <mat-icon class="example-note">home-lightbulb-outline</mat-icon> 
+    <div class="example-text">Notes add here!!</div>
+   </div>
+   <div class="text" *ngIf="pincard">Pinned</div>
+   <div class="example-card" fxLayout="{{noteView}}" fxFlex="90" fxFlex.xs="100" fxLayoutAlign.xs="space-around center" cdkDropList
+     (cdkDropListDropped)="drop($event)">
+     <div cdkDrag *ngFor="let note of pincard ">
+       <div >
+         <mat-card fxFlex="100" fxFlex.xs="100" class="example-cards"
+           [ngClass]="{'cardGridView': noteView == 'row view','cardListView': noteView == 'column view'}"
+           fxFlex.xs="100" [style.backgroundColor]="note.notes.color">
+           <div class="example-image" *ngIf="note.notes.img" (click)="UpdateNote(note.notes)">
+             <img [src]="note.notes.img" class="example-img">
+           </div>
+           <div fxLayout="row">
+            <div fxFlex="88" class="note-title" (click)="UpdateNote(note.notes)">{{note?.notes?.noteTitle}}</div>
+            <div class="example-unpin" *ngIf="note.notes.isPin == true"></div>
+            <div> <img src="../../../assets/image/unpin.png" (click)=" Changepin(note.notes)"></div>
+        </div>
+        <div class="example-unpin" *ngIf="note.notes.isPin == false">
+          <div> <img src="../../../assets/image/pin.png" (click)="Changepin(note.notes)"></div> 
+      </div>
+      <mat-card-content fxLayout="column">
+        <div class="des" (click)="UpdateNote(note.notes)">{{note.notes.noteDescription}}</div>
+        <mat-card-footer>
+          <mat-chip-list class="example-list">
+            <mat-chip class="example-reminder" style="margin-left: 10px;" *ngIf="note.notes.reminder">
+              <mat-icon matChipRemove class="timeaccess" style="margin-right: 8px;">clock-time</mat-icon>
+              <span class="reminter-time">{{note.notes.reminder}}</span>
+              <mat-icon matChipRemove class="Reminter-remove" (click)="removeReminder(note.notes)">close-box</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+          <mat-chip-list class="example-list" *ngIf=" note.notes != undefined && note.notes.labels.length >= 1" view="hard">
+            <mat-chip class="example-reminder" style="margin-left: 10px;" *ngFor="let label of note.notes.labels">
+              <span class="reminter-time" style="margin-left: 30px;" *ngIf="label != null ">{{label.labelName}}</span>
+              <mat-icon matChipRemove class="Reminter-remove" (click)="deleteLabel(label.note.notes)">delete</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+          <div *ngFor="let note of note.collaborator">
+            <div class="example-addcard" *ngIf="!note.img">
+              <div class="example-person" matTooltip="{{note.firstName}}{{note.email}}>"><span
+                  class="example-role">{{note.firstName.charAt(0)}}</span></div>
+            </div>
+          </div>
+          <div class="matCardIcons">
+            <app-icon (click)="UpdateallNotes(note.notes)" [user]="note" 
+              [childMessage]="noteId" (updateColor)="UpdateColor($event)"
+              (DeletedNoteToBin)="DeletedNoteToBin($event)"
+              (archiveFromCard)="ArchiveFromCard($event)"
+              (reminderOnCards)="ReminderOnCard($event)"
+              (updateLabel)="UpdateLabels($event)"
+              (imageUpdate)="ImageUpdate($event)"></app-icon>
+          </div>
+        </mat-card-footer>   
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+</div>
+<div class="text" *ngIf="pincard.length > 0 && Unpincard.length > 0">More</div>
+<div class="example-card" fxLayout="{{noteView}}" fxFlex="90" fxFlex.xs="100" fxLayoutAlign="center center" cdkDropList
+  (cdkDropListDropped)="drop($event)">
+  <div cdkDrag *ngFor="let note of Unpincard">
+    <div>
+      <mat-card fxFlex="100" class="example-cards"
+        [ngClass]="{'cardGridView': noteView == 'row view ','cardListView': noteView == 'column view '}"
+        fxFlex.xs="100" [style.backgroundColor]="note.notes.color">
+        <div class="example-image" *ngIf="note.notes.img" (click)="UpdateNote(note.notes)">
+          <img [src]="note.notes.img" class="example-img">
+        </div>
+        <div fxLayout="row">
+          <div fxFlex="88" class="example-details" (click)="UpdateNote(note.notes)">{{note.notes.noteTitle}}</div>
+          <div class="example-unpin" *ngIf="note.notes.isPin == true">
+            <div> <img src="../../../assets/image/unpin.png" (click)=" Changepin(note.notes)"></div>
+          </div>
+          <div class="example-unpin" *ngIf="note.notes.isPin == false">
+            <div> <img src="../../../assets/image/pin.png" (click)="Changepin(note.notes)"></div>
+          </div>
+        </div>
+        <mat-card-content fxLayout="column">
+          <div class="des" (click)="UpdateNote(note.notes)">{{note?.notes?.noteDescription}}</div>
+          <mat-card-footer>
+            <mat-chip-list class="example-list">
+              <mat-chip class="example-reminder" style="margin-left: 10px;" *ngIf="note.notes.reminder">
+                <mat-icon  class="timeaccess" style="margin-right: 8px;">clock-outline</mat-icon>
+                <span class="reminter-time">{{note.notes.reminder}}</span>
+                <mat-icon matChipRemove class="Reminter-remove" (click)="removeReminder(note.notes)">close-box</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+            <mat-chip-list class="example-list" *ngIf=" note.notes != undefined && note.notes.labels.length >= 1" view="hard">
+              <mat-chip class="example-reminder" style="margin-left: 10px;" *ngFor="let label of note.notes.labels">
+                <span class="reminter-time" style="margin-left: 30px;" *ngIf="label != null ">{{label.labelName}}</span>
+                <mat-icon matChipRemove class="Reminter-remove" (click)="deleteLabel(label,note.notes)">delete</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
+            <div *ngFor="let note of note.collaborator">
+              <div class="example-addcard" *ngIf="!note.img">
+                <div class="example-person" matTooltip="{{note.firstName}} <{{note.email}}>"><span
+                    class="example-role">{{note.firstName.charAt(0)}}</span></div>
+              </div>
+            </div>
+            <div class="matCardIcons">
+              <app-icon (click)="UpdateallNotes(note.notes)" [user]="note" 
+              [childMessage]="noteId" (updateColor)="UpdateColor($event)"
+              (DeletedNoteToBin)="DeletedNoteToBin($event)"
+              (archiveFromCard)="ArchiveFromCard($event)"
+              (reminderOnCards)="ReminderOnCard($event)"
+              (updateLabel)="UpdateLabels($event)"
+              (imageUpdate)="ImageUpdate($event)"></app-icon>
+            </div>
+          </mat-card-footer>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+</div>
