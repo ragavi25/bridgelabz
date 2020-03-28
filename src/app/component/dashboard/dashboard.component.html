@@ -1,0 +1,137 @@
+<div class="example-list" fxFlex="100" fxFlex.xs="100" fxLayout="colum">
+    <mat-toolbar class="example-toolbar">
+        <div fxFlex="100" fxLayoutAlign="space-between center">
+            <div fxFlex="40" fxLayoutAlign="space-between center">
+                <div fxFlex="40" fxFlex.xs="10" fxLayout="row" fxLayoutAlign.xs="start center" fxLayoutAlign="center center">
+                    <button mat-icon-button (click)="snav.toggle()">
+                        <mat-icon>menu</mat-icon>
+                        </button>
+                        <div fxHide.sm='true' fxHide.xs='true'>
+                          <span class="header" *ngIf="headerName == null">Fundoo</span>
+                          <span class="header">{{headerName}}</span>
+                          </div>
+                      </div>
+                </div>
+                <div fxFlex="100" fxFlex.xs="100" class="search-list">
+                   <button mat-button class="search-button">
+                        <mat-icon>search</mat-icon>
+                      </button>
+                      
+                      <input fxFlex="100" fxFlex.sm="100"  class="search" fxFlex.xs="100" matInput placeholder="search" [(ngModel)]="Search" (keyup)="key()" autocomplete="off">
+                </div>
+                <div fxFlex="10" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign="space-between center">
+                    <div fxFlex="10">
+                      <button><mat-icon>refresh</mat-icon></button>
+                      <button mat-icon-button>
+                        <mat-icon (click)="icons()">{{icon}}</mat-icon>
+                      </button>
+                    </div>
+                  </div> 
+                  <div fxFlex="5" fxFlex.xs="2" fxLayoutAlign="end " fxLayoutAlign.xs="end ">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      
+                      <div *ngIf="keepLink !=''">
+                        <img src="../../../assets/image/account_circle-24px.svg" class="keeplink-icon" matTooltip= {{userData.email}}>
+                      </div>
+                      <div class="example-add"*ngIf="keepLink ==''">
+                        <div class="example-person" matTooltip="{{userData.firstName}} <{{userData.email}}>"><span class="first">{{userData?.firstName?.charAt(0).toUpperCase()}}</span></div>
+                       </div>
+                    </button>
+                    <mat-menu class="logout" #menu="matMenu" (click)="$event.stopPropagation();">
+                      <div>
+                        <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation();">
+                          <div class="example-img">
+                            <label>
+                              <div class="example-pic" (click)="Profile()" *ngIf="keepLink ==''">
+                                <div class="example-person" matTooltip="{{userData.firstName}} <{{userData.email}}>">
+                                    <span class="first">{{userData?.firstName?.charAt(0)}}</span></div>
+                                <div class="example-main">Change</div>
+                               </div>
+                              <div *ngIf="keepLink!=''">
+                                <img src="../../../assets/image/account_circle-24px.svg" (click)="Profile()" class="profile" matTooltip='Change image' matTooltipPosition='after'>
+                               <mat-icon>add_a_photo</mat-icon>
+                                <div class="example-main">Change</div>
+                              </div>
+                            </label>
+                          </div>
+                          <div class="user-info">
+                            <span class="userName">{{userData.firstName}} {{userData.lastName}}</span>
+                            <div class="userMail">{{userData.email}}</div>
+                          </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="signout" fxLayout="row">
+                          <button mat-button (click)="logout()"><span class="logout">Add Account</span>
+                          </button>
+                          <button mat-button (click)="logout()"><span class="logout">Sign out</span>
+                          </button>
+                        </div>
+                      </div>
+                    </mat-menu>
+                  </div>
+        </div>
+        
+    </mat-toolbar>
+
+    <mat-divider></mat-divider>
+    <div class="whole"> 
+      <mat-sidenav-container class="sidenav">
+    <mat-sidenav #snav mode="side" class="sideNav">
+      <mat-nav-list class="sidenavlist">
+        <div class="example-sidenav">
+          
+          <div>
+            <button mat-button [routerLink]="['note']" routerLinkActive="router-link-active"(click)="headerName='Notes'"
+              [ngClass]="{'sidename': headerName!='Notes', 'sideNames': headerName=='Notes'}">
+              <mat-icon>lightbulb_on_outline</mat-icon> Notes</button>
+          </div>
+
+          <div>
+            <button mat-button [routerLink]="['reminder']" (click)="headerName='Reminders'"
+              [ngClass]="{'sidename': headerName!='Reminders', 'sideNames': headerName=='Reminders'}">
+              <img src="../../../assets/image/notifications-24px.svg"> Reminders</button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="label-details">
+          <div class="label-example">
+            <label><span class="label-name">LABELS</span></label>
+          </div>
+          <div *ngFor="let note of labels">
+            <button mat-button  routerLinkActive="router-link-active"
+              (click)="headerName=note.labelName"
+              [ngClass]="{'sidename': headerName!=note.labelName, 'sideNames': headerName==note.labelName}">
+              <img src="../../../assets/image/label.svg">
+              <span class="labelName">{{note.labelName}}</span>
+            </button>
+          </div>
+
+          <button class="sidename" mat-button (click)="openEditLabel()">
+            <mat-icon>edit</mat-icon> 
+            <span>Edit Labels</span>
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+        <div>
+          <button mat-button [routerLink]="['archive']" (click)="headerName='Archive'"
+            [ngClass]="{'sidename': headerName!='Archive', 'sideNames': headerName=='Archive'}">
+            <img src="../../../assets/image/archive.svg">
+            <span>Archive</span>
+          </button>
+        </div>
+        <div>
+          <button mat-button [routerLink]="['Bin']" (click)="headerName='Bin'"
+            [ngClass]="{'sidename': headerName!='Bin', 'sideNavlistItemsColored': headerName=='Bin'}">
+            <img src="../../../assets/image/delete.svg">
+            <span class="bin">Bin</span>
+          </button>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sideNavContent">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  </div>
+</div>

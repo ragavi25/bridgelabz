@@ -1,0 +1,321 @@
+
+.example-toolbar {
+    position: fixed;
+    z-index: 2;
+    background-color: #fff;
+  }
+  .header{
+    font-family: 'Times New Roman', Times, serif,Arial,sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+    padding-left: 0px;
+    position: relative;
+    top: -1.5px;
+    vertical-align: middle;
+    opacity: 1;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+.whole{
+  margin-top: 60px;
+}
+ .sidenav{
+    height: 500px;
+  }
+ :host.mat-form-field-appearance-outline .mat-form-field-outline {
+    display: flex;
+    position: absolute;
+    top: 1.8em;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    pointer-events: none;
+}
+
+.sidenavlist {
+  width: 270px;
+  height: 98.6%;
+  background-color: #ffffff;
+  }
+  
+  .sidename,
+  .sideNames {
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;  
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  width: 200px;
+  font-size: .700rem;
+  padding: 5px;
+  background-color: #ffffff;
+  align-items: baseline;
+  text-align: left;
+  font-weight: 500;
+  letter-spacing: .1em;
+
+  }
+  
+  .sideNames {
+  background-color: #ffe9a7 !important;
+  color: rgba(141, 98, 98, 0.8);
+  }
+  
+  .sidename .mat-icon,
+  .sideNames.mat-icon {
+  padding-left: 10px;
+  padding-right: 30px;
+  }
+  
+  .sidename:hover {
+  background-color: #be1919;
+  }
+  
+  .sidenavContent {
+  background-color: rgb(255, 255, 255); 
+  max-width: -webkit-fill-available;
+  max-height: -webkit-fill-available;
+  margin-left: 200px;
+  }
+  
+  .label-name{
+    color: #5f6368;
+    cursor: default;
+    letter-spacing: .07272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    padding: 15px 16px 99px;
+  }
+  .label-example{
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .label-content{
+    margin-bottom: 10px;
+  }
+  .example-sidenav{
+    margin-bottom: 10px;
+  }
+
+  img{
+    margin-left:9px;
+    height:21px;
+  }
+
+  span{
+    margin-left:35px;
+  }
+  .image-upload-container{
+    cursor: pointer;
+  }
+  .img-preview-container{
+    background-color: #f7f7f7;
+    position: relative;
+  }
+.img-preivew {
+    background : center center no-repeat;
+    background-size: contain;
+    height: 116px;
+    width: 116px;
+  }
+  .profile{
+    height: 96px;
+    width : 96px;
+    border-radius: 50px;
+  }
+
+  .input-img{
+    display: none
+  }
+ .mat-menu-content:not(:empty) {
+  padding-top: 18px;
+  padding-bottom: 8px;
+  width: 260px;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right : 10px;
+  
+}
+.userName{
+  font-weight: bold;
+  margin:  10px ;
+  padding: initial;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgb(167, 145, 145);
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 1px;
+  font-weight: 50;
+}
+.userMail{
+  color: rgb(97, 80, 80);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 1px;
+  font-weight: 50;
+}
+ .logout{
+    box-sizing: border-box;
+    color: rgba(0,0,0,.87);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 550;
+    line-height: 1.25rem;
+    height: 3px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+::ng-deep .mat-menu-panel {
+  max-width: 1000px !important;
+}
+.logout {
+ width: 500px;
+}
+::ng-deep .logout .mat-menu-content:not(:empty) {
+  width: 313px !important;
+  height: 183px !important;
+  padding-top: 20px;
+}
+.user-details{
+  margin-bottom: 18px;
+  margin-left: 10px;
+}
+.user-info{
+  margin-right : 20px;
+}
+.signout{
+  margin-top:50px;
+}
+
+.keeplink-icon{
+  position : relative;
+  height: 36px;
+  width : 36px;
+  border-radius: 50px;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
+.search{
+ height: 40px;
+ background: rgba(0, 0, 0, 0.1);
+ outline: none;
+ border: none;
+ margin-bottom: 10px;
+}
+
+.search-icon{
+  margin-top: 17px;
+}
+
+.clear-btn{
+  margin-top: 37px; 
+}
+
+.close{
+  border-right : 8px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.1);
+  outline: none;
+  border: none;
+  margin-top: 16px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+}
+
+ .search-button{
+  border-right : 8px;
+  height: 40px;
+  background: rgba(17, 16, 16, 0.1);
+  outline: none;
+  border: none;
+  margin-top: 0px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius:10px;
+
+}
+.images{
+  background: rgba(59, 62, 66, 0.7);
+  color: #fff;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 5px;
+  position: absolute;
+  padding: 7px 0;
+  text-align: center;
+  width: 20px;
+  top: 20px;
+   right: 209px;
+  border-bottom-left-radius: 38px;
+  border-bottom-right-radius: 35px;
+  font-family: arial;
+}
+
+app-archive{
+  height: 100%;
+}
+
+.example-add{
+  -moz-border-radius: 50px/50px;
+  -webkit-border-radius: 50px 50px;
+  border-radius: 30px;
+  height: 20px;
+  width : 20px;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgb(68, 45, 45);
+  background-color: rgb(58, 36, 77);
+}
+.first{
+  color: rgb(58, 103, 143);
+  font-weight: 500;
+  font-size: 20px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;  
+  margin-left: 4px;
+
+}
+.example-main{
+  background: rgba(83, 105, 133, 0.7);
+color: rgb(138, 68, 68);
+font-size: 9px;
+font-weight: bold;
+line-height: 5px;
+position: absolute;
+padding: 7px 0;
+text-align: center;
+//text-overflow: ellipsis;
+width: 50px;
+top: 30px;
+right: 210px;
+border-bottom-left-radius: 30px;
+border-bottom-right-radius: 30px;
+font-family: arial;
+}
+
+.example-person{
+  -moz-border-radius: 50px/50px;
+  -webkit-border-radius: 50px 50px;
+  border-radius: 50px;
+  width: 20px;
+  height: 20px;
+  right: 200px;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgb(126, 61, 61);
+  background-color: rgb(133, 72, 185);
+}
+.first {
+  color: aliceblue;
+  font-weight: 550;
+  font-size: 83px;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  margin-left: 21px;
+}
