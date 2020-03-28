@@ -1,0 +1,95 @@
+<div class="icons" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start">
+    <button mat-button [matMenuTriggerFor]="menu">
+        <img src="../../../assets/image/reminder.svg">
+    </button>
+    <mat-menu #menu="Menu" (click)="$event.stopPropagation()">
+        <span class="reminter">Reminders</span>
+        <button mat-menu-item>
+            <span class="late">Later Today</span>
+            <span class="todaytime">08:00 PM</span>
+        </button>
+        <button mat-menu-item>
+            <span class="late">Tomorrow</span>
+            <span class="todaytime-1">08:00 PM</span>
+        </button>
+        <button mat-menu-item>
+            <span class="late">Next Week</span>
+            <span class="todaytime-2">Mon,08:00 pm</span>
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="menu">
+            <img src="../../../assets/image/alarm-plus.svg">
+            <span class="time">Select date & time</span>
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="menu">
+            <img src="../../../assets/image/map-marker.svg">
+            <span class="time">Select Place</span>
+        </button>
+    </mat-menu>
+    <mat-menu #menu="Menu" (click)="$event.stopPropagation()">
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Select a date" [formControl]="date" (click)="$event.stopPropagation();">
+            <mat-datepicker-toggle matSuffix [for]="picker" (click)="$event.stopPropagation();"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [ngxTimepicker]="pickers" [formControl]="time">
+            <ngx-material-timepicker #pickers (click)="$event.stopPropagation();"></ngx-material-timepicker>
+          </mat-form-field>
+          <button mat-raised-button (click)="Reminder()">Save</button>
+    </mat-menu>
+    <button class="example-collaborator" matTooltip="collaborator" mat-icon-button (click)="openCollab(user)">
+        <img src="../../../assets/image/account-plus-outline.svg">
+      </button>
+      <button [matMenuTriggerFor]="colorMenu" matTooltip="change color" mat-icon-button>
+        <img src="../../../assets/image/palette.svg">
+      </button>
+      <mat-menu #colorMenu="Menu" [overlapTrigger]="false">
+        <ng-template matMenuContent>
+          <div class="buttons">
+            <div fxLayout="row" fxLayoutGap="10px" *ngFor="let color of colorArray">
+              <div *ngFor="let color of colors" class="color-buttons">
+                <button class="colors" [ngStyle]="{'background-color': color.color}" matTooltip="{{color.name}}"
+                  (click)="ChangeColor(color.color)">
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </mat-menu>
+      <input #inputImage type="file" class="input-img" (change)="uploadImage(inputImage)">
+      <button matTooltip="add image" mat-icon-button (click)="inputImage.click()">
+        <img src="../../../assets/image/image-plus.svg">
+      </button>
+      <button matTooltip="Archive" mat-icon-button (click)="archiveNote()">
+        <img src="../../../assets/image/archive.svg">
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menus" matTooltip="more" fxFlex="15">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menus="Menu">
+        <button mat-menu-item (click)="deleteNote()">
+          <span>Delete note</span>
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="addLabelMenu" (click)="$event.stopPropagation();">
+          <span>Add label</span>
+        </button>
+        <button mat-menu-item >
+          <span>Add drawing</span>
+        </button>
+        <button mat-menu-item>
+          <span>Make a copy</span>
+        </button>
+        <button mat-menu-item>
+            <span>show tick boxes</span>
+        </button>
+      </mat-menu>
+      <mat-menu #addLabelMenu="Menu">
+        Label Note
+        <div *ngFor="let label of labels;">
+          <section class="example-section" (click)="$event.stopPropagation();">
+            <mat-checkbox class="example-margin" [formControl]="checked" (click)="checkBox(label)"></mat-checkbox>
+            {{item.labelName}}
+          </section>
+        </div>
+      </mat-menu>
+</div>
