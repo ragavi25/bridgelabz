@@ -1,2 +1,133 @@
-<app-note class="notes"></app-note>
-<app-getnote></app-getnote>
+<div class="main">
+  <app-note></app-note>
+<div style="padding-left:2px;">
+</div>
+<div style="flex-wrap: wrap;">
+  <div class="notes" fxFlexOffset="50" style="flex-direction: row;
+   box-sizing: border-box; display: flex; margin-left:0px;">
+      <div *ngFor="let note of notes">
+          <mat-card class="notes" *ngIf=note.pinned [ngStyle]="{'background-color':note.color}">
+              <div>
+                  <mat-icon matTooltip="unpin" (click)="pin(note.id,note)"><app-pin class="pins"></app-pin></mat-icon>
+              </div>
+              <mat-card-header>
+                  {{note.title}}
+              </mat-card-header>
+              <mat-card-content>
+                  {{note.description}}
+              </mat-card-content>
+
+              <div class="colorlist">
+                <a>
+                  <mat-icon  class="edit" matTooltip="Add alert">add_alert</mat-icon>
+                  <mat-icon matTooltip="collaborator" class="edit">person_add</mat-icon>
+                  <mat-icon [matMenuTriggerFor]="colorlist" class="edit" matTooltip="Add Color">palette</mat-icon>
+                  <mat-icon class="edit" matTooltip="Add image">image</mat-icon>    
+                  <img src="../../../assets/image/archive.svg" class="edit">    
+                  <mat-icon [matMenuTriggerFor]="menus" class="edit" matTooltip="more">more_vert</mat-icon>
+              </a>
+              </div>
+
+              <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
+                  <div>
+                      <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
+                          *ngFor="let colors of arrayofColors">
+                          <div *ngFor="let color of colors">
+                              <button [ngStyle]="{ 'background-color': color.color }"
+                              (click)="setcolor(color.id, color.name)" matTooltip={{color.name}}
+                                  mat-mini-fab></button>
+                          </div>
+                          <br>
+                      </div>
+                  </div>
+              </mat-menu>
+
+              <mat-menu #menus="matMenu">
+                <button mat-menu-item (click)="deleteNote()">
+                  <span>Delete note</span>
+                </button>
+                <button mat-menu-item [matMenuTriggerFor]="addMenu" (click)="$event.stopPropagation();">
+                  <span>Add label</span>
+                </button>
+                <button mat-menu-item >
+                  <span>Add drawing</span>
+                </button>
+                <button mat-menu-item>
+                  <span>Make a copy</span>
+                </button>
+                <button mat-menu-item>
+                    <span>show tick boxes</span>
+                </button>
+              </mat-menu>
+          </mat-card>
+      </div>
+  </div>
+</div>
+<div style="padding-left: 255px;">
+</div>
+<div style="flex-wrap: wrap;">
+  <div class="notes" fxFlexOffset="40" style="flex-direction: row;
+   box-sizing: border-box; display: flex; margin-left:2%;">
+      <div *ngFor="let note of notes">
+          <mat-card class="notes" *ngIf=!note.pinned [ngStyle]="{'background-color':note.color}">
+              <div>
+                  <mat-icon matTooltip="pin" (click)="pin(note.id,note)"><app-pin class="pins"></app-pin></mat-icon>
+              </div>
+              <mat-card-header>
+                  {{note.title}}
+              </mat-card-header>
+              <mat-card-content>
+                  {{note.description}}
+              </mat-card-content>
+
+              <div class="colorlist">
+                <a>
+                  <mat-icon  class="edit" matTooltip="Add alert">add_alert</mat-icon>
+                  <mat-icon matTooltip="collaborator" class="edit">person_add</mat-icon>
+                  <mat-icon [matMenuTriggerFor]="colorlist" class="edit" matTooltip="Add Color">palette</mat-icon>
+                  <mat-icon class="edit" matTooltip="Add image">image</mat-icon>    
+                  <img src="../../../assets/image/archive.svg" class="edit">    
+                  <mat-icon [matMenuTriggerFor]="menus" class="edit" matTooltip="more">more_vert</mat-icon>
+              </a>
+
+
+
+                  <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
+                      <ng-template matMenuContent>
+                          <div>
+                              <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
+                                  *ngFor="let colors of arrayofColors">
+                                  <div *ngFor="let color of colors">
+                                      <button [ngStyle]="{ 'background-color': color.color }"
+                                      (click)="setcolor(color.id, color.name)"
+                                          matTooltip={{color.name}}
+                                          mat-mini-fab></button>
+                                  </div>
+                                  <br>
+                              </div>
+                          </div>
+                      </ng-template>
+                  </mat-menu>
+                  <mat-menu #menus="matMenu">
+                    <button mat-menu-item (click)="deleteNote()">
+                      <span>Delete note</span>
+                    </button>
+                    <button mat-menu-item [matMenuTriggerFor]="addMenu" (click)="$event.stopPropagation();">
+                      <span>Add label</span>
+                    </button>
+                    <button mat-menu-item >
+                      <span>Add drawing</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Make a copy</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>show tick boxes</span>
+                    </button>
+                  </mat-menu>
+              </div>
+          </mat-card>
+      </div>
+  </div>
+</div>
+</div>
