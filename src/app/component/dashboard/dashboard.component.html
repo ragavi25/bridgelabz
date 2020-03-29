@@ -25,6 +25,19 @@
                       <button mat-icon-button>
                         <mat-icon (click)="icons()">{{icon}}</mat-icon>
                       </button>
+                      <div class="settings">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="settings">
+                            <mat-icon>settings</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>Settings</button>
+                            <button mat-menu-item>Disable dark theme</button>
+                            <button mat-menu-item>Send feedback</button>
+                            <button mat-menu-item>Help</button>
+                            <button mat-menu-item>App downloads</button>
+                            <button mat-menu-item>Keyboard Shaortcuts</button>
+                        </mat-menu>
+                    </div>
                     </div>
                   </div> 
                   <div fxFlex="5" fxFlex.xs="2" fxLayoutAlign="end " fxLayoutAlign.xs="end ">
