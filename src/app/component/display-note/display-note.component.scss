@@ -1,6 +1,24 @@
-.notes{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+.notes {
+    height: 100px;
+    width: 5cm;
+    border-radius: 0 10px 10px 0;
+    margin: 0 6px;
+}
+.pin {
+    right: 0%;
+}
+.edit {
+    border-bottom-color: green;
+    margin: 1 12px;
+}
+.main{
+    height: 100px;
+    width: 900px;
+}
+
+.pins{
+    height: 20px;
+    width: 50px;
+    padding-right: 255px;
+    margin-right: initial;
 }
