@@ -1,0 +1,131 @@
+.exmple-archive{
+    top: 20%;
+    left: 50%;
+    height: 122px;
+    position: fixed;
+    opacity: .2;
+
+}
+.example-text{
+    top: 56%;
+    left: 42%;
+    position: fixed;
+    color: rgba(5, 5, 5, 0.4);
+    cursor: default;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.375rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+
+}
+.example-text1{
+    justify-content: center; 
+    margin-top:20px;
+
+}
+.exmple-card{
+    margin-left: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+    max-width: 250px;
+    max-height: 400px;
+    border-radius: 10px;
+}
+.exmple-tilte{
+    letter-spacing: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-weight: 550;
+    line-height: 1.5rem;
+
+}
+.dis{
+    overflow: hidden;
+    margin-bottom: 12px;
+
+}
+.reminder{
+    opacity: 1;
+   visibility: hidden;
+
+}
+.example-time{
+    margin-right: 8px;
+
+}
+.reminder:hover .example-remove{
+    opacity: 1;
+    visibility: visible;
+}
+.example-show{
+    color: rgba(32, 30, 30, 0.87);
+    font-weight: 550;
+    font-size: 11px;
+    border: 1px solid transparent;
+    text-align: center;
+
+}
+
+img{
+    background: transparent;
+    outline:none;
+}
+
+.cardGridView{
+    min-height: 130px !important;
+    min-width: 250px !important; 
+}
+
+@media screen and (min-width: 700px){
+    .cardListView{
+        width:650px;
+    
+    }
+    }
+.exmple-card:hover .final {
+    visibility: visible;
+    opacity: 0.65;
+    margin-right: 12px;
+    // background-color: black;
+}
+.example-remove{
+    opacity: 1;
+   visibility: hidden;
+
+}
+.final{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.2s linear;
+
+}
+ @media screen and (max-width: 700px){
+    .cardListView{
+        width:350px;
+    }
+    }
+:host .mat-chip {
+    font-size: 10px;
+    font-weight: 500;
+}
+:host  .mat-standard-chip {
+    padding: 7px 7px;
+    min-height: 26px;
+ 
+}
+:host .mat-chip.mat-standard-chip {
+    color: rgba(0,0,0,.87);
+    background: #0000001f;
+}
+:host .mat-standard-chip.mat-chip-with-trailing-icon {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 4px;
+    padding-left: 0px;
+}
+:host  
+    .mat-chip.mat-standard-chip .mat-chip-remove {
+        color: rgba(0,0,0,.87);
+        opacity: 0.6;
+    }
+
