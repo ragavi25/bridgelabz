@@ -1,23 +1,37 @@
-<app-note></app-note>
-<mat-card class="card">
-    <mat-list role="list" *ngIf="Notechange; else gridview">
-        <mat-card mat-list-item *ngFor="let note of message" [style.background-color]="note.color" class="card1">
-            <div (click)="open(note)">
-                <div>
-            <img *ngIf="image" class="image" src="{{note.image}}"> </div>
-                    <div class="title" *ngIf="note.title">{{note.title}}</div>
-                    <div class="title1" *ngIf="!note.title">Title</div>
-                    <div class="des" *ngIf="note.description">{{note.description}}</div>
-                    <div class="des1" *ngIf="!note.description">Description</div>
+<div *ngIf="notes.length <= 0" fxLayout="row" fxLayoutAlign="end center" >
+    <mat-icon class="exmple-archive">notifications</mat-icon>
+  <!--  <img class="exmple-archive" src = "../../../assets/image//reminder.svg"> -->
+    <div class="example-text">Notes with upcoming reminders appear here!!</div>
+   </div>
+   <div class="example-text1" fxLayout="{{Reminder}}" fxFlex="90" fxLayoutAlign="center center">
+    <div *ngFor="let note of notes">
+        <div class="example-main">
+            <mat-card fxFlex="100" class="exmple-card" [ngClass]="{'cardGridView':Reminder=='row wrap','cardListView':Reminder=='column wrap'}" fxFlex.xs=
+            "100" [style.backgroundColor]="note.color">
+            <div>
+                <div fxFlex="80" class="exmple-tilte">
+                    {{note.Title}}
                 </div>
-                <app-pin class="pin" [getid]="note" ></app-pin>
-                <button class="btn" *ngIf="note.reminder">
-                    <mat-icon class="icon">Query</mat-icon>
-                    <div class="reminder">{{note.reminder}}</div>
-                    <button mat-icon-button (click)="reminderR(note.id)" class="btni" >
-                        <mat-icon class="icon1">Close</mat-icon>
-                    </button>
-                </button>
+            </div>
+            <mat-card-content fxLayout="column">
+                <div class="dis">
+                    {{note.Description}}
+                </div> 
+            <mat-card-footer>
+              <mat-chip-list class="chip-list">
+  
+                <mat-chip class="reminder" style="margin-left: 10px;" *ngIf="note.reminder">
+                  <mat-icon matChipRemove class="example-time" style="margin-right: 8px;">access_time</mat-icon>
+                  <span class="example-show">{{note.reminder}}</span>
+                  <mat-icon matChipRemove class="example-remove" (click)="removeReminder(note)">close </mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+              <div class="final">
+                <app-editcard></app-editcard>
+              </div>
+            </mat-card-footer>
+          </mat-card-content>
         </mat-card>
-    </mat-list>
-</mat-card>
+      </div>
+    </div>
+  </div>
