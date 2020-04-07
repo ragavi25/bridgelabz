@@ -83,13 +83,7 @@ setcolor(noteId,colorname){
     console.log("done");
   })
 }
-notes = [
-  { color: "rgb(255, 179, 255)", name: "pink", title: "hakini", description: "beauty", isarchived: true, isbin: "0",pinned: true },
-  { color: "rgb(203,240,248)", name: "blue", title: "nitheshraj", description: "beauty", isarchived: true, isbin: "0",pinned: true },
-  { color: "green", name: "green", title: "Ramya", description: "beauty", isarchived: false, istrash: "1" ,pinned: true},
-  { color: " rgb(174,203,250)", name: "Dark blue", title: "vachi", description: "beauty", isarchived: false, isbin: "1" ,pinned: true},
-  
-]
+notes = [];
 
 arrayofColors = [
   [
