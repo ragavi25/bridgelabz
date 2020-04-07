@@ -1,0 +1,29 @@
+<div fxFlex="100" class="label">
+    <!-- <div>
+        <div class="edit-label">Edit Labels</div>
+        <div fxLayout="row" class="example-label">
+            <button mat-button *ngIf="true" matSuffix (click)="data=''">
+                <img src="../../../assets/image/highlight_off-24px.svg"  class="example-user">
+            </button>
+            <div class="example-create">
+                <input matInput type="text" [(ngModel)]="data" placeholder="Create new Label" autocomplete="off">
+            </div>
+            <button mat-button (click)="addlabel(); data=''">
+                <img src="../../../assets/image/done-24px.svg"  class="example-user">
+            </button> 
+        </div>
+    </div> -->
+    <div class="text">Edit label:</div>
+    <form [formGroup]="EditLabelForm">
+        <div *ngFor="let Label of Labels">
+          <div class="all">
+          <mat-icon class="icon">label</mat-icon>
+          <input class="data" type="text" value="{{Label.labelname}}" formControlName="newLabel" (change)="updateLabel(Label)"> 
+          <button mat-icon-button (click)="deleteLabel(Label)"> <mat-icon class="icon1">delete</mat-icon></button>
+        </div>
+        </div>
+    </form>
+        <div class="align">
+          <button mat-button class="close" (click)="onNoClick()">Done</button>
+        </div>
+</div>

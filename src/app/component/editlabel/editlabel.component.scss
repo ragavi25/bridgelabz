@@ -1,0 +1,141 @@
+.label{
+    min-height: 250px;
+}
+.size{
+    width: 20px;
+    height: 20px;
+}
+.edit-label{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 1px;
+    color: #425463;
+    height: 20px;
+}
+.example-label{
+    margin-bottom: 9px;
+}
+.example-create{
+    margin-top: 10px;
+}
+.example-delete{
+    visibility: hidden;
+}
+.example-labelicon{
+   margin-left: -100rem;
+   margin: -100rem;
+}
+.example-view{
+    visibility: visible;
+    margin-bottom: 18px;
+}
+.example-view:hover .example-delete{
+    visibility: visible;
+    margin-top: -10px;
+}
+.example-view:hover .example-labelicon{
+    visibility: hidden;
+}
+.example-user{
+    margin-left: 8px;
+    margin-top: 8px;
+    opacity: 0.5;
+}
+.complete{
+    
+     color: block;
+     box-sizing: border-box;
+      margin-right: 800px;
+      text-overflow: ellipsis;
+     white-space: nowrap;
+     letter-spacing: 1px;
+     font-family: 'Times New Roman', Times, serif;
+     font-size: 1rem;
+     font-size: 50px;
+     line-height: 1rem;
+     height: 36px;
+     padding:  150px;
+     border-radius:4px;
+}
+button{
+    background-color: transparent;
+}
+img{
+    height: 20px;
+}
+:host.mat-input-element{
+    font:inherit;
+    color: currentColor;
+    background: 0 0;
+    border:none ;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+    font-size: 15px;
+    letter-spacing: .5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500px;
+}
+span{
+    margin-left:40px ;
+    font-size: 13px;
+    position: absolute;
+    margin-top:3px ;
+    letter-spacing: .5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500px;
+}
+.mat.input.element{
+    background: 0 0;
+    font:inherit;
+    color:currentColor;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+.all{
+    display: flex;
+}
+.text{
+    margin-bottom: 10px;
+    margin-left: -5px;
+}
+.icon{
+    font-size: 20px;
+    margin-top: 10px;
+}
+.icon1{
+    font-size: 20px;
+}
+.data{
+    outline: none;
+    background: transparent;
+    border: none;
+}
+.close{
+    height:35px;
+    background-color:purple;
+    color: white;
+    font-size: small;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.align{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
