@@ -1,0 +1,39 @@
+<div fxLayout="column">
+    <div fxLayout="row">
+    <div fxFill fxLayoutAlign="end center" class="bin" >
+        Notes in the Recycle Bin are deleted after 7 days.
+    <div class="bin-btn" *ngIf="notes.length > 0" >  <button mat-button  (click)="emptyBin()">
+      <span class="trash">Empty Bin </span>
+      </button> </div>
+    </div>
+  </div>
+  <div *ngIf="notes.length <= 0" fxLayout="row" fxLayoutAlign="end center" >
+    <img class="binimg" src = "../../../assets/image/delete-24px.svg">
+    <div class="text">No notes in Bin</div>
+  </div>
+  <div class="notecard" fxLayout="{{noteView}}" fxLayoutAlign="center center">
+    <div *ngFor="let note of notes" >
+      <div class="bincard">
+        <app-card></app-card>
+        <mat-card fxFlex="100" class="cards" fxLayout="column" 
+          [ngClass]="{'cardGridView': noteView == 'row wrap','cardListView': noteView == 'column wrap'}"
+          fxFlex.xs="100" [style.backgroundColor]="note.color">
+          <div fxFlex="88" class="note-title">{{note.tittle}}</div>
+          <div fxFlex="4">
+            <button mat-icon-button></button>
+          </div>
+          <mat-card-content fxLayout="column">
+            <div class="description">{{note.description}}</div>
+            
+            <mat-card-footer>
+              <div class="matCardIcons">
+                    <mat-icon  (click)=" deleteForever()"  class="icon">delete</mat-icon>
+                    <mat-icon (click)="restore()"  class="icon">restore</mat-icon>
+              </div>
+            </mat-card-footer>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

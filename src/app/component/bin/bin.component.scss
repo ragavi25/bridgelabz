@@ -1,0 +1,107 @@
+.cards{
+    margin-left: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+    max-width: 250px;
+    min-height: 130px;
+    border-radius: 10px;
+}
+.notecard{
+   margin-top: 20px;
+}
+.description{
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.note-title{
+    letter-spacing: .00625em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 550;
+    line-height: 1.5rem;
+}
+.matCardIcons{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s,
+     opacity 0.2s linear;
+    margin-bottom: 30px;
+    width: 200px;
+    margin: 0 6px;
+    
+    
+}
+.cards:hover .matCardIcons {
+    visibility: visible;
+    opacity: 1;
+}
+@media screen and (min-width: 700px){
+    .cardListView{
+        width:650px;   
+    }
+    }   
+ @media screen and (max-width: 700px){
+     .cardListView{
+            width:350px;
+        }
+        }
+  .bin{
+      
+    font-size: 16px;
+    font-style: italic;
+    margin-right: 40px;
+    left: 50px;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    color: block;
+    direction: ltr;
+    font-family: 'Roboto',arial,sans-serif;
+    letter-spacing: 0.55px;
+    opacity: 2;
+ }
+ .binimg{
+    top: 50px;
+    left: 53%
+
+ }
+
+ .bin-btn{
+     margin-left: 10px;
+ }       
+
+ .trash{
+    color:lightskyblue;
+    font-weight: 550;
+    letter-spacing: 0.55px;
+  
+
+ }
+
+ .trash-pic{
+    top: 38%;
+    left: 50%;
+    height: 122px;
+    position: fixed;
+    opacity: 0.5;
+}
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    padding: 20px;
+}
+
+.text{
+    top: 70%;
+    left: 48%;
+    position: fixed;
+    color:  lightslategrey;
+    cursor: default;
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2rem;
+}
