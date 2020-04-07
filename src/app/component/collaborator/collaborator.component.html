@@ -5,48 +5,46 @@
         <div class="ownerimg"> <img [src]="ownerimg" class="example-img"> </div>
         <div fxLayout="column">
           <div>
-            <span class="example-first"> {{firstName}} {{lastName}} </span>
             <span class="owner">raghavimr15@gmail.com(Owner)</span>
           </div>
           <div class="example-email"> {{email}}</div>
         </div>
       </div>
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div *ngFor="let note of collaborator"  class="if" fxLayout="row">
-        <div class="example-add" *ngIf="!note.img">
-          <div class="example-user" matTooltip="{{note.firstName}} <{{note.email}}>"><span class="user">{{note.firstName}}</span></div>
-         </div>
-        <div fxLayout="column">
-          <div>
-            <span class="example-first"> {{note.firstName}} {{note.lastName}} </span>
-          </div>
-          <div class="example-email"> {{note.email}}</div>
-        </div>
-        <div class="example-delete" fxLayoutAlign="end end"> <button matTooltip="delete" mat-icon-button (click)="deleteCollaborator(note)"> 
-          <img src="../../../assets/image/close-24px.svg" style="height:15px; opacity: .5;"> </button></div>
-      </div>
-    </div>
       <div fxLayout="row">
-     <div class=""> 
-     <img src="../../../assets/image/group_add-24px.svg" class="example-user">   
-    </div>
     <form class="example-form">
       <div fxLayout="row" fxLayoutAlign="space-between center">
-         <input type="text" class="totalperson" (keyup)="totalperson(total)"  placeholder="person or email to share with" aria-label="Number" matInput [formControl]="opp" [matAutocomplete]="auto">
-        </div>
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let get of gets" [value]="get.email" (click)="addcoloborator(get);">
-              {{get.firstName}} {{get.lastName}} <{{get.email}}> 
+        <div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div *ngFor="let note of collaborator"  class="if" fxLayout="row">
+              <div class="example-add" *ngIf="!note.img">
+                <div class="example-user" matTooltip="{{note.email}}>"><span class="user">{{note.email}}</span></div>
+               </div>
+              <div fxLayout="column">
+             
+                <div class="example-email"> {{note.email}}</div>
+              </div>
+              <div class="example-delete" fxLayoutAlign="end end"> 
+                <button matTooltip="delete" mat-icon-button (click)="deleteCollaborator(note)"> 
+                <img src="../../../assets/image/close-24px.svg" style="height:15px; opacity: .5;"> 
+              </button>
+            </div>
+            </div>
+          </div> 
+          <img src="../../../assets/image/group_add-24px.svg" class="example-user">   
+         </div> 
+         <input type="text" class="totalperson" aria-label="Number"  placeholder="person or email to share with"  matInput [formControl]="opp"   [matAutocomplete]="auto"> 
+         <img  src="../../../assets/image/done-24px.svg" class="example-user" (click)=" addcoloborator()">
+         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options " [value]="option" >
+              {{option.email}}
             </mat-option>
           </mat-autocomplete>
-      
+        </div>
       </form>
-      <div *ngIf="total > 2"> <button mat-button> <img src="../../../assets/image/done-24px.svg"></button></div>
-  
-      </div>
     </div>
-    <div class="example-last" fxLayout="row" fxLayoutAlign="end center">
-      <div> <button mat-button class="example-btn" mat-dialog-close><span class="cancel" fxLayoutAlign="center end">Cancel</span><span class="save">Save</span></button>
+    <div class="example-button-row" fxLayoutAlign="end">
+      <button mat-raised-button color="primary" (click)="onNoClick()" mat-dialog-close>cancel</button>
+       <button  mat-raised-button color="primary"(click)=" addcoloborator()">Save</button>
       </div>
     </div>
   </div>
