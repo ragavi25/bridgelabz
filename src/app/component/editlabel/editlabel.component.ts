@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { DatasharingService } from 'src/app/Services/datasharing.service';
 import { NoteService } from 'src/app/Services/note.service';
 import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Label } from 'src/app/models/label.model';
+import { Note } from 'src/app/models/note.model';
 
 @Component({
   selector: 'app-editlabel',
@@ -10,71 +12,61 @@ import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./editlabel.component.scss']
 })
 export class EditlabelComponent implements OnInit {
-  EditLabelForm:FormGroup;
-  data='';
+  allLabelNames: any;
+  edit: boolean = false;
+  nameLabel: any;
+  labelname: Label = new Label();
+  notes:Note=new Note();
+  //EditLabelForm: FormGroup;
   constructor(private datashare:DatasharingService,private serviceobj:NoteService,
   private bar:MatSnackBar,public dialog:MatDialogRef<EditlabelComponent>,
-  @Inject(MAT_DIALOG_DATA) public Labels: any ) { }
+  @Inject(MAT_DIALOG_DATA) public data: any ) { }
+  datas:any;
 
   ngOnInit(): void {
-    
-    this.EditLabelForm = new FormGroup({
-      newLabel: new FormControl()
-    });
-    this.getlabel();
+    //this.getlabel();
+    // this.EditLabelForm = new FormGroup({
+    //   newLabel: new FormControl()
+    // });
+    this.allLabels();
+   
   }
-  getlabel(){
-    this.serviceobj.getlabel().subscribe(datas=>{
-      console.log("getlabel data",(datas as any).response);
-     this.Labels=(datas as any).response;
-    },
-    error=>{
-      console.log(error);
+  createLabels(data) {
+    // debugger;
+    if (data != null) {
+      this.labelname.labelname = data;
+        //this.labelname.noteid =this.data.labels.nodeid;
+        this.labelname.noteid = this.data.labels.id;
+      this.labelname.userid=1;
+      this.serviceobj.addlabel(this.labelname).subscribe(response => {
+      console.log(response);
+      
+      });
+    }
+    else if (data == null) {
+      console.log("Label is empty..");
+    }
+  }
+
+  done() {
+
+  }
+  allLabels() {
+    this.serviceobj.getlabel().subscribe(Response => {
+      this.allLabelNames = Response;
+      console.log(Response);
     })
   }
-  onNoClick(): void {
-    this.dialog.close();
+
+  deleteLabel(id) {
+    this.labelname.id = id;
+    this.serviceobj.deletelabel(this.labelname).subscribe(response => {
+      console.log(response);
+    })
+    console.log("your output: " + id);
+    // window.location.reload();
   }
-  addlabel(){
-    try{
-      var noteId=localStorage.getItem('noteId');
-       if(this.data.trim()=="")throw "Label cant empty"
-       const add={
-         'noteId':1,
-         'labelname':this.data.trim(),  
-       }      
-       console.log(add);
-       this.serviceobj.addlabel(add).subscribe(datas=>{
-         this.bar.open("Label added","Done",{duration:2000});
-        
-         this.getlabel();
-         console.log(datas);
-       },error=>{
-         this.bar.open("Label not added","",{duration:2000});
-         console.log(error);
-       })
-     }catch(arr){
-       this.bar.open(arr,"",{duration:2000});
-     }
-   }
-  
-  updateLabel(Label){
-    this.serviceobj.updateLabel(Label.id,this.EditLabelForm.value.newLabel).subscribe((status)=>{
-      if(status != null){
-        this.datashare.changeLabel(true);
-        this.datashare.upmessage(true);
-        console.log("done");
-        this.bar.open('Updated.','', {duration: 2000});
-      }
-    });
+
+  editLabel() {
+    this.edit = true;
   }
-  deleteLabel(Label){
-    this.serviceobj.deletelabel(Label.id).subscribe((status)=>{
-      if(status != null){
-        this.datashare.changeLabel(true);
-        this.datashare.upmessage(true);
-        this.bar.open('Label Deleted.','', {duration: 2000});
-      }
-    });
-  }
-}
