@@ -1,6 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { NoteService } from 'src/app/Services/note.service';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { CollaboratorComponent } from '../collaborator/collaborator.component';
+import { DatasharingService } from 'src/app/Services/datasharing.service';
+import { ImageCropperModule, ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
+import { NoteComponent } from '../note/note.component';
 
 @Component({
   selector: 'app-editcard',
@@ -8,62 +13,45 @@ import { MatSnackBar, MatDialog } from '@angular/material';
   styleUrls: ['./editcard.component.scss']
 })
 export class EditcardComponent implements OnInit {
-  @Input() childMessage: any = "";
-  labels: any = [];
-
-  constructor(private serviceobj:NoteService,
-    private bar:MatSnackBar,private dialog:MatDialog) { }
+  @Input() notes:any;
+  @Input() labels:any;
+  color:any;
+  edit: boolean = false;
+  isbin:boolean;
+  constructor(private noteobj:NoteService,private datasharing:DatasharingService,private dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
-  arrayOfColors = [
-    [
-      { color: "rgb(255, 179, 255)", name: "pink" },
-      { color: "rgb(255, 255, 128)", name: "darkGolden" },
-      { color: "rgb(200, 232, 104)", name: "yellow" },
-      { color: " rgb(158, 136, 191)", name: "darkYellow" }
-    ],
-    [
-      { color: "slategray", name: "grey" },
-      { color: "rgb(153, 221, 255)", name: "Teal" },
-      { color: "rgb(203,240,248)", name: "blue" },
-      { color: "rgb(174,203,250)", name: "Dark blue" },
-    ],
-    [
-      { color: "rgb(255, 153, 0)", name: "orange" },
-      { color: "rgb(97, 191, 82)", name: "green" },
-       { color: "white", name: "white" },
-      { color: " rgb(196,174,251)", name: "purpule" }
-
-    ]
-  ]
-  deleteNote(){
-    var deletedata;
-    if(this.childMessage=""){
-     deletedata={
-      'id':this.childMessage,
-      'isDeleted':true,
-    }
+  Update(note)
+  {
+    console.log("AllNotes"+note);
+    if(note.isbin!=true)
+    {
+      const Ref=this.dialog.open(NoteComponent,{
+        data:{note:note},
+        panelClass:'custom-dialog-container'
+      });
+      Ref.afterClosed().subscribe(result=>{
+        note=result;
+      });
     }
     else{
-       deletedata=
-      {
-      'id' : this.childMessage,
-      'isDeleted':true,
-      }   
+      console.log("cont edit");
     }
-    this.serviceobj.deletenote(deletedata).subscribe(
-      data=>{
-        this.bar.open("Note binned"," ",{duration:2000});
-        //this.reminderOnCards.emit("done");
-        //this.DeletedNoteToBin.emit("done");
-        //this.sendDeletedNoteInfoEvent.emit("done");
-      },
-      error=>{
-        this.bar.open("Note not delete"," ",{duration:2000});
-      }
-    );
-
+  }
+  delete(id){
+    this.color.id=id;
+    this.noteobj.deletelabel(this.color).subscribe(Response=>{
+      console.log(Response);
+    })
+    window.location.reload();
+  }
+  deleteReminder(id){
+    this.color.id=id;
+    this.noteobj.removereminder(this.color).subscribe(Response=>{
+      console.log(Response);
+    })
+    window.location.reload();
   }
 
 }
