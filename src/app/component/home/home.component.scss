@@ -1,26 +1,38 @@
-.card {
-    background-color: lightblue;
-    height: 60%;
-    width: 35%;
-    margin: 0 auto;
+.row {
+    height: 76%;
+    width: 6cm;
+    // background-color: red;
+    border-radius: 0 10px 10px 0;
+    margin: 0 6px;
+    
+}
+.column {
+    height:76%;
+    width: 15cm;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 0 auto;
+    
 }
 
-.red {
-    color: red;
+.pin {
+    right: 0%;
 }
-
-.blue {
-    color: blue;
+.icon {
+    border-bottom-color: red;
+    margin: 0 6px;
 }
-
-.green {
-    color: green;
+.title{
+    padding-left: 180px;
 }
-
-h2 {
-    text-align: center;
+.titles{
+    margin-bottom: 10%;
+    padding-bottom: 100px;
+    padding-top: 9px;
 }
-
-.example-button-row {
-    text-align: center;
+.ntitle{
+    font-size: 20px;
+    
+}
+.space {
+    margin: 0 6px;
 }
