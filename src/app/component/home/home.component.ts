@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NoteService } from 'src/app/Services/note.service';
+import { Note } from 'src/app/models/note.model';
 
 @Component({
   selector: 'app-home',
@@ -7,14 +9,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  color: Note = new Note();
+  param: any;
+  labelNotes:any;
+  gridView:any;
+  allnotes: any;
+  constructor(private router:Router,private noteobj:NoteService,private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getLabelNote();
+    this.noteobj.Getnote().subscribe( Response => this.allnotes=Response);
+    this.route.queryParams.subscribe(params => {
+      this.param = params['page'];
+      this.gridView=  params['view'];
+    });
   }
-  logout()
+
+  getLabelNote()
   {
-    this.router.navigate(['/login']);
+    this.noteobj.getlabel().subscribe(Response => {
+      this.labelNotes=Response;
+    })
   }
 
 }
