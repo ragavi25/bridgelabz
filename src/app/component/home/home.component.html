@@ -1,29 +1,70 @@
-<mat-card class="card">
-    <h1>
-        <span class="green">W</span>
-        <span class="red">E</span>
-        <span class="blue">L</span>
-        <span class="green">C</span>
-        <span class="red">O</span>
-        <span class="green">M</span>
-        <span class="blue">E</span>
-        <br>
-        <span class="red">T</span>
-        <span class="blue">O</span>
-        <br>
-        <span class="green">F</span>
-        <span class="red">U</span>
-        <span class="blue">N</span>
-        <span class="green">D</span>
-        <span class="red">O</span>
-        <span class="green">O</span>
-        <br>
-        <span class="green">A</span>
-        <span class="red">P</span>
-        <span class="blue">P</span>
-    
-    </h1>
-    <div class="example-button-row">
-        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+<div *ngIf="param=='notes'">
+    <app-getnote></app-getnote>
+    <div style="padding-left: 255px;">
+        <h5>PINNED</h5>
     </div>
-</mat-card>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&!note.archive&&note.pin=='1'" [param]="param"
+                 [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- OTHERS -->
+
+    <div style="padding-left: 255px;">
+        <br>
+        <h5>OTHERS</h5>
+    </div>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"  fxLayout="row"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&!note.archive&&!note.pin"  [param]="gridView" [labels]="labelNotes" [notes]="note">
+                </app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="param=='archive'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&note.archive"  [param]="gridView"
+                 [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="param=='trash'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="note.bin=='1'"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="param=='reminder'">
+    <app-getnote></app-getnote>
+    <br>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <div *ngIf="note.reminder!=null">
+                    <app-editcard *ngIf="!note.bin&&!note.archive"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
