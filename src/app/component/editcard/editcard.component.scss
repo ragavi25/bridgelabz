@@ -1,3 +1,83 @@
-.edit {
-    margin: 0 12px;
+.notes {
+    height: 76%;
+    width: 6cm;
+    border-radius: 0 10px 10px 0;
+    margin: 0 6px;
+}
+.pin {
+    right: 0%;
+}
+.icon {
+    border-bottom-color: red;
+    margin: 0 6px;
+}
+.title{
+    padding-left: 180px;
+}
+.example-des{
+    margin-bottom: 10%;
+    padding-bottom: 100px;
+    padding-top: 9px;
+}
+.example-title{
+    font-size: 20px;
+    
+}
+:host .mat-chip {
+    font-size: 10px;
+    font-weight: 500;
+}
+:host  .mat-standard-chip {
+    padding: 7px 7px;
+    min-height: 26px;
+ 
+}
+.chip-list{
+    user-select: none;
+    width: calc(100% - 15px);
+    display: flex;
+    align-items: center;
+    height: 18px;
+    min-width: 35px;
+    padding: 3px 5px;
+    cursor: pointer;
+    outline: none!important;
+    letter-spacing: .01785714em;
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+}
+:host .mat-chip.mat-standard-chip {
+    color: rgba(0,0,0,.87);
+    background: #0000001f;
+}
+:host .mat-standard-chip.mat-chip-with-trailing-icon {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 4px;
+    padding-left: 0px;
+}
+:host  
+    .mat-chip.mat-standard-chip .mat-chip-remove {
+        color: rgba(0,0,0,.87);
+        opacity: 0.6;
+    }
+.mat-card {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    height: 150px;
+    width: 300px;
+}
+.remove{
+    border: none;
+    outline: none;
+    height: 30px;
+    width: 50px;
+    background-color: rgb(190, 181, 181);
+    border-radius: 30%;
+    margin: 0 2px;
 }
