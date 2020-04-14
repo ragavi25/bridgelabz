@@ -1,217 +1,70 @@
-<div class="main">
-  <app-getnote></app-getnote>
-<div style="padding-left:30px;">
+<div *ngIf="param=='notes'">
+    <app-getnote></app-getnote>
+    <div style="padding-left: 255px;">
+        <h5>PINNED</h5>
+    </div>
+    <div style="flex-wrap: wrap;">
+        <div   fxLayout={{gridView}} fxFlexOffset="15"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&!note.archive&&note.pin=='1'" [param]="param"
+                 [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- OTHERS -->
+
+    <div style="padding-left: 255px;">
+        <br>
+        <h5>OTHERS</h5>
+    </div>
+    <div style="flex-wrap: wrap;">
+        <div fxLayout={{gridView}} fxFlexOffset="15"  fxLayout="row"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&!note.archive&&!note.pin"  [param]="gridView" [labels]="labelNotes" [notes]="note">
+                </app-editcard>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div style="flex-wrap: wrap;">
+<div *ngIf="param=='archive'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div   fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&note.archive=='1'"  [param]="gridView"
+                 [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
 
-  <div class="example-card" fxLayout="{{noteView}}" fxFlex="90" fxFlex.xs="100" fxLayoutAlign.xs="space-around center" cdkDropList
-     (cdkDropListDropped)="drop($event)">
-  <div class="notes" fxFlexOffset="50" style="flex-direction: column;
-   box-sizing: border-box; display: flex; margin-left:0px;">
-      <div *ngFor="let note of notes">
-        <!--<mat-card fxFlex="100" fxFlex.xs="100" class="example-cards"
-           [ngClass]="{'cardGridView': noteView == 'row view','cardListView': noteView == 'column view'}"
-           fxFlex.xs="100" [style.backgroundColor]="note.notes.color">-->
-          <mat-card class="notes" [ngClass]="{'cardGridView': noteView == 'row view','cardListView': noteView == 'column view'}" 
-          *ngIf=note.pinned [ngStyle]="{'background-color':note.color}">
-              <div>
-                  <mat-icon matTooltip="unpin" (click)="pin(note.nodeId,note)"><app-pin class="pins"></app-pin></mat-icon>
-              </div>
-              <mat-card-header>
-                  {{note.tittle}}
-              </mat-card-header>
-              <mat-card-content>
-                  <mat-card-content fxLayout="column">
-                    <div class="des" (click)="UpdateNote(note.notes)"> {{note.description}}</div>
-                    <mat-card-footer>
-                      <mat-chip-list class="example-list">
-                        <mat-chip class="example-reminder" style="margin-left: 10px;" *ngIf="note.reminder">
-                          <mat-icon matChipRemove class="timeaccess" style="margin-right: 8px;">clock-time</mat-icon>
-                          <span class="reminter-time">{{note.reminder}}</span>
-                          <mat-icon matChipRemove class="Reminter-remove" (click)="removeReminder(note)">close-box</mat-icon>
-                        </mat-chip>
-                      </mat-chip-list>
-                      <mat-chip-list class="example-list" *ngIf=" note.notes != undefined" view="hard">
-                        <mat-chip class="example-reminder" style="margin-left: 10px;" *ngFor="let label of note.notes.labels">
-                          <span class="reminter-time" style="margin-left: 30px;" *ngIf="label != null ">{{label.labelname}}</span>
-                          <mat-icon matChipRemove class="Reminter-remove" (click)="deleteLabel(label.note.notes)">delete</mat-icon>
-                        </mat-chip>
-                      </mat-chip-list>
-                      <div *ngFor="let note of note.collaborator">
-                        <div class="example-addcard" *ngIf="!note.img">
-                          <div class="example-person" matTooltip="{{note.firstname}}{{note.email}}>"><span
-                              class="example-role">{{note.email}}</span></div>
-                        </div>
-                      </div>
-                       <div class="matCardIcons">
-                        <app-editcard ></app-editcard>
-                      </div> 
-                      
-                    </mat-card-footer>   
-                  </mat-card-content>
-              </mat-card-content>
-              <br>
-          <!--  <div class="colorlist">
-               <a>
-                  <mat-icon   [matMenuTriggerFor]="menu" class="edit" matTooltip="Add alert">add_alert</mat-icon>
-                 <mat-icon matTooltip="collaborator" class="edit">person_add</mat-icon>
-                <mat-icon [matMenuTriggerFor]="colorlist" class="edit" matTooltip="Add Color">palette</mat-icon>
-                  <mat-icon class="edit" matTooltip="Add image">image</mat-icon>    
-                 <img src="../../../assets/image/archive.svg" class="edit">    
-                <mat-icon [matMenuTriggerFor]="menus" class="edit" matTooltip="more">more_vert</mat-icon>
-              </a>
-              </div>-->
-
-              <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
-                  <div>
-                      <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
-                          *ngFor="let colors of arrayofColors">
-                          <div *ngFor="let color of colors">
-                              <button [ngStyle]="{ 'background-color': color.color }"
-                              (click)="setcolor(color.nodeId, color.changeColor)" matTooltip={{color.changeColor}}
-                                  mat-mini-fab></button>
-                          </div>
-                          <br>
-                      </div>
-                  </div>
-              </mat-menu>
-              <mat-menu #menu="matMenu" (click)="$event.stopPropagation()">
-                <span class="reminter">Reminder:</span>
-                <button mat-menu-item>
-                    <span class="late">Later Today</span>
-                    <span class="todaytime">08:00 PM</span>
-                </button>
-                <button mat-menu-item>
-                    <span class="late">Tomorrow</span>
-                    <span class="todaytime-1">08:00 PM</span>
-                </button>
-                <button mat-menu-item>
-                    <span class="late">Next Week</span>
-                    <span class="todaytime-2">Mon,08:00 pm</span>
-                </button>
-               <button>
-                    <img src="../../../assets/image/alarm-plus.svg">
-                    <span class="time">Select date & time</span>
-                </button><br><br>
-                <button >
-                    <img src="../../../assets/image/map-marker.svg">
-                    <span class="time">Select Place</span>
-                </button>
-            </mat-menu>
-              <mat-menu #menus="matMenu">
-                <button mat-menu-item (click)="deleteNote()">
-                  <span>Delete note</span>
-                </button>
-                <button mat-menu-item [matMenuTriggerFor]="addMenu" (click)="$event.stopPropagation();">
-                  <span>Add label</span>
-                </button>
-                <button mat-menu-item >
-                  <span>Add drawing</span>
-                </button>
-                <button mat-menu-item>
-                  <span>Make a copy</span>
-                </button>
-                <button mat-menu-item>
-                    <span>show tick boxes</span>
-                </button>
-              </mat-menu>
-          </mat-card>
-          <br>
-      </div>
-      <br>
-      <br>
-  </div>
-  </div>
+<div *ngIf="param=='trash'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="note.bin=='1'"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
 </div>
-<div style="padding-left: 255px;">
-</div>
-<div style="flex-wrap: wrap;">
-  
-  <div class="notes" fxFlexOffset="40" fxLayout="column" style="flex-direction: column;
-   box-sizing: border-box; display: flex; margin-left:2%;" >
-      <div *ngFor="let note of notes">
-          <mat-card class="notes" *ngIf=!note.pinned [ngStyle]="{'background-color':note.color}">
-              <div>
-                  <mat-icon matTooltip="pin" (click)="pin(note.nodeId,note)"><app-pin class="pins"></app-pin></mat-icon>
-              </div>
-             
-              <mat-card-header>
-                  {{note.tittle}}
-              </mat-card-header>
-              <mat-card-content>
-                  {{note.description}}
-              </mat-card-content>
-            
-           <div class="colorlist">
-                <a>
-                  <mat-icon   [matMenuTriggerFor]="menu" class="edit" matTooltip="Add alert">add_alert</mat-icon>
-                 <mat-icon matTooltip="collaborator" class="edit">person_add</mat-icon>
-                <mat-icon [matMenuTriggerFor]="colorlist" class="edit" matTooltip="Add Color">palette</mat-icon>
-                  <mat-icon class="edit" matTooltip="Add image">image</mat-icon>    
-                 <img src="../../../assets/image/archive.svg" class="edit">    
-                <mat-icon [matMenuTriggerFor]="menus" class="edit" matTooltip="more">more_vert</mat-icon>
-              </a>
-                  <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
-                      <ng-template matMenuContent>
-                          <div>
-                              <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
-                                  *ngFor="let colors of arrayofColors">
-                                  <div *ngFor="let color of colors">
-                                      <button [ngStyle]="{ 'background-color': color.color }"
-                                      (click)="setcolor(color.nodeId, color.changeColor)"
-                                          matTooltip={{color.changeColor}}
-                                          mat-mini-fab></button>
-                                  </div>
-                                  <br>
-                              </div>
-                          </div>
-                      </ng-template>
-                  </mat-menu>
-                  <mat-menu #menu="matMenu" (click)="$event.stopPropagation()">
-                    <span class="reminter">Reminder:</span>
-                    <button mat-menu-item>
-                        <span class="late">Later Today</span>
-                        <span class="todaytime">08:00 PM</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span class="late">Tomorrow</span>
-                        <span class="todaytime-1">08:00 PM</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span class="late">Next Week</span>
-                        <span class="todaytime-2">Mon,08:00 pm</span>
-                    </button>
-                   <button>
-                        <img src="../../../assets/image/alarm-plus.svg">
-                        <span class="time">Select date & time</span>
-                    </button><br><br>
-                    <button >
-                        <img src="../../../assets/image/map-marker.svg">
-                        <span class="time">Select Place</span>
-                    </button>
-                </mat-menu>
-                  <mat-menu #menus="matMenu">
-                    <button mat-menu-item (click)="deleteNote()">
-                      <span>Delete note</span>
-                    </button>
-                    <button mat-menu-item [matMenuTriggerFor]="addMenu" (click)="$event.stopPropagation();">
-                      <span>Add label</span>
-                    </button>
-                    <button mat-menu-item >
-                      <span>Add drawing</span>
-                    </button>
-                    <button mat-menu-item>
-                      <span>Make a copy</span>
-                    </button>
-                    <button mat-menu-item>
-                        <span>show tick boxes</span>
-                    </button>
-                  </mat-menu>
-                 
-              </div>
-          </mat-card>
-      </div>
-  </div>
-</div>
+<div *ngIf="param=='reminder'">
+    <app-getnote></app-getnote>
+    <br>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <div *ngIf="note.reminder!=null">
+                    <app-editcard *ngIf="!note.bin&&!note.archive"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
