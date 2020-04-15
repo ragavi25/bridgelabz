@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/Services/note.service';
-import { Note } from 'src/app/models/note.model';
+import { DatasharingService } from 'src/app/Services/datasharing.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CardComponent } from '../card/card.component';
+import { AppModule } from 'src/app/app.module';
+import { Subject } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-display-note',
+  templateUrl: './display-note.component.html',
+  styleUrls: ['./display-note.component.scss']
 })
-export class HomeComponent implements OnInit {
-  color: Note = new Note();
+export class DisplayNoteComponent implements OnInit {  color: Note = new Note();
   param: any;
   labelNotes:any;
   gridView:any;
