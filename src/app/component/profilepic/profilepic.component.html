@@ -1,0 +1,52 @@
+<div fxLayout="column">
+    <div class="example-first">
+        <div class="example-profile" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
+            <div><span class="example-title">Select Profile Photo</span>
+            <button mat-icon-btn mat-dialog-close matTooltip="cancel"  fxLayoutAlign="end center">
+                <!-- <img fxLayoutAlign="end end" src="../../../assets/image/close-24px.svg" class="example-user"> -->
+            </button>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="example-pic">
+            <input type="file"  (change)="selectFiles($event)" class="example-img">
+            <div *ngIf="value==false" fxFlex="30"  fxLayoutAlign="center center" class="example-add" (click)="changevalue()">
+                <img src="../../../assets/image/photo_library-24px.svg" class="example-icon">
+                <div>
+                <br>
+                <span class="exampe-drag">Drag a Profile Photo here</span>
+            </div>
+            </div>
+        </div>
+            <br>
+            <div>
+            <div><span>-Or-</span></div>
+            </div>
+            <br>
+            <div>
+            <div>
+           <button>
+         <input type="file"  (change)="selectFiles($event)" *ngIf="value==false" class="example-text">
+         Select a Photo from your Computer
+            </button>
+        <div class="text-center col-md-8">
+            <image-cropper *ngIf="value == true"
+            [imageChangedEvent]="imageChangedEvent"
+            (imageCropped)="imageCropped($event)" 
+            [maintainAspectRatio]="true" 
+            [aspectRatio]="4 / 4"
+            [resizeToWidth]="256" 
+            format="png" 
+            (imageCropped)="imageCropped($event)"></image-cropper>
+        </div>
+    </div>
+    <div fxFlex="100" class="example-footer">
+        <mat-divider></mat-divider>
+        <div class="example-button-row" fxLayoutAlign="start">
+            <button mat-raised-button color="primary" (click)="addprofile(croppedImage)" mat-dialog-close>Set as Profile Photo</button>
+             <button  mat-raised-button mat-dialog-close>cancel</button>
+            </div>
+    </div>
+</div>

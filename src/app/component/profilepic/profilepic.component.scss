@@ -1,0 +1,67 @@
+.example-button-row button,
+.example-button-row a {
+  margin-right: 20px;
+  padding-left: 10px;
+}
+.example-first{
+    margin-bottom: 50px;
+}
+.example-title{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    display: inline-block;
+}
+.example-user{
+     margin-left: 8px;
+     margin-top: 8px;
+     opacity: 0.5;    
+}
+.example-pic{
+    margin-top: 10px;
+}
+.example-img{
+    display: none;
+}
+.example-add{
+    display: inline-block;
+}
+.example-add.exampe-drag{
+    visibility: hidden;
+    width: 65px;
+    background-color: black;
+    color: #ffffff;
+    text-align: center;
+    font-size: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.example-add:hover.exampe-drag{
+    visibility: visible;
+}
+.example-icon{
+    height: 180px;
+    margin: 60px;
+    opacity: .5;
+    transition: .5s;
+}
+.example-icon:hover{
+    transform: scale(1.07);
+}
+.example-img{
+    display: none;
+}
+.example-text{
+    font-size: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+    margin-top: 10px;
+    display: none;
+    margin-left: -6px;
+}
+.example-footer{
+    height: 45px;
+    margin-top: 100px;
+}
+.selectFile{
+    display: none;
+}
+
