@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/Services/account.service';
 import { Router } from '@angular/router';
@@ -23,11 +23,13 @@ export class LoginComponent implements OnInit {
       email: this.email.value,
     };
     console.log(data);
-    this.serviceobj.getLoginValue(data).subscribe((result) => {
-      const temp = JSON.stringify(result);
-      const results = JSON.parse(temp);
+    this.serviceobj.getLoginValue(data).subscribe(Response => {
+      console.log(Response);
+      if(Response=='valid'){
+        localStorage.setItem('token', Response.toLocaleString());
+      }
       
-      this.router.navigate(['/home']);
+      this.router.navigate(['/fundoo/getnote'], { queryParams: { page: 'notes', view: 'row' } });
     });
     this.serviceobj.getLoginValue(data);
   }
