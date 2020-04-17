@@ -28,7 +28,7 @@ const routes: Routes = [
    {path :'fundoo', component: DashboardComponent,
    children:[
       {path :'',component:GetnoteComponent},
-      {path:'getnote',component:HomeComponent},
+      {path:'getnote',component:DisplayNoteComponent},
       {path:'label',component:LabelComponent},
       {path :'Bin',component:BinComponent},
       {path :'archive',component:ArchiveComponent},
