@@ -1,4 +1,5 @@
-<mat-card class="card" [ngStyle]="{'background-color':notes.color}">
+<mat-card class="card" [ngStyle]="{'background-color':notes.color}" >
+    <div>
     <div class="pin">
         <div class="title">
             <app-pin *ngIf="!notes.bin" [notes]="notes"></app-pin>
@@ -6,32 +7,45 @@
     </div>
 
     <div class="example-title" (click)="Update(notes)">
-        {{notes.tittle}}
+        {{notes.title}}
     </div>
     <div class="example-des" style="padding: 0px;" (click)="Update(notes)">
         {{notes.description}}
     </div>
     <div fxLayout="row">
         <div *ngFor="let label of labels">
-            <div fxLayout="row" *ngIf="label.nodeid==notes.id">
-                <button matTooltip="Remove label" fxLayout="row" class="remove" (click)="delete(label.id)">
-                    <strong> {{label.labelname}} </strong>
+            <div fxLayout="row" *ngIf="label.noteid==notes.id">
+                <button matTooltip="Remove label" fxLayout="row" class="remove" (click)="delete(label.noteid)">
+                    <strong> {{label.labelName}} </strong>
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
         </div>
     </div>
-
+    <br>
     <div class="chip-list" fxLayout="row" *ngIf="notes.reminder!=null">
-        <!-- {{notes.reminder}} -->
         <mat-chip-list >
         <mat-chip matTooltip="Delete Reminder" [ngStyle]="{'background-color' : notes.color}"
-            style="border: none;outline: none;background-color:lightgoldenrodyellow">
+            class="reminder">
             <mat-icon matChipRemove class="example-time" style="margin-right: 8px;" >access_time</mat-icon>
             {{notes.reminder}}
             <mat-icon (click)="deleteReminder(notes.id)">close</mat-icon>
         </mat-chip>
     </mat-chip-list>
     </div>
-    <app-newicon [notes]="notes"></app-newicon>
+    <div fxLayout="row">
+            <div>
+                <div *ngFor="let note of collaborator"  class="if" fxLayout="row">
+                  <!-- <div class="example-add" *ngIf="!note.img">
+                    <div class="example-user" matTooltip="{{note.receiveemail}}>">
+                        <span class="user">{{note.receiveemail}}</span></div>
+                   </div> 
+                  <div fxLayout="column">-->
+                    <div class="example-email"> {{note.receiveemail}}</div>
+                  </div>
+                </div>
+              <img src="../../../assets/image/group_add-24px.svg" class="example-user">   
+             </div> 
+    <app-icon [notes]="notes"></app-icon>
+</div>
 </mat-card>
