@@ -12,124 +12,134 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
-  labels: any = [];
-  Menu=false;
-  date = new FormControl('');
-  time = new FormControl('');
-  checked = new FormControl(false);
-  constructor(private serviceobj:NoteService,
-    private bar:MatSnackBar,private dialog:MatDialog)  { }
-    @Input() childMessage: any = "";
-  @Input() user;
-  @Input() test: string;
-  @Output() reminderEvent = new EventEmitter<any>();
-  @Output() updateColor = new EventEmitter<any>();
-  @Output() changeColorForEditCard = new EventEmitter<any>();
-  @Output() DeletedNoteToBin = new EventEmitter<any>();
-  @Output() archiveFromCardEvent = new EventEmitter<any>();
-  @Output() archiveFromCard = new EventEmitter<any>();
-  @Output() reminderOnCards= new EventEmitter<any>();
-  @Output() updateLabel = new EventEmitter<any>();
-  @Output() imageUpdate= new EventEmitter<any>();
-  ngOnInit() {
-    this.getLabels();
-  }
-  colorArray = [[
-    { 'color': 'rgb(255, 255, 255)', 'name': 'White' },
-    { 'color': 'rgb(242, 139, 130)', 'name': 'Red' },
-    { 'color': 'rgb(251, 188, 4)', 'name': 'Orange' },
-    { 'color': 'rgb(255, 244, 117)', 'name': 'Yellow' }]]
+ @Input() param:any;
+  @Input() notes:any;
+  @Output() setColorEvent = new EventEmitter<any>();
+  @Output() reminderEvent= new EventEmitter<any>();
+  @Output() archiveEvent = new EventEmitter<any>();
+  @Output() outputProperty = new EventEmitter<any>();
+  value: Label = new Label();
+  color: Note = new Note();
+   bin:boolean;
+  labels: any;
 
+  constructor(private serviceobj:NoteService,public dialog: MatDialog,private sharing:DatasharingService,
+    private bar:MatSnackBar) { }
 
-  Reminder(){
-    const data=this.date.value.toLocaleDateString() + "," + " " + this.time.value;
-    console.log("reminder:",data);
-    this.reminderEvent.emit(data);
-    this.reminderOnCards.emit(data);
+  ngOnInit(): void {
   }
-  archiveNote(){
-    try{
-      if(this.user.note.id==undefined || this.user.note.id.trim()=="")throw "noteid not found"
-      const data={
-        'id':this.user.id,
-        'isArchived':true,
-      }
-      this.serviceobj.IsArchive(data).subscribe(res=>{
-        this.bar.open("Note archived"," ",{duration:2000})
-        this.archiveFromCard.emit("done");
-      },
-      error=>{
-        this.bar.open("Archive Failed"," ",{duration:2000});
-        console.log(Error);
+  
+  archive(id: number ) {
+    // debugger;
+    this.archiveEvent.emit(id);
+   // this.color.Id = id;
+    // if(notes==0)
+    //   this.color.archive=true;  
+    // else
+    // this.color.archive=false;
+    this.serviceobj.IsArchive(id).subscribe( Response => console.log(Response));
+  location.reload();
+  }
+  unarchive(id){
+this.archiveEvent.emit(id);
+//this.color.Id=id;
+this.serviceobj.unarchive(id).subscribe(Response=>{
+  console.log(Response);
+})
+location.reload();
+  }
+  //working
+  delete(id: number) {
+    //this.color.Id = id;
+    // if (notes.istrash) 
+    //   this.color.bin = false;
+    // else 
+    //   this.color.bin = true;
+      this.serviceobj.emptybin(id).subscribe(response => {
+        console.log(response);
       })
-    }catch(arr){
-      this.bar.open("Archived Failed"," ",{duration:2000});
-    }
+    
+ location.reload();
   }
-  ChangeColor(colorId){
-    this.changeColorForEditCard.emit(colorId);
-    if(this.childMessage!=""){
-      const colordata={'noteId':this.childMessage,'color':colorId}
-      this.serviceobj.addcolor(colordata).subscribe(data=>{this.updateColor.emit(colorId);},
-      error=>{
-        console.log('not change color',error);
-      });
-    }
-    }
-    deleteNote() {
-      var deletedata;
-      if(this.childMessage=""){
-       deletedata={
-        'id':this.childMessage
-      }
-      }
-      else{
-         deletedata=
-        {
-        'id' : this.childMessage,
-        }   
-      }
-      this.serviceobj.deletenote(deletedata).subscribe(
-        data=>{
-          this.bar.open("Note binned"," ",{duration:2000});
-          this.reminderOnCards.emit("done");
-          this.DeletedNoteToBin.emit("done");
-        },
-        error=>{
-          this.bar.open("Note not delete"," ",{duration:2000});
-        }
-      );
-    }
-    getLabels(){
-      this.serviceobj.getlabel().subscribe(
-        data=>{
-          this.labels=(data as any).response;
-        },
-        error=>{
-          console.log(error);
-        }
-      )
-    }
-    checkBox(label){
-      if(this.checked.value==false){
-        const data={
-          'id':label.id,
-          'noteId':this.user.note.id,
-          'labelData':{
-            'labelName':label.labelName,
-            'labelId':label.id,
-          }
-        }
-        this.serviceobj.addlabel(data).subscribe(
-          data=>{
-            this.bar.open("Label added","",{duration:2000});
-            this.updateColor.emit("done");
-          });
-       }
-      }
-      uploadImage(inputImage){}
-      openCollab(user){}
-     
- }
 
+  //working
+  
+  setcolor(id, changeColor) {
+//    debugger;
+    this.setColorEvent.emit("done");
+    this.serviceobj.color(id,changeColor).subscribe(Response=>{
+      console.log(Response);
+    })
+   location.reload();
+  }
+  addLabel(labels) {
 
+    console.log(labels);
+    this.value.noteid = labels;
+    const dialogRef = this.dialog.open(EditlabelComponent, {
+      data: { labels:labels },
+      //panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      labels = result;
+    });
+  }
+  addRemainder(){
+    this.serviceobj.Reminder(this.notes.id, "Today, 8:00 PM").subscribe((status)=>{
+     if (status != null){
+       this.sharing.upmessage(true);
+       this.bar.open('Remainder added.','', {duration: 2000});
+     }
+       });
+      }
+
+  reminder() {
+    // debugger;
+    labels:localStorage.getItem('labels');
+     this.reminderEvent.emit(this.labels);
+   
+    const dialogRef = this.dialog.open(EditreminderComponent, {
+      data: { labels: this.labels },
+      //panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+   this.labels = result;
+    });
+  }
+  addImage(id){
+    const dialogR=this.dialog.open(ImageuploadComponent,{
+      width:'450px',
+      height:'400px',data:id
+    });
+
+  }
+  collaborator(){
+    const display=this.dialog.open(CollaboratorComponent,{
+       data:this.notes
+    });
+    display.afterClosed().subscribe(result=>{
+      console.log('closed');
+    });
+  }
+arrayofColors = [
+  [
+    { color: "rgb(255, 179, 255)", name: "pink" },
+    { color: "rgb(255, 255, 128)", name: "darkGolden" },
+    { color: "rgb(200, 232, 104)", name: "yellow" },
+    { color: " rgb(158, 136, 191)", name: "darkYellow" }
+  ],
+  [
+    { color: "slategray", name: "grey" },
+    { color: "rgb(153, 221, 255)", name: "Teal" },
+    { color: "rgb(203,240,248)", name: "blue" },
+    { color: "rgb(174,203,250)", name: "Dark blue" },
+  ],
+  [
+    { color: "rgb(255, 153, 0)", name: "orange" },
+    { color: "rgb(97, 191, 82)", name: "green" },
+     { color: "white", name: "white" },
+    { color: " rgb(196,174,251)", name: "purpule" }
+
+  ]
+]
+}
