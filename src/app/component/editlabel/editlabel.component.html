@@ -1,25 +1,30 @@
 
- <mat-card style="height:300px;width: 175px; background-color: whitesmoke;">
-    <mat-card-content>
-        <span mat-subheader style="display: block;">Note Labels</span> <br>
-        <div fxLayout="row">
+ <div fxFlex="100" style="height:300px;width: 230px;  min-height: 250px;">
+    <div>
+        <div mat-subheader style="display: block;">Edit labels</div> 
+    </div><br>
+        <div fxLayout="row" >
             <mat-icon mat-dialog-close matTooltip="cancel">close</mat-icon>
-            <input matInput style="border: none; outline: none;background-color: whitesmoke; width:3cm;height:0.7cm"
-                placeholder="Enter label name" value="" #data> <br>
-            <mat-icon matTooltip="create"  mat-dialog-close (click)="createLabels(data.value)" >check</mat-icon>
+            <input matInput  class="create" style="border: none; outline: none; width:3cm;height:0.7cm"
+                placeholder="Create new label " value="" #data autocomplete="off"> <br>
+            <mat-icon matTooltip="create"  mat-dialog-close (click)="createLabels(data.value)" class="check" >check</mat-icon>
         </div>
-
+        <mat-divider class="divider"></mat-divider>
+        <br>
         <label *ngFor="let lab of allLabelNames" fxLayout="coloum">
             <div fxLayout="row">
-                <mat-icon matTooltip="Delete Label" (click)="deleteLabel(lab.id)"  mat-dialog-close> label</mat-icon>
-                <input style="border: none; outline: none; background-color: whitesmoke;width:3cm;" *ngIf="edit"
-                    value="{{lab.labelname}}">
-                <a *ngIf="!edit" style="width:3cm"> {{lab.labelname}}</a>
-                <mat-icon (click)=editLabel() matTooltip="Rename Label">edit</mat-icon>
+                <mat-icon matTooltip="Delete Label" (click)="deleteLabel(lab.id)"  mat-dialog-close > label</mat-icon>
+                <input style="border: none; outline: none; width:3cm;" *ngIf="edit"
+                    value="{{lab. labelName}}">
+                <a *ngIf="!edit" style="width:3cm"><span> {{lab. labelName}}</span></a>
+                <mat-icon (click)=editLabel() matTooltip="Rename Label" class="check1" >edit</mat-icon>
             </div>
             <br>
         </label>
-    </mat-card-content>
-    <mat-divider class="divider"></mat-divider>
-    <button mat-button mat-dialog-close matTooltip="close">Done</button>
-</mat-card>
+    <br>
+    <mat-divider class="divi"></mat-divider>
+    <br>
+    <div>
+    <button mat-button mat-dialog-close class="end"  matTooltip="close">Done</button>
+    </div>
+ </div>
