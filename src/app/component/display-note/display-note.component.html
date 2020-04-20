@@ -13,6 +13,8 @@
         </div>
     </div>
     <br>
+    <!-- OTHERS -->
+
     <div style="padding-left: 255px;">
         <br>
         <h5>OTHERS</h5>
@@ -28,3 +30,41 @@
     </div>
 </div>
 
+<div *ngIf="param=='Archive'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div   fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="!note.bin&&note.archive=='1'"  [param]="gridView"
+                 [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="param=='Bin'">
+    <br><br>
+    <div style="flex-wrap: wrap;">
+        <div fxLayout={{gridView}} fxFlexOffset="15"  style="flex-direction: row;
+         box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <app-editcard *ngIf="note.bin=='1'"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="param=='reminders'">
+    <app-getnote></app-getnote>
+    <br>
+    <div style="flex-wrap: wrap;">
+        <div class={{gridView}}  fxLayout={{gridView}} fxFlexOffset="15"
+            style="box-sizing: border-box; display: flex; margin-left: 5%;">
+            <div *ngFor="let note of allnotes" class="space">
+                <div *ngIf="note.reminder!=null">
+                    <app-editcard *ngIf="!note.bin&&!note.archive"  [param]="gridView" [labels]="labelNotes" [notes]="note"></app-editcard>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
