@@ -1,93 +1,73 @@
-<div >
-    <div style="padding-left: 15px;padding-top: 10px;" fxLayout="row">
-        <div class="colorlist">
-            <a>
-                <button mat-icon-button   [matMenuTriggerFor]="menu"  matTooltip="Remind Me" class="{{param}}">
-                    <mat-icon>add_alert</mat-icon>
-                </button>
-                <button mat-icon-button matTooltip="collaborator" (click)="collaborator()" class="{{param}}">
-                    <mat-icon>person_add</mat-icon>
-                </button>
+<div>
+  <div style="padding-left: 15px;padding-top: 10px;" fxLayout="row">
+<div class="colorlist">
+  <a>      
+      <button mat-icon-button  matTooltip="Remind Me" class="{{param}}">
+        <mat-icon    class="edit">add_alert</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="collaborator" (click)="collaborator()" class="{{param}}">
+        <mat-icon>person_add</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="colorlist" class="{{param}}" matTooltip="Add Color">
+        <mat-icon>palette</mat-icon>
+    </button>
+      <button mat-icon-button class="button" (click)="addImage(data)" matTooltip="Add image">
+        <mat-icon class="icon">add_photo_alternate</mat-icon>
+      </button>
+      <button mat-icon-button  class="{{param}}" *ngIf="!data.archive" (click)="addArchive()" matTooltip="Archive">
+        <mat-icon class="icon">archive</mat-icon>
+      </button>
+      <button mat-icon-button class="{{param}}" *ngIf="data.archive" (click)="removeArchive()" matTooltip="Unarchive">
+        <mat-icon class="icon" >unarchive</mat-icon>
+      </button>
+      <mat-icon [matMenuTriggerFor]="menus" class="{{param}}" matTooltip="more">more_vert</mat-icon>
+  </a>
+</div>
+<div fxLayout="row">
+  <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
+      <ng-template matMenuContent>
+          <div>
+              <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
+                  *ngFor="let colors of arrayofColors">
+                  <div *ngFor="let color of colors">
+                      <button [ngStyle]="{'background-color': color.color}"
+                          (click)="setcolor(notes.id, color.color)" matTooltip="{{ color.name }}"
+                          mat-mini-fab></button>
 
-                <button mat-icon-button [matMenuTriggerFor]="colorlist" class="{{param}}" matTooltip="Add Color">
-                    <mat-icon>palette
-                    </mat-icon>
-                </button>
-                <button mat-icon-button class="{{param}}" (click)="addImage()" matTooltip="Add image">
-                    <mat-icon class="icon">add_photo_alternate</mat-icon>
-                  </button>
-                <button mat-icon-button class="{{param}}"
-                    (click)="unarchive(notes.id)" matTooltip="UnArchive">
-                    <mat-icon>unarchive</mat-icon>
-                </button>            
-                    <ng-template #showarchive>
-                        <button mat-icon-button class="{{param}}" (click)="archive(notes.id)"
-                            matTooltip="Archive">
-                            <mat-icon>
-                                archive
-                            </mat-icon>
-                        </button>
-                    </ng-template>
-                <button mat-icon-button [matMenuTriggerFor]="more" class="visible" matTooltip="more">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-            </a>
-        </div>
-
-        <div fxLayout="row">
-            <mat-menu #colorlist="matMenu" [overlapTrigger]="false">
-                <ng-template matMenuContent>
-                    <div>
-                        <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px"
-                            *ngFor="let colors of arrayofColors">
-                            <div *ngFor="let color of colors">
-                                <button [ngStyle]="{'background-color': color.color}"
-                                    (click)="setcolor(notes.id, color.color)" matTooltip="{{ color.name }}"
-                                    mat-mini-fab></button>
-
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-            </mat-menu>
-        </div>
-        <mat-menu #menu="matMenu" (click)="$event.stopPropagation()">
-            <span class="reminter">Reminder:</span>
-            <button mat-menu-item class="Reminder_button" (click)="addRemainder()">
-                <span class="late">Later Today</span>
-                <span class="todaytime">08:00 PM</span>
-            </button>
-            <button mat-menu-item class="Reminder_button" (click)="addRemainder()">
-                <span class="late">Tomorrow</span>
-                <span class="todaytime-1">08:00 PM</span>
-            </button>
-            <button mat-menu-item>
-                <span class="late">Next Week</span>
-                <span class="todaytime-2">Mon,08:00 pm</span>
-            </button>
-           <button mat-menu-item (click)="reminder()">
-              <mat-icon>  <img src="../../../assets/image/alarm-plus.svg"></mat-icon>
-                <span class="time">Select date & time</span>
-            </button><br><br>
-            <button mat-menu-item >
-                <img src="../../../assets/image/map-marker.svg">
-                <span class="time">Select Place</span>
-            </button>
-          </mat-menu>
-          
-        <mat-menu #more="matMenu">
-            <button mat-menu-item (click)="delete(notes.id)">Delete Note</button>
-            <button mat-menu-item (click)="addLabel(notes)">Add Label</button>
-            <button mat-menu-item>Add Drawing</button>
-        </mat-menu>
-    </div>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </mat-menu>
+</div>
+<mat-menu #menus="matMenu">
+  <button mat-menu-item (click)="deleteNote(notes.id)">
+    <span>Delete note</span>
+  </button>
+  <button mat-menu-item (click)="addlabel(notes)">
+    <span>Add label</span>
+  </button>
+  <button mat-menu-item >
+    <span>Add drawing</span>
+  </button>
+  <button mat-menu-item>
+    <span>Make a copy</span>
+  </button>
+  <button mat-menu-item>
+      <span>show tick boxes</span>
+  </button>
+</mat-menu>
+<mat-menu #addMenu="matMenu">
+  Label Note
+  <div *ngFor="let label of labels">
+    <input class="notranslate" maxlength="50" placeholder="Enter label name" formControlName="labelInput" aria-label="Enter label name">
+    <section class="example-section" (click)="$event.stopPropagation();">
+     
+       <mat-checkbox class="example-margin" [formControl]="checked" (click)="checkBox(labels)"></mat-checkbox>
+      {{label.labelname}}
+    </section>
+  </div>
+</mat-menu>
+</div>
 </div>
 
-<!-- <ng-template #showtrash>
-    <button mat-menu-item class="{{param}}" (click)="delete(notes.id)" matTooltip="Delete forever">
-        <mat-icon>delete_forever</mat-icon>
-    </button>
-    <button mat-menu-item class="{{param}}" (click)="unTrash(notes.id,notes)" matTooltip="Restore">
-        <mat-icon>restore_from_trash</mat-icon>
-    </button>
-</ng-template> -->
