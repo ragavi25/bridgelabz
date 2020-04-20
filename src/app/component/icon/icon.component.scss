@@ -1,3 +1,6 @@
+.edit {
+    margin: 0 5px;
+}
 .matcard{
    
     margin-top: 20px;
@@ -10,6 +13,9 @@
     color: rgb(173, 166, 166);
     
 }
+.input-img{
+    display: none
+  }
 :host .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -74,7 +80,43 @@ img{
     font-family: monospace;
     padding-left: 100px;
 }
+.notranslate{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+  //  -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #3c4043;
+    font-size: 13px;
+    font-family: 'Roboto',arial,sans-serif;
+   // height: 25px;
+    outline: none;
+  //  padding: 0;
 
+}
+.button{
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 4px;
+}
+.buttons{
+    margin-top: 10px;
+}
+.icon{
+    font-size: 20px;
+}
+.note{
+   
+    margin-top:20px;  
+    width: 500px;
+}
+@media only screen and (width: 300px){
+.note{
+    margin-top:60px;
+    width: 500px;
+}
+}
 .todaytime-1{
     color: #afadad;
     font-size: 12px;
@@ -87,5 +129,24 @@ img{
     font-family: monospace;
     padding-left: 72px;
     font-size: 12px;
+}
+.mat-menu-panel {
+    min-width: 112px;
+    max-width: 280px;
+  //  overflow:hidden ;
+   // -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - 48px);
+    border-radius: 4px;
+    outline: 0;
+    min-height: 80px;
+    
+}
+
+.size {
+    height: 9cm;
+    width: 6cm;
+}
+.color{
+    background-color: white;
 }
 
