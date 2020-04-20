@@ -1,31 +1,34 @@
-<div class="example-list" fxFlex="100" fxFlex.xs="100" fxLayout="colum">
-  <mat-toolbar class="example-toolbar">
-    <div fxFlex="100" fxLayoutAlign="space-between center" style="margin-left: 40px;">
-      <div fxFlex="40" fxLayoutAlign="space-between center">
-        <div fxFlex="40" fxFlex.xs="10" fxLayout="row" fxLayoutAlign.xs="start center" fxLayoutAlign="center center">
-          <button mat-icon-button (click)="draw.toggle()">
-            <mat-icon>menu</mat-icon>
+<div class="example-list">
+  <mat-toolbar class="example-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxFlex="100" fxLayoutAlign="space-between center" >
+      <!-- <div fxFlex="40" fxLayoutAlign="space-between center"> -->
+        <!-- <div fxFlex="40" fxFlex.xs="10" fxLayout="row" fxLayoutAlign.xs="start center" fxLayoutAlign="center center" style="margin-left: 30px;"> -->
+          <button mat-icon-button class="menu"  matTooltip="Main Menu" (click)="draw.toggle()">
+            <mat-icon><img>menu</mat-icon>
           </button>
+          <img src="../../../assets/image/fundooimg.png" class="fun">
           <div fxHide.sm='true' fxHide.xs='true'>
             <span class="header" *ngIf="headerName == null">Fundoo</span>
             <span class="header">{{headerName}}</span>
           </div>
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> -->
       <div class="searchWhole">
-        <div class="searchbar">
-            <div class="searchIcon">
+        <mat-card class="searchbar">
+            <!-- <div class="searchIcon"> -->
+              <button class="searchbutton" mat-icon-button  matTooltip="Search">
                 <mat-icon matSuffix>search</mat-icon>
-            </div>
-            <div>
+                </button>
+            <!-- </div> -->
+            <!-- <div>
                 <input class="input" matInput type="searchbar" placeholder=" Search"
                     style="outline:none; color: darkgray;">
-            </div>
-        </div>
-      
-
-      <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign="space-between center">
-        <div fxFlex="10">
+            </div> -->
+            <input class="searchinput" type="text" name="search" autocomplete="off" placeholder="Search ">
+        </mat-card>
+      </div>
+      <!-- <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign="space-between center">
+        <div fxFlex="10"> -->
           <div class="LastIcon" fxLayout="row">
             <!-- <div class="refresh">
                         <button id="refreshbutton" mat-icon-button>
@@ -34,11 +37,11 @@
                       </div> -->
             <div>
 
-              <button mat-icon-button *ngIf="!view" (click)="gridView()">
-                <mat-icon>view_agenda_outline</mat-icon>
+              <button mat-icon-button *ngIf="!view" matTooltip="List view"  (click)="gridView()">
+                <mat-icon><img>view_agenda_outline</mat-icon>
               </button>
-              <button mat-icon-button *ngIf="view" (click)="gridView()">
-                <mat-icon>view_module</mat-icon>
+              <button mat-icon-button *ngIf="view"  matTooltip="List view" (click)="gridView()">
+                <mat-icon><img>view_module</mat-icon>
               </button>
 
             </div>
@@ -56,108 +59,120 @@
                         </mat-menu> 
                     </div> -->
           </div>
-        </div>
-      </div>
-      <div fxFlex="5" fxFlex.xs="2" fxLayoutAlign="end " fxLayoutAlign.xs="end ">
+        <!-- </div>
+      </div>-->
+      <div>
         <button mat-icon-button [matMenuTriggerFor]="menu1">
 
           <div *ngIf="keepLink !=''">
             <img src="../../../assets/image/account_circle-24px.svg" class="keeplink-icon"
-              matTooltip={{userData.email}}>
+              matTooltip={{email}}>
           </div>
           <div class="example-add" *ngIf="keepLink ==''">
-            <div class="example-person" matTooltip="{{userData.firstName}} <{{userData.email}}>"><span
-                class="first">{{userData?.firstName?.charAt(0).toUpperCase()}}</span></div>
+            <div class="example-person" matTooltip="{{firstName}}"><span
+                class="first">{{firstName}}</span></div>
           </div>
+
         </button>
         <mat-menu class="logout" #menu1="matMenu" (click)="$event.stopPropagation();">
           <div>
             <div fxLayout="row" fxLayoutAlign="space-between start" (click)="$event.stopPropagation();">
-              <div class="example-img">
+              <div class="example-img" >
                 <label>
-                  <div class="example-pic" (click)="Profile()" *ngIf="keepLink ==''">
-                    <div class="example-person" matTooltip="{{userData.firstName}} <{{userData.email}}>">
-                      <span class="first">{{userData?.firstName?.charAt(0)}}</span></div>
-                    <div class="example-main">Change</div>
+                  <div   fxLayoutAlign="end center" class="example-pic" (click)="Profile()" *ngIf="keepLink ==''">
+                    <!-- <div class="example-person" matTooltip="{{userAcount.firstName}} {{userAcount.email}}>">
+
+                      <span class="first">{{userAcount.firstName}}</span></div> -->
+                      <img src="../../../assets/image/account_circle-24px.svg"  fxLayoutAlign="start center"  (click)="Profile()" class="example-user"
+                      matTooltip='Change image'>
+                     
+                    <!-- <div class="example-main" fxLayoutAlign="start center">Change</div>  -->
+
                   </div>
-                  <div *ngIf="keepLink!=''">
-                    <img src="../../../assets/image/account_circle-24px.svg" (click)="Profile()" class="profile"
+                  <!-- <div class="example-pic" *ngIf="keepLink!=''">
+                    <img src="../../../assets/image/account_circle-24px.svg" (click)="Profile()" class="example-user"
                       matTooltip='Change image' matTooltipPosition='after'>
                     <mat-icon>add_a_photo</mat-icon>
                     <div class="example-main">Change</div>
-                  </div>
+                  </div> -->
                 </label>
               </div>
+              <br>
               <div class="user-info">
-                <span class="userName">{{userData.firstName}} {{userData.lastName}}</span>
-                <div class="userMail">{{userData.email}}</div>
+                <span>Ragavi Rajendran</span>
+                <br>
+                <div>
+                  <span>raghavimr15@gmail.com</span></div>
               </div>
             </div>
             <mat-divider></mat-divider>
             <div class="signout" fxLayout="row">
-              <button mat-button (click)="logout()"><span class="logout">Add Account</span>
+
+              <button mat-button (click)="logout()"><span class="logout">
+                <img src="../../../assets/image/person_outline-24px.svg" class="example-user"> 
+                Add another Account</span>
               </button>
+            </div>
+              <mat-divider></mat-divider>
+              <div class="signout" fxLayout="row">
               <button mat-button (click)="logout()"><span class="logout">Sign out</span>
               </button>
             </div>
           </div>
         </mat-menu>
       </div>
-    </div>
+  
     </div>
   </mat-toolbar>
-  <mat-divider></mat-divider>
-
-
+  <mat-divider class="divider"></mat-divider>
   <div class="whole">
-
     <mat-drawer-container class="example-container" autosize>
-
+      <!-- <button> <mat-icon>lightbulb_outline</mat-icon></button> -->
       <mat-drawer #draw mode="side" class="mat-drawer">
         <div class="mat-drawer-inner-container">
           <mat-nav-list class="sidenavlist">
-
-            <a mat-list-item matTooltip="notes" (click)= "showNote()">
-              <b class="sidename" (click)="headerName='Notes'"
+            <a role="button"  mat-list-item matTooltip="Notes" (click)= "showNote()">
+              <b mat-button class="sidename" (click)="headerName='Notes'"
               [ngClass]="{'sidename': headerName!='Notes', 'sideNames': headerName=='Notes'}">
-              <mat-icon>lightbulb_outline</mat-icon><span>Note</span></b>
-            </a> <br>
-            <a mat-list-item (click)="reminder()" matTooltip="reminder">
-              <b  class="sidename" (click)="headerName='Reminders'"
+              <mat-icon><img>lightbulb_outline</mat-icon><span>Notes</span></b>
+            </a> 
+            <a mat-list-item (click)="reminder()">
+              <b mat-button  matTooltip="Reminder" class="sidename" (click)="headerName='Reminders'"
               [ngClass]="{'sidename': headerName!='Reminders', 'sideNames': headerName=='Reminders'}">
-              <mat-icon>notifications</mat-icon><span>Reminders</span></b>
+              <mat-icon><img src="../../../assets/image/bell-regular.svg" ></mat-icon><span>Reminders</span></b>
             </a>
             <!-- <label>Labels</label><br> -->
             <div *ngFor="let note of labels">
-                <a mat-list-item   matTooltip={{note.labelName}} (click)="labelOperation(note.labelName)">
-                  <b  mat-button  class="sidename" (click)="headerName=note.labelName"
+                <a mat-list-item  (click)="labelOperation(note.labelName)">
+                  <b  mat-button  matTooltip={{note.labelName}}  class="sidename" (click)="headerName=note.labelName"
                   [ngClass]="{'sideNavListItems': headerName!=note.labelName, 'sideNavlistItemsColored': headerName==note.labelName}">
-                    <mat-icon>label</mat-icon>{{note.labelName}}</b>
-                </a> <br>
+                    <mat-icon><img src="../../../assets/image/label.svg"></mat-icon><span>{{note.labelName}}</span></b>
+                </a> 
             </div>
             <div>
                <a mat-list-item >
-              <b class="sidename" mat-button (click)="EditLabel()">
-                <mat-icon>edit</mat-icon> 
+              <b class="sidename"  matTooltip="Edit label" mat-button (click)="EditLabel()">
+                <mat-icon><img src="../../../assets/image/editlabel.svg"></mat-icon> 
                 <span>Edit Labels</span>
               </b></a>
             </div> 
-            <br>
-            <a mat-list-item (click)="archive()" matTooltip="archive">
-              <b class="sidename"  (click)="headerName='Archive'"
+            <a mat-list-item (click)="archive()" matTooltip="Archive">
+              <b  mat-button class="sidename"  (click)="headerName='Archive'"
             [ngClass]="{'sidename': headerName!='Archive', 'sideNames': headerName=='Archive'}">
-              <mat-icon>archive</mat-icon><span>Archive</span></b>
-            </a> <br>
-            <a mat-list-item (click)="trash()" matTooltip="trash">
-              <b class="sidename" mat-button  (click)="headerName='Bin'"
+              <mat-icon><img src="../../../assets/image/arch.svg"></mat-icon><span>Archive</span></b>
+            </a> 
+            <a mat-list-item (click)="trash()" matTooltip="Bin">
+              <b mat-button class="sidename" mat-button  (click)="headerName='Bin'"
               [ngClass]="{'sidename': headerName!='Bin', 'sideNavlistItemsColored': headerName=='Bin'}">
-              <mat-icon>delete</mat-icon><span>Bin</span></b>
+              <mat-icon><img src="../../../assets/image/trash-alt-regular.svg"></mat-icon><span>Bin</span></b>
             </a>
           </mat-nav-list>
         </div>
       </mat-drawer>
-      <mat-drawer-container class="mat-drawer-content">
+      <mat-drawer-container class="last" style="margin-top: 20px;">
+        <div>
         <router-outlet></router-outlet>
+        </div>
       </mat-drawer-container>
     </mat-drawer-container>
   </div>
