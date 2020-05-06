@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NoteService } from 'src/app/Services/note.service';
 import { Router } from '@angular/router';
 import { DatasharingService } from 'src/app/Services/datasharing.service';
-import { MatDialog, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Note } from 'src/app/models/note.model';
 
@@ -13,7 +13,9 @@ import { Note } from 'src/app/models/note.model';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private service :NoteService ) { }
+  @Output() output: EventEmitter<any> = new EventEmitter();
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  private dialog:MatDialogRef<CardComponent>, private service :NoteService ) { }
 
   passData: Note=new Note();
   ngOnInit(): void {
@@ -22,12 +24,17 @@ export class CardComponent implements OnInit {
   updateNote(id,title, description) {
     debugger;
     this.passData.Id=id;
-    this.passData.Description=description;
     this.passData.Title=title;
-    // console.log(this.passData);
-    this.service.UpdateNote(this.passData).subscribe(response => {
-      window.location.reload();
+    this.passData.Description=description;
+    console.log(this.passData);
+    this.service.UpdateNote(id,title,description,null,null).subscribe(response => {
       console.log(response);
+      this.dialog.close();
     });
+    //this.dialog.close({ updateData: this.passData });
+    
+  }
+  Function(event){
+    this.dialog.close({result:event});
   }
 }
