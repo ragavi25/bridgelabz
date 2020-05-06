@@ -2,19 +2,18 @@
 
   <div fxLayout="row">
       <div>
-          <strong> <input style="border: none; outline: none;" [ngStyle]="{'background-color' : data.note.color}"
-                  matInput type="text" class="ntitle" value="{{data.note.title}}" #title> </strong>
+          <span> <input style="border: none; outline: none;font-size:x-large ;" [ngStyle]="{'background-color' : data.note.color}"
+                 type="text" id="ntitle" value="{{data.note.title}}" placeholder="update Title" #title > </span>
       </div>
       <app-pin [notes]="data.note"></app-pin>
   </div>
   <div>
-      <i> <input style="border: none; outline: none;" [ngStyle]="{'background-color' : data.note.color}" matInput
-              type="text" class="titles" value="{{data.note.description}}" #description> </i>
-
-      <div fxLayout="row" style="padding-top: 32px;">
-          <app-icon [notes]="data.note"></app-icon>
-          <button mat-button mat-dialog-close
-              (click)="updateNote(title.value, description.value, data.note.id)">Close</button>
+      <span> <input style="border: none; outline: none;font-size: medium;" [ngStyle]="{'background-color' : data.note.color}"
+              type="text" id="titles" value="{{data.note.description}}" placeholder="update Description" #description > </span>
+            </div>
+      <div fxLayout="row" class="updateicon">
+          <app-newicon></app-newicon>
+          <button mat-button mat-dialog-close  (click)="updateNote(data.note.id,title.value, description.value )" id="updatesave">Close</button>
       </div>
-  </div>
+  
 </mat-card>
