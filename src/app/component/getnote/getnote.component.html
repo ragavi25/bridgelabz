@@ -1,39 +1,195 @@
-<div fxLayout="column">
-    <div fxFlex="100" class="note" fxLayoutAlign="space-around start" fxFlex.xs="95" >
-      <mat-card class="mat-card" fxFlex="50" fxLayout="row"  *ngIf="flag==true"
-      (click)="reverseFlag()" fxLayoutAlign="space-between start" fxFlex.xs="95" fxLayoutAlign.xs="space-around start">
-        <div fxFlex="65" data-text="Take a note.." class="text-area" contenteditable="true" class="maincard">
+<div fxLayout="column" fxLayoutAlign="space-around center" class="whole" style="margin-left: -301px;margin-top: -11px;">
+  <div fxFlex="100" class="note" fxLayoutAlign="space-around start" fxFlex.xs="95" >
+    <mat-card class="notes" *ngIf="flag==true"
+    (click)="reverseFlag()" fxLayoutAlign="space-between start" fxFlex.xs="95" fxLayoutAlign.xs="space-around start">
+    <div class="text" id="TxtTakeNote">
+     
+      <span>Take a note......</span>
+     
+      <a class="edit">   
+      <mat-icon  matTooltip=" New list"><img src="../../../assets/image/draw.svg"></mat-icon>
+            <mat-icon  matTooltip="New note with drawing"><img src="../../../assets/image/brash.svg"></mat-icon>
+           <mat-icon  matTooltip="New note with image">crop_original</mat-icon>
+      </a>
+  </div>
+
+    </mat-card>
+  </div>
+     <div fxFlex="100" class="note" fxLayoutAlign="space-around start" fxFlex.xs="95" style="margin-top: -55px" > 
+      <mat-card   *ngIf="flag==false" class="notes" [ngStyle]="{'background-color':changeColor}">
+        <div class="pin" fxLayout="row"   >
+        <div *ngIf="!value" (click)="reverseValue()"  matTooltip="Pin note" > <img  src="../../../assets/image/pin.svg" id="takepin"></div>
+        <div *ngIf="value" (click)="reverseValue()"  matTooltip="Unpin note"> <img  src="../../../assets/image/unpin.svg" id="takeunpin"></div>
         </div>
-      </mat-card>
-    </div>
-    
-    <div fxFlex="100" class="big-note" fxLayoutAlign="space-around start" *ngIf="flag==false" fxFlex.xs="100">
-      <mat-card  [style.backgroundColor]="setColor"  fxFlex="50" fxLayout="column" fxLayoutAlign="space-between start" fxLayoutAlign.xs="space-around start" fxFlex.xs="95" fxFlex.sm="80">
-        <div fxLayout="row" fxLayoutGap="420px">
-        <input class="title" type="text" [formControl]="noteTitle" placeholder="Title">
-        <div *ngIf="value==false" (click)="reverseValue()" > <img src="../../../assets/image/pin.png"></div>
-        <div *ngIf="value==true" (click)="reverseValue()"> <img src="../../../assets/image/unpin.png"></div>
-      </div>
         <div class="area">
-          <textarea class="add-note" matTextareaAutosize [formControl]="noteContent" placeholder="Take a note..."></textarea>
+          <textarea class="title" type="text" matTextareaAutosize [formControl]="title" placeholder="Title" id="taketitle"></textarea>
+          <textarea class="add-note" matTextareaAutosize [formControl]="description" placeholder="Take a note..................." id="takedes"></textarea>
         </div>
-        <mat-chip-list class="chip-list">
-    
-            <mat-chip class="show-reminders" style="margin-left: 10px;" *ngIf="reminderData">
-              <mat-icon matChipRemove class="time-icon" style="margin-right: 8px;">access_time</mat-icon>
-               <span class="show-time">{{reminderData}}</span>
-              <mat-icon matChipRemove class="remove" (click)="removeReminder()">close </mat-icon>
-            </mat-chip>
-            </mat-chip-list>
+        <div >
+          <mat-chip *ngIf="reminder!=null">
+              {{reminder}}
+          <mat-icon (click)="close()">close</mat-icon>
+          </mat-chip>
+          <mat-chip *ngIf="label!=null">
+              {{labelname}}
+              <mat-icon (click)="closelabel()">close</mat-icon>
+          </mat-chip>
+      </div>
+      <div fxLayout="row">
+        <div>
+            <div *ngFor="let note of collaborator"  class="if" fxLayout="row">
+              <!-- <div class="example-add" *ngIf="!note.img">
+                <div class="example-user" matTooltip="{{note.receiveemail}}>">
+                    <span class="user">{{note.receiveemail}}</span></div>
+               </div> 
+              <div fxLayout="column">-->
+                <div class="example-email"> {{note.receiveemail}}</div>
+              </div>
+            </div>
+          <img src="../../../assets/image/account_circle-24px.svg" class="example-user">   
+         </div> 
+
+      <div class="labelVisibility">
+        <mat-card-footer class="icons" fxLayout="row"  fxLayoutAlign="space-between center">
+        <div>
+            <div fxlayout="row" class="display">
+                <button mat-icon-button matTooltip="Remind Me" [matMenuTriggerFor]="menu" class="remind">
+                    <mat-icon><img src="../../../assets/image/reminder.svg" id="takereminder"></mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="collaborator" (click)="collaborator()"  class="remind">
+                  <mat-icon><img src="../../../assets/image/collaborator.svg" id="colla"></mat-icon>
+              </button>
+
+                <button mat-icon-button matTooltip="Add Color" class="remind colors" [matMenuTriggerFor]="Colors">
+                    <mat-icon><img src="../../../assets/image/color.svg" id="color" class="chcolor">
+                    </mat-icon>
+                </button>
+                <button mat-icon-button class="remind mrl" (click)="addImage()" matTooltip="Add image">
+                  <mat-icon><img src="../../../assets/image/photoadd.svg" id="addimg"></mat-icon>
+                </button>
+
+                <button mat-icon-button *ngIf="archive; else showarchive" (click)="isArchive()"
+                    matTooltip="UnArchive">
+                    <mat-icon>  <img src="../../../assets/image/unarchive2.svg" id="unarchive"></mat-icon>
+                </button>
+                <ng-template #showarchive>
+                    <button mat-icon-button (click)="isArchive()" matTooltip="Archive">
+                        <mat-icon>
+                          <img src="../../../assets/image/arch.svg" id="archive">
+                        </mat-icon>
+                    </button>
+                </ng-template>
+                <button mat-icon-button [matMenuTriggerFor]="more" class="remind" matTooltip="more">
+                  <img><mat-icon>more_vert</mat-icon>
+              </button>
+                <div class="closecls">
+                    <button mat-button class="close" (click)="addNote()">
+                        close
+                    </button>
+                </div>
+
+            </div>
+           
+        </div>
+      </mat-card-footer>
+
+        <!-- <mat-chip-list class="chip-list">
+          <mat-chip class="show-reminders" style="margin-left: 10px;" *ngIf="reminder">
+            <mat-icon matChipRemove class="time-icon" style="margin-right: 8px;">access_time</mat-icon>
+             <span class="show-time">{{reminder}}</span>
+            <mat-icon matChipRemove class="remove" (click)="removeReminder()"></mat-icon>
+          </mat-chip>
+          </mat-chip-list>
         <div  class="icons">
-          <mat-card-footer fxLayout="row"  fxLayoutAlign="space-between center">
-              <app-icon (reminderEvent)="receiveReminderEvent($event)" (setColorEvent)="receiveSetColorEvent($event)" 
-              (archiveEvent)="receiveArchiveEvent($event)"> </app-icon>
-              <button  mat-button (click)="addNote()"><span class="close">Close</span></button>
+          <mat-card-footer class="icons" fxLayout="row"  fxLayoutAlign="space-between center">
+            <app-newicon (reminderEvent)="ReminderEvent($event)" (setColorEvent)="reciveSetColorEvent($event)" 
+            (archiveEvent)="ArchiveEvent($event)"></app-newicon> 
           </mat-card-footer>
-        </div>
+          <button fxLayoutAlign="end" mat-button id="btnclose" (click)="addNote()"><span class="close">Close</span></button>
+ -->
+       </div>
       </mat-card>
+      <div fxLayout="row" class="palette">
+        <mat-menu #Colors="matMenu" [overlapTrigger]="false">
+            <ng-template matMenuContent>
+                <div>
+                    <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 1px" *ngFor="let colors of listOfColors">
+                        <div *ngFor="let color of colors">
+                            <button [ngStyle]="{'background-color': color.color}" (click)="setColor(color.color)"
+                                matTooltip="{{ color.name }}" mat-mini-fab></button>
+
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </mat-menu>
     </div>
+    <mat-menu #menu="matMenu" (click)="$event.stopPropagation()">
+      <span class="reminter">Reminder:</span>
+      <button mat-menu-item class="Reminder_button" (click)="addRemainder()">
+          <span class="late">Later Today</span>
+          <span class="todaytime">08:00 PM</span>
+      </button>
+      <button mat-menu-item class="Reminder_button" (click)="addRemainder()">
+          <span class="late">Tomorrow</span>
+          <span class="todaytime-1">08:00 PM</span>
+      </button>
+      <button mat-menu-item>
+          <span class="late">Next Week</span>
+          <span class="todaytime-2">Mon,08:00 pm</span>
+      </button>
+     <button mat-menu-item id="select" [matMenuTriggerFor]="remind" >
+        <mat-icon>  <img src="../../../assets/image/alarm-plus.svg"></mat-icon>
+          <span class="time">Select date & time</span>
+      </button>
+      <button mat-menu-item >
+          <img src="../../../assets/image/map-marker.svg">
+          <span class="time">Select Place</span>
+      </button>
+    </mat-menu>
+ 
+    <mat-menu #remind="matMenu">
+        <mat-card class="size">
+            <div fxLayout="row">
+                <mat-icon matTooltip="Go back" mat-dialog-close>arrow_back</mat-icon>
+                Pick date & time
+            </div>
+            <mat-form-field>
+                <input matInput [matDatepicker]="date" value="matDatepicker" #picdate>
+                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="color">
+                <mat-label>8:00 AM</mat-label>
+                <mat-select>
+                    <mat-option value="8:00 AM" (click)="setTime(a.value)" #a>Morning 8:00 AM</mat-option>
+                    <mat-option value="1:00 PM" (click)="setTime(b.value)" #b>Afternoon 1:00 PM</mat-option>
+                    <mat-option value="6:00 PM" (click)="setTime(c.value)" #c>Evening 6:00 PM</mat-option>
+                    <mat-option value="8:00 PM" (click)="setTime(d.value)" #d>Night 8:00 PM</mat-option>
+                    <mat-option value="10:00 AM" (click)="setTime(e.value)" #e>Custom</mat-option>
+                </mat-select> 
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="color">
+                <mat-label>Repeat</mat-label>
+                <mat-select>
+                    <mat-option value="not" (click)="setRepitation(f.value)" #f>Does not repeat</mat-option>
+                    <mat-option value="daily" (click)="setRepitation(g.value)" #g>Daily</mat-option>
+                    <mat-option value="weekly" (click)="setRepitation(h.value)" #h>Weekly</mat-option>
+                    <mat-option value="monthly" (click)="setRepitation(i.value)" #i>Monthly</mat-option>
+                    <mat-option value="yearly" (click)="setRepitation(j.value)" #j>Yearly</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button (click)="save(picdate.value)">Save</button>
+        </mat-card>
+    </mat-menu>
+    <mat-menu #more="matMenu">
+      <button mat-menu-item (click)="delete(notes.id)">Delete Note</button>
+      <button mat-menu-item (click)="addLabel(notes)">Add Label</button>
+      <button mat-menu-item>Add Drawing</button>
+  </mat-menu>
+</div>
     </div>
     
     
