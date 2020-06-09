@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System.Threading.Tasks;
 using Fundoo.Model;
+using Microsoft.AspNetCore.Http;
 using Model.Model;
 using Repository.Repository;
 
@@ -62,11 +63,22 @@ namespace Manager.Manager
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public async Task<string> Login(LoginModel loginModel)
+        public  Task<string> Login(LoginModel loginModel)
         {
-            var a = await this.Repository.Login(loginModel);
-            return a;
+           return this.Repository.Login(loginModel);
+            
         }
+
+        public Task<string> Logout(string email)
+        {
+            return this.Repository.Logout(email);
+        }
+
+        public string ProfilePicture(string email, IFormFile image)
+        {
+            return this.Repository.ProfilePicture(email, image);
+        }
+
         /// <summary>
         /// Purpose:Get the Repository Register.
         /// </summary>
@@ -79,7 +91,7 @@ namespace Manager.Manager
             
         }
         /// <summary>
-        /// Purpose:Get the Repository ResetPassword.
+        /// Purpose:Get the Repository ResetPassword.C:\Users\vanchi\Desktop\FundooBackend\Manager\ManagerImpl\AccountManagerImpl.cs
         /// </summary>
         /// <param name="reset"></param>
         /// <returns></returns>
@@ -88,6 +100,7 @@ namespace Manager.Manager
            string a= await this.Repository.ResetPassWord(reset);
             return a ;
         }
+
     }
 }
  
