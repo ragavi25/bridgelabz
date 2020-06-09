@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using Fundoo.Model;
 using Manager.Manager;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model.Model;
 namespace Fundoo.Controller
@@ -33,8 +34,8 @@ namespace Fundoo.Controller
         {
             try
             {
-                bool result = await this.manager.Register(registerModel);
-                return Ok(registerModel );
+                var result = await this.manager.Register(registerModel);
+                return Ok(new { result} );
                
             }
             catch (Exception e)
@@ -49,12 +50,12 @@ namespace Fundoo.Controller
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> login([FromBody] LoginModel loginModel)
+        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
         {
             try
             {
-                string responce = await this.manager.Login(loginModel);
-                    return Ok(loginModel);
+                var result= this.manager.Login(loginModel); 
+                    return Ok(new {result });
                
               //  return responce != null ? Ok(responce) : (ActionResult)BadRequest("user not register");
             }
@@ -113,7 +114,7 @@ namespace Fundoo.Controller
         {
             try
             {
-                 var r=this.manager.EmailLogin(loginModel);
+                 var r= await this.manager.EmailLogin(loginModel);
                     return Ok(loginModel);
                 ////return responce != null ? Ok(responce) : (IActionResult)BadRequest("user not register");
             }
@@ -133,7 +134,7 @@ namespace Fundoo.Controller
         {
             try
             {
-                var result = this.manager.FaceBookLogin(loginModel);
+                var result = await this.manager.FaceBookLogin(loginModel);
                     return Ok(loginModel);
                ////return result != null ? Ok(result) : (IActionResult)BadRequest("User not Register");
             }
@@ -142,5 +143,35 @@ namespace Fundoo.Controller
                 return BadRequest(h.Message);
             }
         }
+        [HttpPut]
+        [Route("logout")]
+        public async Task<ActionResult> Logout(string email)
+        {
+            var result = await this.manager.Logout(email);
+            if (result == "success")
+            {
+                return this.Ok(result);
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
+        [HttpPut]
+        [Route("profilePic")]
+        public ActionResult ProfilePicture(string email, IFormFile image)
+        {
+            var result = this.manager.ProfilePicture(email, image);
+            if (result != null)
+            {
+                return this.Ok(new { result });
+            }
+            else
+            {
+                return this.BadRequest();
+            }
+        }
+
     }
+
 }
