@@ -1,18 +1,23 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="R Ragavi"/>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using Experimental.System.Messaging;
 using Fundoo.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Model.Model;
 using Repository.Context;
@@ -26,9 +31,11 @@ namespace Repository.Repository
         /// purpose:get the UserContext using database connections.
         /// </summary>
         private readonly UserContext context;
-        public AccountRep(UserContext userContext)
+        private readonly IConfiguration configuration;
+        public AccountRep(UserContext userContext, IConfiguration configurations)
         {
             context = userContext;
+            this.configuration = configurations;
         }
         public AccountRep()
         {
@@ -46,36 +53,84 @@ namespace Repository.Repository
                 LastName = registerModel.LastName,
                 Email = registerModel.Email,
                 Password = registerModel.Password,
-                Id = registerModel.Id,
+               // Id = registerModel.Id,
+                ProfilePicture=registerModel.ProfilePicture
             };
-            this.context.registers.Add(model);
-            return Task.Run(() => context.SaveChanges());
+           this.context.registers.Add(model);
+             return Task.Run(() => context.SaveChanges());
+           // return default;
         }
         /// <summary>
         /// Purpose:create the Login.
         /// </summary>
         /// <param name="loginModel"></param>
         /// <returns></returns>
-        public async Task<string> Login(LoginModel loginModel)
+        public async Task<String> Login(LoginModel loginModel)
         {
-            LoginModel model = new LoginModel();
-            var result = FindEmail(loginModel.Email);
-            var check = CheckPassword(loginModel.Email, loginModel.Password);
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenDescriptor = new SecurityTokenDescriptor
+            if (FindEmail(loginModel.Email))
             {
-                Subject = new ClaimsIdentity(new Claim[]
+                //var Jwtsettings = new Jwtsetting();
+                if (CheckPassword(loginModel.Email, loginModel.Password))
                 {
+                    //var key = configuration["Jwt:Key"];
+                    // var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+                    var SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])), SecurityAlgorithms.HmacSha256);
+                    var token = new JwtSecurityToken(
+                        issuer: configuration["Jwt:url"],
+                        audience: configuration["Jwt:url"],
+                        expires: DateTime.Now.AddMilliseconds(60),
+                        signingCredentials: SigningCredentials);
+                    var securitytoken = new JwtSecurityTokenHandler().WriteToken(token);
+                   // this.context.SaveChanges();
+                    return securitytoken;
 
-                   new Claim("Name", loginModel.Email),
-                    new Claim("Password",loginModel.Password)
-               }),
-            };
-            var tokenDiscripter = tokenHandler.CreateToken(tokenDescriptor);
-            var securityToken = tokenHandler.WriteToken(tokenDiscripter);
-            await Task.Run(() => context.SaveChanges());
-            return securityToken;           
+                }
+            }
+            /*LoginModel model = new LoginModel();
+            var result = this.context.registers.Where(op => op.Email == model.Email).SingleOrDefault();
+            if (result != null) {
+                try {
+                    var check = CheckPassword(loginModel.Email, loginModel.Password);
+                    var key = configuration["Jwt:Key"];
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
+
+                   new Claim("Name", loginModel.Email.ToString()),
+                    new Claim("Password",loginModel.Password.ToString())
+                       }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)), SecurityAlgorithms.HmacSha256)
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var tokenDiscripter = tokenHandler.CreateToken(tokenDescriptor);
+                    var securityToken = tokenHandler.WriteToken(tokenDiscripter);
+                   // var cachekey = loginModel.Email;
+
+                   *//* ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMultiplexer.GetDatabase();
+                    database.StringSet(key: cachekey, securityToken);
+                    database.StringGet(cachekey);*/
+                   /* result.Status = true;
+                    var data = new Adminlist()
+                    {
+                        Email = loginModel.Email,
+                        Logintime = DateTime.Now
+                    };*//*
+
+
+                    //this.context.Adminlists.Add(data);
+                    // Task.Run(() => context.SaveChanges());
+                    return securityToken;
+                }
+                catch(Exception s)
+                {
+                    throw new Exception(s.Message);
+                }
+               
+            }*/
+            return "Invalid";
         }
         /// <summary>
         /// purpose:create the FindMail.
@@ -156,7 +211,7 @@ namespace Repository.Repository
                         EnableSsl = true,
                         DeliveryMethod = SmtpDeliveryMethod.Network,
                         UseDefaultCredentials = false,
-                        Credentials = new System.Net.NetworkCredential("raghavimr15@gmail.com", "rjvrragavi")
+                        Credentials = new System.Net.NetworkCredential("youremailid", "yourpasword")
                     };
                     using (var messaging = new MailMessage(FromAddress, ToAddress)
                     {
@@ -286,6 +341,50 @@ namespace Repository.Repository
                 }
                 return null;
          }
+
+        public async Task<string> Logout(string email)
+        {
+            var result = this.context.registers.Where(op => op.Email == email).FirstOrDefault();
+            if (result != null)
+            {
+                    string cachekey = email;
+                    ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+                    IDatabase database = connectionMultiplexer.GetDatabase();
+                    database.KeyDelete(cachekey);
+                    result.Status = false;
+                    await this.context.SaveChangesAsync();
+                    return "success";
+                
+            }
+            return null;
+
+        }
+
+        public string ProfilePicture(string email, IFormFile image)
+        {
+            try
+            {
+                var result = image.OpenReadStream();
+                var name = image.FileName;
+                Account account = new Account("dxizbs2aq", "572583872924614", "572583872924614");
+                Cloudinary cloudinary = new Cloudinary(account);
+                var UploadFile = new ImageUploadParams()
+                {
+                    File = new FileDescription(name, result)
+                };
+                var uploadResult = cloudinary.Upload(UploadFile);
+
+                var data = this.context.registers.Where(Op => Op.Email == email).SingleOrDefault();
+                data.ProfilePicture = uploadResult.Uri.ToString();
+                this.context.SaveChanges();
+                return data.ProfilePicture;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+      
     }
 }
 
