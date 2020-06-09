@@ -1,10 +1,11 @@
-﻿// -----------------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------
 // <copyright file=AccountController.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="R Ragavi"/>
 // ---------------------------------------------------------------------------------------------------------------------------------
 using Fundoo.Model;
+using Microsoft.AspNetCore.Http;
 using Model.Model;
 using System.Threading.Tasks;
 namespace Repository.Repository
@@ -50,5 +51,8 @@ namespace Repository.Repository
        /// <param name="loginModel"></param>
        /// <returns></returns>
         public  Task<RegisterModel> FaceBookLogin(LoginModel loginModel);
+        Task<string> Logout(string email);
+        string ProfilePicture(string email, IFormFile image);
+        
     }
 }
